@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    {% load static %}
+    <title>Gyan-e - Your Unfair Advantage</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static '/main.css' %}">
+    <link rel="stylesheet" href="{% static '/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
+    <link rel="stylesheet" href="{% static '/assets/fonts/fontawesome-all.min.css' %}">
+</head>
+
+<body>
+    {% if user.is_authenticated %}
+    <!-- <h1>Hello {{ user.username }}</h1>
+    <a href="logout/">Logout</a>
+
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert" id="alert" style="width:100%;margin-top: 10px;" >
+      <strong>Message: </strong> {{ message }}&nbsp; !!
+    </div> -->
+    <div class="gyane-top">
+        <div class="gyane-bar gyane-theme gyane-left-align gyane-large">
+         <a class="gyane-bar-item gyane-button gyane-hide-medium gyane-hide-large gyane-right gyane-padding-large gyane-hover-white gyane-large gyane-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
+         <a href="#" class="gyane-bar-item gyane-button gyane-padding-large gyane-theme-d4"><i class="fa fa-home gyane-margin-right"></i>Logo</a>
+         <a href="#" class="gyane-bar-item gyane-button gyane-hide-small gyane-padding-large gyane-hover-white" title="News"><i class="fa fa-globe"></i></a>
+         <a href="#" class="gyane-bar-item gyane-button gyane-hide-small gyane-padding-large gyane-hover-white" title="Account Settings"><i class="fa fa-user"></i></a>
+         <a href="#" class="gyane-bar-item gyane-button gyane-hide-small gyane-padding-large gyane-hover-white" title="Messages"><i class="fa fa-envelope"></i></a>
+         <div class="gyane-dropdown-hover gyane-hide-small">
+           <button class="gyane-button gyane-padding-large" title="Notifications"><i class="fa fa-bell"></i><span class="gyane-badge gyane-right gyane-small gyane-green">3</span></button>     
+           <div class="gyane-dropdown-content gyane-card-4 gyane-bar-block" style="width:300px">
+             <a href="#" class="gyane-bar-item gyane-button">One new friend request</a>
+             <a href="#" class="gyane-bar-item gyane-button">John Doe posted on your wall</a>
+             <a href="#" class="gyane-bar-item gyane-button">Jane likes your post</a>
+           </div>
+         </div>
+         <a href="#" class="gyane-bar-item gyane-button gyane-hide-small gyane-right gyane-padding-large gyane-hover-white" title="My Account">
+           <img src="/gyaneimages/avatar2.png" class="gyane-circle" style="height:23px;width:23px" alt="Avatar">
+         </a>
+        </div>
+       </div>
+    {% else %}
+
+    <body class="bg-gradient-primary">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-9 col-lg-12 col-xl-10">
+                    <div class="card shadow-lg o-hidden border-0 my-5">
+                        <div class="card-body p-0">
+                            <div class="row">
+                                <div class="col-lg-6 d-none d-lg-flex">
+                                    <div class="flex-grow-1 bg-login-image"
+                                        style="background-image: url('https://blogger.googleusercontent.com/img/a/AVvXsEgyxqeGkL0OGbjSTNStZk48eVqarxM9XIacA4YbrmhxShupqxKgenUgOZ6aFPJvclwwM7f1hJKSzRn7xSWA_GLQwSjsiIouQ4POZ0evcOjlr3CxGUd10zYR4LlU20ViS2jKms5MkGlZldnLxQf8-EST38RqTpT70mmyfNVsmd7KXzWmqm85yMjI1gIK8Q=s16000');">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="p-5">
+                                        <div class="text-center">
+                                            <h4 class="text-dark mb-4">Welcome Back!</h4>
+                                        </div>
+                                        <form class="user" method="post" action="/login_success">
+                                            {% csrf_token %}
+                                            <div class="mb-3">
+                                                <input class="form-control form-control-user" type="text"
+                                                    id="loginemail" aria-describedby="emailHelp"
+                                                    placeholder="Enter Email Address..." name="loginemail">
+                                            </div>
+                                            <div class="mb-3">
+                                                <input class="form-control form-control-user" type="password"
+                                                    id="loginpassword" placeholder="Password" name="loginpassword">
+                                            </div>
+                                            <div class="mb-3">
+                                                <div class="custom-control custom-checkbox small">
+                                                    <div class="form-check"><input
+                                                            class="form-check-input custom-control-input"
+                                                            type="checkbox" id="formCheck-1"><label
+                                                            class="form-check-label custom-control-label"
+                                                            for="formCheck-1">Remember Me</label></div>
+                                                </div>
+                                                {% for message in messages %}
+
+                                                <div class="alert alert-{{ message.tags }} alert-dismissible fade show"
+                                                    role="alert" id="alert" style="width:100%;margin-top: 10px;">
+                                                    <strong>Message: </strong> {{ message }}&nbsp; !!
+                                                </div>
+                                                {% endfor %}
+                                            </div>
+                                            {% csrf_token %}
+                                            <button class="btn btn-primary d-block btn-user w-100" type="submit">Login
+                                            </button>
+                                            {% csrf_token %}
+                                            <hr>
+
+                                        </form>
+                                        <div class="text-center"><a class="small"
+                                                href="{% url 'password_reset' %}">Forgot
+                                                Password?</a></div>
+                                        <div class="text-center"><a class="small" href="{% url 'signup' %}">Create an
+                                                Account!</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        <script src="{% static '/assets/bootstrap/js/bootstrap.min.js' %}"></script>
+        <script src="{% static '/assets/js/script.min.js' %}"></script>
+    </body>
+
+</html>
