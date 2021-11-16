@@ -1,8 +1,7 @@
 from django.contrib.auth.forms import UserChangeForm
 from django.contrib.auth.models import User
 from django import forms
-from .models import EditProfileForm,Note
-
+from .models import *
 class EditProfileForm(UserChangeForm):
     class Meta:
         model = EditProfileForm
@@ -10,5 +9,5 @@ class EditProfileForm(UserChangeForm):
 
 class NoteForm(forms.ModelForm):
     class Meta:
-        model = Note
+        model = Question
         fields = ['note',]

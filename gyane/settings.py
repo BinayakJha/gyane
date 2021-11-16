@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'core',
     'markdownx',
     'markdown_deux',
+    'martor',
 ]
 
 MIDDLEWARE = [
@@ -145,3 +146,6 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER ='jha36binayak@gmail.com' #sender's email-id
 EMAIL_HOST_PASSWORD = 'ueuyqjcfuehcglid'#password associated with above email-id
 EMAIL_PAGE_DOMAIN = 'http://127.0.0.1:8000/'
+
+
+

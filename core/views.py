@@ -13,7 +13,7 @@ from django.template.loader import get_template
 from django.template import Context, context
 import math, random
 
-from .models import UserOTP,Note
+from .models import UserOTP,Question
 
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.views import PasswordChangeView
@@ -28,8 +28,8 @@ from .forms import EditProfileForm,NoteForm
 
 def home(request):
     # return render(request, 'core/login.html')
-    postss = Note.objects.all().order_by('-time_st')
-    form = NoteForm
+    postss = Question.objects.all().order_by('-time_st')
+    form = NoteForm()
     context = {'postss':postss,
                 'form':form,
     }
@@ -211,12 +211,12 @@ def password_success(request):
 def note(request):
     if request.method == "POST":
         # Get the post parameters
-        note_title=request.POST['note_title']
         note_content=request.POST['note']
 
-        note_create = Note(note_title=note_title, note=note_content, user=request.user)
+        note_create = Question( note=note_content, user=request.user)
         note_create.save()
         return redirect('home')
+
     else:
         return render(request, 'core/login.html',{})
 

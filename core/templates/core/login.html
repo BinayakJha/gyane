@@ -13,16 +13,14 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
     <link rel="stylesheet" href="{% static '/assets/fonts/fontawesome-all.min.css' %}">
+
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/css/medium-editor.min.css"
+        type="text/css" media="screen" charset="utf-8">
 </head>
 
 <body>
     {% if user.is_authenticated %}
-    <!-- <h1>Hello {{ user.username }}</h1>
-    <a href="logout/">Logout</a>
 
-    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert" id="alert" style="width:100%;margin-top: 10px;" >
-      <strong>Message: </strong> {{ message }}&nbsp; !!
-    </div> -->
     <div class="gyane-top">
         <div class="gyane-bar gyane-theme gyane-left-align gyane-large">
             <a class="gyane-bar-item gyane-button gyane-hide-medium gyane-hide-large gyane-right gyane-padding-large gyane-hover-white gyane-large gyane-theme-d2"
@@ -54,57 +52,114 @@
 
 
     <!-- home -->
-    <div class="cards create-post container col-lg-6">
-        <div class="card__body">
-            <div class="create-post__body">
-                
-                <form class="form" action="notes" method="post">
-                    {% csrf_token %}
-                    <div class="form__field">
-                        <input type="text" class="form__input input" placeholder="Note Title" id="note_title"
-                            name="note_title"><br><br>
-                        <!-- <label for="textarea create-post" class="form__label form__label--hidden">Create Post</label> -->
-                        <!-- <textarea id="textarea create-post" class="input input--textarea" name="create-post" id="create-post" 
+    <section class="row container-flex">
+    <div class="col-lg-8 ">
+        <div class="cards create-post container col-lg-10 col-sm-11">
+            <div class="card__body">
+                <div class="create-post__body">
+
+                    <form class="form" action="notes" method="post">
+                        {% csrf_token %}
+                        <div class="form__field">
+
+                            <!-- <label for="textarea create-post" class="form__label form__label--hidden">Create Post</label> -->
+                            <!-- <textarea id="textarea create-post" class="input input--textarea" name="create-post" id="create-post" 
                             placeholder="Ask a question!" aria-labelledby="name" style="min-height: 3rem;"></textarea> -->
-                            
+
                             <div class="container-flex">
                                 <div class="row">
-                                    
-                                     {{form.as_p}}
-                                    
+
+                                    {{form.as_p}}
+
                                 </div>
-                           </div>
-                           
-                           <a class="btn btn-primary preview">Preview</a>
-                           
+                            </div>
 
+                            <a class="btn btn-primary preview">Preview</a>
+
+
+                        </div>
+                        {% csrf_token %}
+                        <button class="button button--main button--md" type="submit">
+                            <i class="fas fa-comment-alt" style="margin-right: 8px;"></i>Post Question </button>
+                    </form>
+                    {{ form.media }}
+                </div>
+            </div>
+        </div>
+        
+            {% for Question in postss %}
+            <div class="cards create-post container col-lg-10 col-sm-11">
+                <div class="card__body">
+                    <div class="post-wrapper">
+                        <div class="false">
+                            <div class="post-header-wrapper"><a class="author-box author-box--sm"
+                                    href="/profile/Lola_04"><img class="avatar avatar--sm" alt="Lola_04"
+                                        src="https://us-east-1.linodeobjects.com/mumble/default.png?AWSAccessKeyId=0GX0K8X1O9RE83ACTB4G&amp;Signature=p2%2BWQZmXZS5EkDvZZxisUsVCP%2BY%3D&amp;Expires=1637067840">
+                                    <div class="author-box__info">
+                                        <p class="author-box__name">{{ Question.user.first_name }}</p><small
+                                            class="author-box__handle">@{{ Question.user }}</small>
+                                    </div>
+                                </a>
+                                <div class="post--options">
+                                    <div class="post__dropmenu">
+                                        <div class="post-meta"><span>3 days ago</span><span
+                                                class="post__dropmenu--icon"><i class="fas fa-ellipsis-v"></i></span>
+                                        </div>
+                                        <div class="cards dropmenu">
+                                            <div role="button" class="dropmenu__menuitem"><i
+                                                    class="fas fa-minus-circle post__dropmenu--navicon"></i>Hide</div>
+                                            <div role="button" class="dropmenu__menuitem"><i
+                                                    class="fas fa-user-times post__dropmenu--navicon"></i>Follow Lola_04
+                                            </div>
+                                            <div role="button" class="dropmenu__menuitem"><i
+                                                    class="fas fa-ban post__dropmenu--navicon"></i>Block Lola_04</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="post-contents">
+                                <div class="post-votes"><i class="far fa-caret-up vote-icon up-arrow"></i>
+                                    <p class="vote-count">+3</p><i class="far fa-caret-down vote-icon down-arrow"></i>
+                                </div>
+                                {% load markdown_deux_tags %}
+                                <div class="post-body">{{ Question.note|markdown:"safe" }}</div>
+                            </div>
+                            <div>
+                                <div class="post-actions-wrapper">
+                                    <div class="action-wrapper action-wrapper--disabled"><i
+                                            class="fas fa-comments"></i><span class="post-action-text">0</span></div>
+                                    <div class="action-wrapper"><i class="fas fa-comment-lines"> </i><span
+                                            class="post-action-text">Answer</span></div>
+                                    <div class="action-wrapper"><i class="fas fa-users"></i><span
+                                            class="post-action-text">1</span></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    {% csrf_token %}
-                    <button class="button button--main button--md" type="submit">
-                        <i class="fas fa-comment-alt" style="margin-right: 8px;"></i>Post Question </button>
-                </form>
-                {{ form.media }}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="user-card cards col-lg-3 col-md-12 ml-2" style="height: 50%;margin-top: 89px;">
+            <div class="card__body container">
+                <div class="user-card__profile-summary"><img class="user-card__profile-pic avatar avatar--lg"
+                        alt="img-description"
+                        src="https://us-east-1.linodeobjects.com/mumble/2eebe8c5-8877-3d39-a24c-16554b3565c1.png?AWSAccessKeyId=0GX0K8X1O9RE83ACTB4G&amp;Signature=D%2B9iBgGEej3oSHwVI%2BeiVOe7%2Bkk%3D&amp;Expires=1637071573">
+                    <h1 class="user-card__profile-name">coder123jha</h1><i>@coder123jha</i>
+                    <div class="custom-spacer"></div>
+                    <p>A Nepalese full-stack web developer and machine learning enthusiast.</p>
+                    <div class="user-card__profile-stats-wrapper">
+                        <div>
+                            <h6>+0</h6><i>Vote Ratio</i>
+                        </div>
+                        <div>
+                            <h6>0</h6><i>Followers</i>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-    {% for Note in postss %}
-    <div class="cards create-post container col-lg-6">
-        <div class="card__body">
-            <div class="create-post__body">
-                <h3>
-                    {{ Note.note_title }}
-                </h3>
-                {% load markdown_deux_tags %}
-
-                <p> {{ Note.note |markdown:"safe" }} </p>
-                <p> {{ Note.user }} </p>
-                <p> {{ Note.views }} </p>
-
-
-            </div>
-        </div>
-    </div>
-    {% endfor %}
+    </section>
 
     {% else %}
 
@@ -117,7 +172,7 @@
                             <div class="row">
                                 <div class="col-lg-6 d-none d-lg-flex">
                                     <div class="flex-grow-1 bg-login-image"
-                                        style="background-image: url('https://blogger.googleusercontent.com/img/a/AVvXsEgyxqeGkL0OGbjSTNStZk48eVqarxM9XIacA4YbrmhxShupqxKgenUgOZ6aFPJvclwwM7f1hJKSzRn7xSWA_GLQwSjsiIouQ4POZ0evcOjlr3CxGUd10zYR4LlU20ViS2jKms5MkGlZldnLxQf8-EST38RqTpT70mmyfNVsmd7KXzWmqm85yMjI1gIK8Q=s16000');">
+                                        style="background-image: url('https://blogger.googleusercontent.com/img/a/AVvXsEj3fhSmZow-fc6PrKD3X2MbIUV40b64Y1MzeLzt-Pz4kmDk10hp0y0ywj8d0XPOw20GT6bt0REjfwVk6Hv69jdoZqExtSCsqIXwZwmujt91XQNFOYcE1ir8mOfRCHfkZVCpkjM-UB19qMrQLKxYy6owo9QYWcuuVQmvjllpQnbWA0-71cJ0a3zgQlwLnA=s16000');">
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
@@ -175,14 +230,18 @@
         {% endif %}
         <script src="{% static '/assets/bootstrap/js/bootstrap.min.js' %}"></script>
         <script src="{% static '/assets/js/script.min.js' %}"></script>
-    <script>
-        function togglepreview() {
-            document.querySelector('.markdownx-preview').classList.toggle('active');
-            document.querySelector('.markdownx').classList.toggle('not-active');
-            console.log('togglepreview');
-       }
-       document.querySelector('.preview').addEventListener('click', togglepreview);
-  </script>
+        <script>
+            function togglepreview() {
+                document.querySelector('.markdownx-preview').classList.toggle('active');
+                document.querySelector('.markdownx').classList.toggle('not-active');
+                console.log('togglepreview');
+            }
+            document.querySelector('.preview').addEventListener('click', togglepreview);
+        </script>
+        <!-- <script src="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/js/medium-editor.min.js"></script>
+  <script>
+      var editor = new MediumEditor('.markdownx-editor');
+  </script> -->
     </body>
 
 </html>

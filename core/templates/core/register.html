@@ -17,12 +17,7 @@
         <div class="card shadow-lg o-hidden border-0 my-5">
             <div class="card-body p-0">
                 <div class="row">
-                    <div class="col-lg-5 d-none d-lg-flex">
-                        <div class="flex-grow-1 bg-register-image"
-                            style="background-image: url('https://blogger.googleusercontent.com/img/a/AVvXsEirqvzxkal56aVOV91HoskjIfmaQXYFETYdgIbQeBxpqeg-sDBWtLw5kaPBT8Cyf_azXGyoG11LgM18KtBBb4lEommEHzxy7z3UgCS8uib4X4D-fNb8lIWvdDijhp-mZjhjCxsh68QSJ3E9biRWSBy9QuGq9TP0OXa5z3hHSOrA8F92zX83OjaUhEKSfg=s16000');">
-                        </div>
-                    </div>
-                    <div class="col-lg-7">
+                    <div class="col-lg-6 ">
                         <div class="p-5">
                             <div class="text-center">
                                 <h4 class="text-dark mb-4">Create an Account!</h4>
@@ -75,8 +70,8 @@
                                             id="password_repeat" placeholder="Repeat Password" name="password_repeat">
                                     </div>
 
-                                    <div class="registrationFormAlert" style="color:black;" id="CheckPasswordMatch">
-                                    </div>
+                                    <center><div class="registrationFormAlert" style="color:black;align-items: center;margin-top: 10px;" id="CheckPasswordMatch">
+                                    </div></center>
                                     {% for message in messages %}
 
                                     <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert"
@@ -102,6 +97,12 @@
                             <div class="text-center"><a class="small" href="{% url 'home' %}">Already have an account?
                                     Login!</a></div>
                         </div>
+                       
+                    </div>
+                    <div class="col-lg-6 d-none d-lg-flex">
+                        <div class="flex-grow-1 bg-register-image"
+                            style="background-image: url('https://blogger.googleusercontent.com/img/a/AVvXsEj3fhSmZow-fc6PrKD3X2MbIUV40b64Y1MzeLzt-Pz4kmDk10hp0y0ywj8d0XPOw20GT6bt0REjfwVk6Hv69jdoZqExtSCsqIXwZwmujt91XQNFOYcE1ir8mOfRCHfkZVCpkjM-UB19qMrQLKxYy6owo9QYWcuuVQmvjllpQnbWA0-71cJ0a3zgQlwLnA=s16000');background-size: cover; object-fit: cover;">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -109,7 +110,7 @@
     </div>
     <script src="{% static '/assets/bootstrap/js/bootstrap.min.js' %}"></script>
     <script src="{% static '/assets/js/script.min.js' %}"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Optional JavaScript -->
     <script>
         function checkPasswordMatch() {
@@ -117,12 +118,13 @@
             var password = $("#password").val();
             var confirmPassword = $("#password_repeat").val();
             if (password != confirmPassword)
-                $("#CheckPasswordMatch").html("Passwords does not match!");
+                $("#CheckPasswordMatch").html("Passwords does not match!").css("color", "red");
+                // change color to red
             else
-                $("#CheckPasswordMatch").html("Passwords matched.");
+                $("#CheckPasswordMatch").html("Passwords matched.").css("color", "green");
         }
         $(document).ready(function () {
-            $("#pass2").keyup(checkPasswordMatch);
+            $("#password_repeat").keyup(checkPasswordMatch);
         });
     </script>
 </body>

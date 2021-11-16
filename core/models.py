@@ -20,11 +20,11 @@ class EditProfileForm(models.Model):
     def __str__(self):
 	    return self.first_name
 
-class Note(models.Model):
+class Question(models.Model):
     note_id = models.AutoField(primary_key=True)
-    note_title = models.CharField(max_length=200,null=True)
     note =  MarkdownxField(null=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    # user first name
     
     time_st = models.DateTimeField(auto_now_add=True)
     # slug = models.SlugField(max_length=200, unique=True)
@@ -32,8 +32,14 @@ class Note(models.Model):
     
     def save(self, *args, **kwargs):
         self.slug = slugify(self.note)
-        super(Note, self).save(*args, **kwargs)
+        super(Question, self).save(*args, **kwargs)
     
     def __str__(self):
-        return 'Note {} by {}'.format(self.note_title, self.user)
+        return 'Question {} by {}'.format(self.note[:50], self.user.username)
 
+
+
+# class QuillPost(models.Model):
+#     content = QuillField()
+
+# quillpost
