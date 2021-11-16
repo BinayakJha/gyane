@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     {% load static %}
     <title>Gyan-e - Your Unfair Advantage</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.15.3/css/all.css"
+        integrity="sha384-iKbFRxucmOHIcpWdX9NTZ5WETOPm0Goy0WmfyNcl52qSYtc2Buk0NCe6jU1sWWNB" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static '/main.css' %}">
     <link rel="stylesheet" href="{% static '/bootstrap/css/bootstrap.min.css' %}">
     <link rel="stylesheet"
@@ -24,24 +25,87 @@
     </div> -->
     <div class="gyane-top">
         <div class="gyane-bar gyane-theme gyane-left-align gyane-large">
-         <a class="gyane-bar-item gyane-button gyane-hide-medium gyane-hide-large gyane-right gyane-padding-large gyane-hover-white gyane-large gyane-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
-         <a href="#" class="gyane-bar-item gyane-button gyane-padding-large gyane-theme-d4"><i class="fa fa-home gyane-margin-right"></i>Logo</a>
-         <a href="#" class="gyane-bar-item gyane-button gyane-hide-small gyane-padding-large gyane-hover-white" title="News"><i class="fa fa-globe"></i></a>
-         <a href="#" class="gyane-bar-item gyane-button gyane-hide-small gyane-padding-large gyane-hover-white" title="Account Settings"><i class="fa fa-user"></i></a>
-         <a href="#" class="gyane-bar-item gyane-button gyane-hide-small gyane-padding-large gyane-hover-white" title="Messages"><i class="fa fa-envelope"></i></a>
-         <div class="gyane-dropdown-hover gyane-hide-small">
-           <button class="gyane-button gyane-padding-large" title="Notifications"><i class="fa fa-bell"></i><span class="gyane-badge gyane-right gyane-small gyane-green">3</span></button>     
-           <div class="gyane-dropdown-content gyane-card-4 gyane-bar-block" style="width:300px">
-             <a href="#" class="gyane-bar-item gyane-button">One new friend request</a>
-             <a href="#" class="gyane-bar-item gyane-button">John Doe posted on your wall</a>
-             <a href="#" class="gyane-bar-item gyane-button">Jane likes your post</a>
-           </div>
-         </div>
-         <a href="#" class="gyane-bar-item gyane-button gyane-hide-small gyane-right gyane-padding-large gyane-hover-white" title="My Account">
-           <img src="/gyaneimages/avatar2.png" class="gyane-circle" style="height:23px;width:23px" alt="Avatar">
-         </a>
+            <a class="gyane-bar-item gyane-button gyane-hide-medium gyane-hide-large gyane-right gyane-padding-large gyane-hover-white gyane-large gyane-theme-d2"
+                href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
+            <a href="#" class="gyane-bar-item gyane-button gyane-padding-large gyane-theme-d4"><i
+                    class="fa fa-home gyane-margin-right"></i>Logo</a>
+            <a href="#" class="gyane-bar-item gyane-button gyane-hide-small gyane-padding-large gyane-hover-white"
+                title="News"><i class="fa fa-globe"></i></a>
+            <a href="#" class="gyane-bar-item gyane-button gyane-hide-small gyane-padding-large gyane-hover-white"
+                title="Account Settings"><i class="fa fa-user"></i></a>
+            <a href="#" class="gyane-bar-item gyane-button gyane-hide-small gyane-padding-large gyane-hover-white"
+                title="Messages"><i class="fa fa-envelope"></i></a>
+            <div class="gyane-dropdown-hover gyane-hide-small">
+                <button class="gyane-button gyane-padding-large" title="Notifications"><i class="fa fa-bell"></i><span
+                        class="gyane-badge gyane-right gyane-small gyane-green">3</span></button>
+                <div class="gyane-dropdown-content gyane-card-4 gyane-bar-block" style="width:300px">
+                    <a href="#" class="gyane-bar-item gyane-button">One new friend request</a>
+                    <a href="#" class="gyane-bar-item gyane-button">John Doe posted on your wall</a>
+                    <a href="#" class="gyane-bar-item gyane-button">Jane likes your post</a>
+                </div>
+            </div>
+            <a href="#"
+                class="gyane-bar-item gyane-button gyane-hide-small gyane-right gyane-padding-large gyane-hover-white"
+                title="My Account">
+                <img src="/gyaneimages/avatar2.png" class="gyane-circle" style="height:23px;width:23px" alt="Avatar">
+            </a>
         </div>
-       </div>
+    </div>
+
+
+    <!-- home -->
+    <div class="cards create-post container col-lg-6">
+        <div class="card__body">
+            <div class="create-post__body">
+                
+                <form class="form" action="notes" method="post">
+                    {% csrf_token %}
+                    <div class="form__field">
+                        <input type="text" class="form__input input" placeholder="Note Title" id="note_title"
+                            name="note_title"><br><br>
+                        <!-- <label for="textarea create-post" class="form__label form__label--hidden">Create Post</label> -->
+                        <!-- <textarea id="textarea create-post" class="input input--textarea" name="create-post" id="create-post" 
+                            placeholder="Ask a question!" aria-labelledby="name" style="min-height: 3rem;"></textarea> -->
+                            
+                            <div class="container-flex">
+                                <div class="row">
+                                    
+                                     {{form.as_p}}
+                                    
+                                </div>
+                           </div>
+                           
+                           <a class="btn btn-primary preview">Preview</a>
+                           
+
+                    </div>
+                    {% csrf_token %}
+                    <button class="button button--main button--md" type="submit">
+                        <i class="fas fa-comment-alt" style="margin-right: 8px;"></i>Post Question </button>
+                </form>
+                {{ form.media }}
+            </div>
+        </div>
+    </div>
+    {% for Note in postss %}
+    <div class="cards create-post container col-lg-6">
+        <div class="card__body">
+            <div class="create-post__body">
+                <h3>
+                    {{ Note.note_title }}
+                </h3>
+                {% load markdown_deux_tags %}
+
+                <p> {{ Note.note |markdown:"safe" }} </p>
+                <p> {{ Note.user }} </p>
+                <p> {{ Note.views }} </p>
+
+
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
     {% else %}
 
     <body class="bg-gradient-primary">
@@ -111,6 +175,14 @@
         {% endif %}
         <script src="{% static '/assets/bootstrap/js/bootstrap.min.js' %}"></script>
         <script src="{% static '/assets/js/script.min.js' %}"></script>
+    <script>
+        function togglepreview() {
+            document.querySelector('.markdownx-preview').classList.toggle('active');
+            document.querySelector('.markdownx').classList.toggle('not-active');
+            console.log('togglepreview');
+       }
+       document.querySelector('.preview').addEventListener('click', togglepreview);
+  </script>
     </body>
 
 </html>

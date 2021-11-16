@@ -1,7 +1,8 @@
 from django.urls import path,include
-from .views import PasswordChangeView
+from .views import PasswordChangeView,UserEditView
 from django.contrib.auth import views as auth_views
 from . import views
+
 urlpatterns = (
     path('', views.home, name='home'),
     path('signup/', views.signup, name='signup'),
@@ -16,5 +17,9 @@ urlpatterns = (
         template_name='core/password_change.html'), name='password_reset_confirm'),
     path('reset/done/', auth_views.PasswordResetCompleteView.as_view(template_name='core/password_reset_complete.html'),
          name='password_reset_complete'),
+    path('edit_profile', UserEditView.as_view(), name="edit_profile"),
+    # notes
+    path('notes', views.note, name='notes'),
+    # path('notes/<int:note_id>/<slug:slug>/', views.note, name='note'),
     
 )

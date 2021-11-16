@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 from django.contrib.messages import constants as messages
-
+import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -38,7 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.forms',
     'core',
+    'markdownx',
+    'markdown_deux',
 ]
 
 MIDDLEWARE = [
@@ -121,6 +124,9 @@ USE_TZ = True
 
 STATIC_URL = '/core/static/'
 
+MEDIA_URL = '/img/profiles/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'core/static/img/profiles/')
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
@@ -129,7 +135,7 @@ MESSAGE_TAGS = {
     messages.ERROR:'danger'
 }
 
-
+FORM_RENDERER = 'django.forms.renderers.TemplatesSetting'
 EMAIL_ACTIVE_FIELD = 'is_active'
 EMAIL_SERVER = 'smtp.gmail.com'
 EMAIL_PORT = 587

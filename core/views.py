@@ -10,13 +10,16 @@ from django.core.mail import EmailMessage, send_mail
 from django.conf import settings
 from django.template.loader import render_to_string
 from django.template.loader import get_template
-from django.template import Context
+from django.template import Context, context
 import math, random
 
-from .models import UserOTP
+from .models import UserOTP,Note
 
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.views import PasswordChangeView
+
+from django.views import generic
+from .forms import EditProfileForm,NoteForm
 # Create your views here.
 
 # ------------------------------------------------------------------------------------
@@ -24,7 +27,13 @@ from django.contrib.auth.views import PasswordChangeView
 # ------------------------------------------------------------------------------------
 
 def home(request):
-    return render(request, 'core/login.html')
+    # return render(request, 'core/login.html')
+    postss = Note.objects.all().order_by('-time_st')
+    form = NoteForm
+    context = {'postss':postss,
+                'form':form,
+    }
+    return render(request, 'core/login.html', context)
 
 def signup(request):
     return render(request, 'core/register.html')
@@ -117,6 +126,7 @@ def handleSignUp(request):  # sourcery no-metrics
         myuser.first_name = fname
         myuser.is_staff = False
         myuser.is_active = False
+
         myuser.save()
         myuser_otp = random.randint(100000, 999999)
         UserOTP.objects.create(user=myuser, otp=myuser_otp)
@@ -131,10 +141,6 @@ def handleSignUp(request):  # sourcery no-metrics
         email_otp.content_subtype = "html"
         email_otp.send()
         return render(request, 'core/register.html', {'otp': True, 'usr':myuser})
-        # messages.success(
-        #     request, " Your account has been successfully created")
-       
-    #     # email
        
        
     else:
@@ -200,7 +206,30 @@ def password_success(request):
     messages.success(request, "Password has been succesfully changed.")
     return redirect("home")
 
+
+# note 
+def note(request):
+    if request.method == "POST":
+        # Get the post parameters
+        note_title=request.POST['note_title']
+        note_content=request.POST['note']
+
+        note_create = Note(note_title=note_title, note=note_content, user=request.user)
+        note_create.save()
+        return redirect('home')
+    else:
+        return render(request, 'core/login.html',{})
+
+
 class PasswordChangeView(PasswordChangeView):
     form_class = PasswordChangeForm
     template_name = 'core/password_change.html'
     success_url = reverse_lazy('password_success')
+
+class UserEditView(generic.UpdateView):
+    form_class = EditProfileForm
+    template_name = 'core/editprofile.html'
+    success_url = reverse_lazy('home')
+
+    def get_object(self):
+        return self.request.user
