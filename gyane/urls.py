@@ -14,6 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.http.response import HttpResponse
 from django.urls import path, include
 
 from django.conf import settings
@@ -21,11 +22,15 @@ from django.conf.urls.static import static
 from markdownx import urls as markdownx
 from django.conf.urls import url
 
+def trigger_error(request):
+    return HttpResponse('Hello, World!')
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('core.urls')),
     path('martor/', include('martor.urls')),
     url(r'^markdownx/', include(markdownx)),
+    # sentry
+    path('sentry-debug/', trigger_error),
 
 ]
 

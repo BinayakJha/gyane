@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 from django.contrib.messages import constants as messages
 import os
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -147,5 +149,18 @@ EMAIL_HOST_USER ='jha36binayak@gmail.com' #sender's email-id
 EMAIL_HOST_PASSWORD = 'ueuyqjcfuehcglid'#password associated with above email-id
 EMAIL_PAGE_DOMAIN = 'http://127.0.0.1:8000/'
 
+sentry_sdk.init(
+    dsn="https://75aba05ee81d4f9e9fe64329cffc5efd@o1083669.ingest.sentry.io/6093430",
+    integrations=[DjangoIntegration()],
+
+    # Set traces_sample_rate to 1.0 to capture 100%
+    # of transactions for performance monitoring.
+    # We recommend adjusting this value in production.
+    traces_sample_rate=1.0,
+
+    # If you wish to associate users to errors (assuming you are using
+    # django.contrib.auth) you may enable sending PII data.
+    send_default_pii=True
+)
 
 
