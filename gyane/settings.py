@@ -15,6 +15,7 @@ from django.contrib.messages import constants as messages
 import os
 import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -44,7 +45,6 @@ INSTALLED_APPS = [
     'core',
     'markdownx',
     'markdown_deux',
-    'martor',
 ]
 
 MIDDLEWARE = [
@@ -127,12 +127,14 @@ USE_TZ = True
 
 STATIC_URL = '/core/static/'
 
-MEDIA_URL = '/img/profiles/'
+MEDIA_URL = '/core/media/'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'core/static/img/profiles/')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'core/media/')
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
-
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'core/static'),
+)
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MESSAGE_TAGS = {
     messages.ERROR:'danger'
@@ -162,5 +164,3 @@ sentry_sdk.init(
     # django.contrib.auth) you may enable sending PII data.
     send_default_pii=True
 )
-
-

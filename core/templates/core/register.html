@@ -55,6 +55,9 @@
                                     <input class="form-control form-control-user" type="text" id="username"
                                         aria-describedby="emailHelp" placeholder="Choose a unique username"
                                         name="username">
+                                        <!-- check if the username is available -->
+                                        <span id="username_availability_result"></span>
+                                       
                                 </div>
                                 <div class="mb-3">
                                     <input class="form-control form-control-user" type="email" id="email"
@@ -69,7 +72,9 @@
                                         <input class="form-control form-control-user" type="password"
                                             id="password_repeat" placeholder="Repeat Password" name="password_repeat">
                                     </div>
-
+                                    {% csrf_token %}
+                                {{ form.media }}
+                                {{ form.as_p }}
                                     <center><div class="registrationFormAlert" style="color:black;align-items: center;margin-top: 10px;" id="CheckPasswordMatch">
                                     </div></center>
                                     {% for message in messages %}
@@ -81,7 +86,7 @@
                                     {% endfor %}
 
                                 </div>
-                               
+                                
                                 {% csrf_token %}
                                 <button class="btn btn-primary d-block btn-user w-100" type="submit"
                                     id="submit">Register

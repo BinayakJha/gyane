@@ -18,7 +18,7 @@
         type="text/css" media="screen" charset="utf-8">
 </head>
 
-<body>
+<body id="body">
     {% if user.is_authenticated %}
 
 
@@ -26,13 +26,16 @@
     <!-- home -->
     <section class="row container-flex">
         <!-- make a card box welcomng the user  -->
-        <div class="card shadow-lg col-lg-5 container welcome-card">
+        <div class="cards shadow-lg col-lg-5 container welcome-card">
             <!-- user image and then say hey user at the side -->
             <div class="card-body">
                 <div class="row">
                     <div class="col-lg-2">
-                        <img src="https://media.discordapp.net/attachments/798442412358893578/825278652781953024/default-profile-picture1.jpg?width=473&height=473"
+                        
+                        
+                        <img src="{% static 'img/defaultprofile_photo.png' %}"
                             class="img-fluid avatar avatar--sm" alt="">
+                        
                     </div>
                     <div class="col-lg-10">
                         <h5 class="card-title">
@@ -48,21 +51,24 @@
 
             <div class="cards create-post container col-lg-10 col-sm-11">
                 <div class="card__body">
+                    <!-- make a choose file button which uploads the file to /img/profiles/markdownx/ path -->
+                    <!-- {% csrf_token %}
+                    <input type="file" name="file" id="file" class="inputfile" />
+                  
+                  <button onclick="uploadFile()" class="btn btn-primary btn-md">Choose a file</button> -->
+
                     <div class="create-post__body">
 
-                        <form class="form" action="notes" method="post">
-                            {% csrf_token %}
+                        <form class="form" action="notes" method="post" enctype="multipart/form-data" id="id_ajax_upload_form">
+
                             <div class="form__field">
-
-                                <!-- <label for="textarea create-post" class="form__label form__label--hidden">Create Post</label> -->
-                                <!-- <textarea id="textarea create-post" class="input input--textarea" name="create-post" id="create-post" 
-                            placeholder="Ask a question!" aria-labelledby="name" style="min-height: 3rem;"></textarea> -->
-
                                 <div class="container-flex">
                                     <div class="row" aria-required="true">
                                         <!-- add placeholder using js -->
-
-                                        {{form.as_p}}
+                                        {% csrf_token %}
+                                        {{ form.media }}
+                                        {{ form.as_p }}
+                                        
 
                                     </div>
                                 </div>
@@ -70,7 +76,7 @@
                                     <a class="btn btn-primary preview" style="margin: 0px 10px;"><i class="fas fa-eye"
                                             style="margin-right: 8px;"></i>Preview</a>
                                     {% csrf_token %}
-                                    <button class="btn btn-primary" type="submit">
+                                    <button class="btn btn-primary">
                                         <i class="fas fa-comment-alt" style="margin-right: 8px;"></i>Post Now!</button>
                                 </div>
 
@@ -78,19 +84,27 @@
 
 
                         </form>
-                        {{ form.media }}
+
                     </div>
                 </div>
             </div>
 
             {% for Question in postss %}
-            <div class="cards create-post container col-lg-10 col-sm-11">
+            <div class="cards create-post container col-lg-10 col-sm-11" id="posts">
                 <div class="card__body">
                     <div class="post-wrapper">
                         <div class="false">
-                            <div class="post-header-wrapper"><a class="author-box author-box--sm"
-                                    href="/profile/Lola_04"><img class="avatar avatar--sm" alt="Lola_04"
-                                        src="https://media.discordapp.net/attachments/798442412358893578/825278652781953024/default-profile-picture1.jpg?width=473&height=473">
+                            <div class="post-header-wrapper">
+                                <a class="author-box author-box--sm" href="/profile/Lola_04">
+                                    <!-- if user last name is unknown then use default profile photo -->
+                                    <!-- if user has no profile photo then use default profile photo -->
+                                    {% if user.profile_pic %}
+                                    <img class="avatar avatar--sm" 
+                                        src="{% static 'img/default.png' %}">
+                                    {% else %}
+                                    <img class="avatar avatar--sm" 
+                                        src="{% static 'img/defaultprofile_photo.png' %}">
+                                    {% endif %}
                                     <div class="author-box__info">
                                         <p class="author-box__name">{{ Question.user.first_name }}</p><small
                                             class="author-box__handle">@{{ Question.user }}</small>
@@ -118,7 +132,9 @@
                                     <p class="vote-count">+3</p><i class="far fa-caret-down vote-icon down-arrow"></i>
                                 </div>
                                 {% load markdown_deux_tags %}
-                                <div class="post-body">{{ Question.note|markdown:"safe" }}</div>
+
+                               
+                                <div class="post-body">{{ Question.note| markdown:"safe" }}</div>
                             </div>
                             <div>
                                 <div class="post-actions-wrapper">
@@ -138,10 +154,11 @@
         </div>
         <div class="user-card cards col-lg-3 col-md-12 ml-2" style="height: 50%;margin-top: 43px;">
             <div class="card__body container">
-                <div class="user-card__profile-summary"><img class="user-card__profile-pic avatar avatar--lg"
+                <div class="user-card__profile-summary">
+                        <img class="user-card__profile-pic avatar avatar--lg"
                         alt="img-description"
-                        src="https://media.discordapp.net/attachments/798442412358893578/825278652781953024/default-profile-picture1.jpg?width=473&height=473">
-                    <h1 class="user-card__profile-name">coder123jha</h1><i>@coder123jha</i>
+                        src="{% static 'img/defaultprofile_photo.png' %}" style>
+                    <h1 class="user-card__profile-name">{{user.first_name}}</h1><i>@{{user.username}}</i>
                     <div class="custom-spacer"></div>
                     <p>A Nepalese full-stack web developer and machine learning enthusiast.</p>
                     <div class="user-card">
@@ -254,15 +271,41 @@
             preview.addEventListener('click', function () {
                 document.querySelector('.markdownx-preview').classList.toggle('active');
                 document.querySelector('.markdownx').classList.toggle('not-active');
-                
+
 
             });
         </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script>
+            $('#id_ajax_upload_form').submit(function (e) {
+                e.preventDefault();
+                $form = $(this);
+                var formData = new FormData(this);
+                $.ajax({
+                    url: $form.attr('action'),
+                    type: $form.attr('method'),
+                    data: formData,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: function (data) {
+                        // show the posted note in the wesite without reloadin
+                        // auto-reload the page to see the changes
+                        // show the posted image in the wesite without reloading
 
-        <!-- <script src="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/js/medium-editor.min.js"></script>
-  <script>
-      var editor = new MediumEditor('.markdownx-editor');
-  </script> -->
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        console.log(textStatus);
+                    }
+                });
+                $('#id_ajax_upload_form').trigger('reset');
+                $("#body").load(location.href + "#body");
+                // show the changes without reloading the page 
+                // auto-reload the page to see the changes
+    
+                // location.reload();
+            });
+        </script>
     </body>
 
 </html>

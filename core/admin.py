@@ -9,5 +9,6 @@ class MyModelAdmin(admin.ModelAdmin):
         models.TextField: {'widget': AdminMarkdownxWidget},
 }
 
-admin.site.register(EditProfileForm, MyModelAdmin)
+# admin.site.register(EditProfileForm, MyModelAdmin)
 admin.site.register(Question, MyModelAdmin)
+admin.site.register(profilepic, MyModelAdmin)

@@ -1,6 +1,6 @@
 from django import template
 from django.urls import reverse_lazy
-from django.http import HttpResponse, request
+from django.http import HttpResponse, request, JsonResponse
 from django.shortcuts import render,redirect
 from django.contrib import messages 
 from django.contrib.auth.models import User 
@@ -19,7 +19,10 @@ from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.views import PasswordChangeView
 
 from django.views import generic
-from .forms import EditProfileForm,NoteForm
+from django.views.generic import CreateView
+from .forms import NoteForm,ProfilePicForm
+import markdownify
+import gender_guesser.detector as gender
 # Create your views here.
 
 # ------------------------------------------------------------------------------------
@@ -79,9 +82,11 @@ def handleSignUp(request):  # sourcery no-metrics
                 messages.error(request, "Invalid OTP")
                 return render(request, 'core/register.html',{'otp':True, 'usr':usr})
         usernames = request.POST['username']
+        d = gender.Detector()
+        
         email = request.POST['email']
         fname = request.POST['first_name']
-        # # lname=request.POST['lname']
+        lname= d.get_gender(usernames)
         pass1 = request.POST['password']
         pass2 = request.POST['password_repeat']
        
@@ -124,6 +129,7 @@ def handleSignUp(request):  # sourcery no-metrics
         # Create the user
         myuser = User.objects.create_user(usernames, email, pass1)
         myuser.first_name = fname
+        myuser.last_name = lname
         myuser.is_staff = False
         myuser.is_active = False
 
@@ -147,6 +153,7 @@ def handleSignUp(request):  # sourcery no-metrics
         return HttpResponse("404 - Not found")
 
     return redirect('home')
+
 
 # def verify_check(request):
 #     if request.method == "POST":
@@ -206,30 +213,49 @@ def password_success(request):
     messages.success(request, "Password has been succesfully changed.")
     return redirect("home")
 
-
 # note 
 def note(request):
     if request.method == "POST":
         # Get the post parameters
-        note_content=request.POST['note']
-
-        note_create = Question( note=note_content, user=request.user)
-        note_create.save()
-        return redirect('home')
-
+        form = NoteForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.instance.user = request.user
+            note_html = markdownify.markdownify(form.cleaned_data['note'])
+            # convert it  to markdown
+            print(note_html)
+            form.instance.note = note_html
+            form.save()
+            return JsonResponse({'message': 'Note added successfully'})
+        else:
+            messages.error(request, "Note has not been added")
+            return redirect("home")
     else:
-        return render(request, 'core/login.html',{})
+        form = NoteForm()
+        return render(request, 'core/login.html',{'form':form})
 
-
+def profile_pic(request):
+    if request.method == "POST":
+        form = ProfilePicForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.instance.user = request.user
+            form.save()
+            return JsonResponse({'message': 'Profile pic added successfully'})
+        else:
+            messages.error(request, "Profile pic has not been added")
+            return redirect("home")
+    else:
+        form = ProfilePicForm()
+        return render(request, 'core/register.html',{'form':form})
 class PasswordChangeView(PasswordChangeView):
     form_class = PasswordChangeForm
     template_name = 'core/password_change.html'
     success_url = reverse_lazy('password_success')
 
-class UserEditView(generic.UpdateView):
-    form_class = EditProfileForm
-    template_name = 'core/editprofile.html'
-    success_url = reverse_lazy('home')
+# class UserEditView(generic.UpdateView):
+#     form_class = EditProfileForm
+#     template_name = 'core/editprofile.html'
+#     success_url = reverse_lazy('home')
 
-    def get_object(self):
-        return self.request.user
+#     def get_object(self):
+#         return self.request.user
+
