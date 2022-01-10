@@ -292,13 +292,36 @@ pre {
     margin-top: 0;
     margin-bottom: 1rem;
     overflow: auto;
-    font-size: 0.875em
-}
-
-pre code {
+    font-size: 0.875em;
     font-size: inherit;
     color: inherit;
-    word-break: normal
+    word-break: normal;
+    background-color: black;
+    color: #fff;
+    border-radius: 0;
+    border-width: 0;
+    color: inherit;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: 400;
+    line-height: inherit;
+    padding: 0;
+}
+
+code {
+    font-size: inherit;
+    color: inherit;
+    word-break: normal;
+    background-color: black;
+    color: #fff;
+    border-radius: 0;
+    border-width: 0;
+    color: inherit;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: 400;
+    line-height: inherit;
+    padding: 0;
 }
 
 code {
@@ -12327,7 +12350,7 @@ a:focus {
 
 .bg-gradient-primary {
     background-color: #4e73df;
-    background-image: linear-gradient(180deg, #4e73df 10%, #224abe 100%);
+    background-image: linear-gradient(180deg, #A67EF7 10%, #224abe 100%);
     background-size: cover
 }
 

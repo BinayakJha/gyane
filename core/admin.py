@@ -11,4 +11,5 @@ class MyModelAdmin(admin.ModelAdmin):
 
 # admin.site.register(EditProfileForm, MyModelAdmin)
 admin.site.register(Question, MyModelAdmin)
+admin.site.register(Comment, MyModelAdmin)
 admin.site.register(profilepic, MyModelAdmin)

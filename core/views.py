@@ -13,14 +13,14 @@ from django.template.loader import get_template
 from django.template import Context, context
 import math, random
 
-from .models import UserOTP,Question
+from .models import UserOTP,Question,Comment
 
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.views import PasswordChangeView
 
 from django.views import generic
 from django.views.generic import CreateView
-from .forms import NoteForm,ProfilePicForm
+from .forms import NoteForm,ProfilePicForm,CommentForm
 import markdownify
 import gender_guesser.detector as gender
 # Create your views here.
@@ -32,9 +32,16 @@ import gender_guesser.detector as gender
 def home(request):
     # return render(request, 'core/login.html')
     postss = Question.objects.all().order_by('-time_st')
+    # get the comment for each post
+    for post in postss:
+        post.comments = Comment.objects.filter(comment=post).order_by('-time_st')
+
+    # filter comment for each post
     form = NoteForm()
     context = {'postss':postss,
                 'form':form,
+                'form2': CommentForm(),
+                'comment':comment,
     }
     return render(request, 'core/login.html', context)
 
@@ -152,8 +159,6 @@ def handleSignUp(request):  # sourcery no-metrics
     else:
         return HttpResponse("404 - Not found")
 
-    return redirect('home')
-
 
 # def verify_check(request):
 #     if request.method == "POST":
@@ -217,13 +222,13 @@ def password_success(request):
 def note(request):
     if request.method == "POST":
         # Get the post parameters
-        form = NoteForm(request.POST, request.FILES)
+        form = NoteForm(request.POST)
         if form.is_valid():
             form.instance.user = request.user
-            note_html = markdownify.markdownify(form.cleaned_data['note'])
-            # convert it  to markdown
-            print(note_html)
-            form.instance.note = note_html
+            # note_html = markdownify.markdownify(form.cleaned_data['note'])
+            # # convert it  to markdown
+            # print(note_html)
+            form.instance.note = form.cleaned_data['note_editorjs']
             form.save()
             return JsonResponse({'message': 'Note added successfully'})
         else:
@@ -233,6 +238,20 @@ def note(request):
         form = NoteForm()
         return render(request, 'core/login.html',{'form':form})
 
+def comment(request):
+    if request.method == "POST":
+        # Get the post parameters
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            form.instance.user = request.user
+            form.save()
+            return JsonResponse({'message': 'Comment added successfully'})
+        else:
+            messages.error(request, "Comment has not been added")
+            return render(request, 'core/login.html',{'forms':form})
+    else:
+        form = CommentForm()
+        return render(request, 'core/login.html',{'forms':form,})
 def profile_pic(request):
     if request.method == "POST":
         form = ProfilePicForm(request.POST, request.FILES)

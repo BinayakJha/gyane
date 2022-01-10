@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'core',
     'markdownx',
     'markdown_deux',
+    'django_editorjs_fields',
 ]
 
 MIDDLEWARE = [
