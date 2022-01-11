@@ -215,11 +215,7 @@
                             <div class="row">
                                 <div class="col-lg-6 d-none d-lg-flex">
                                     <div class="flex-grow-1 bg-login-image">
-<<<<<<< HEAD
                                         <img src="{% static 'img/login.gif' %}" alt="" style="object-fit: cover;height: 100%;">
-=======
-                                        <img src="{% static 'img/login.gif' %}" alt="" style="object-fit: cover">
->>>>>>> 45bff7bd7cf164dbd9412631fd018d48e1473b9c
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
@@ -294,7 +290,7 @@
             var textarea = document.querySelectorAll('#id_note_editorjs');
             // remove label label for='id_note'
             var label = document.getElementsByTagName('label')[0];
-            label.parentNode.removeChild(label);
+            label.textarea.removeChild(label);
             // add animation when preview button is clicked
             var preview = document.getElementsByClassName('markdownx-preview')[0];
             preview.addEventListener('click', function () {
@@ -469,6 +465,8 @@
                     a2.appendChild(parent2);
                     postBody.appendChild(a2);
                     break;
+
+
           
                   default:
                     break;

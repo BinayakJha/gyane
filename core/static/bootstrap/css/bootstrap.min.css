@@ -287,26 +287,7 @@ samp {
     unicode-bidi: bidi-override
 }
 
-pre {
-    display: block;
-    margin-top: 0;
-    margin-bottom: 1rem;
-    overflow: auto;
-    font-size: 0.875em;
-    font-size: inherit;
-    color: inherit;
-    word-break: normal;
-    background-color: black;
-    color: #fff;
-    border-radius: 0;
-    border-width: 0;
-    color: inherit;
-    font-family: inherit;
-    font-size: inherit;
-    font-weight: 400;
-    line-height: inherit;
-    padding: 0;
-}
+
 
 code {
     font-size: inherit;

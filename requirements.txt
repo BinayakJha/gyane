@@ -1,0 +1,10 @@
+Django==3.2.10
+django_editorjs_fields==0.2.6
+django_markdownx==3.0.1
+django_quill==0.1.0
+django_quill_editor==0.1.22
+django_tinymce==3.3.0
+gender_guesser==0.4.0
+markdownify==0.10.1
+sentry_sdk==1.5.0
+django-editorjs-fields
