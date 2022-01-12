@@ -43,8 +43,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.forms',
     'core',
-    'markdownx',
-    'markdown_deux',
     'django_editorjs_fields',
 ]
 

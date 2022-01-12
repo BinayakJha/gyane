@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
 
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -438,3 +439,32 @@ a {
     color: black;
     text-align: center;
 }
+
+.codex-editor--narrow .link-tool__image {
+    /* display: none; */
+    display: block !important;
+}
+
+div[data-editorjs-holder] {
+    display: inline-block;
+    width: 100%;
+    max-width: 750px;
+    padding: 1.5em 1em;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fcfeff;
+    max-height: fit-content !important;
+    min-height: 160px !important;
+}
+.codex-editor__redactor{
+    padding-bottom: 40px !important;
+}
+
+
+@media (max-width: 767px){
+    div[data-editorjs-holder] {
+        width: 100% !important;
+    }
+}
+
+

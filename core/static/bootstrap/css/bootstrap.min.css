@@ -1,5 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i);
-
+@import url('https://fonts.googleapis.com/css2?family=Sanchez:ital@0;1&display=swap');
 /*!
  * Bootstrap v5.1.0 (https://getbootstrap.com/)
  * Copyright 2011-2021 The Bootstrap Authors
@@ -225,7 +225,22 @@ dd {
 }
 
 blockquote {
-    margin: 0 0 1rem
+    margin: 0 0 1rem;
+    position: relative;
+    padding-left: 1em;
+    border-left: 0.2em solid #597de9;
+    font-family: 'Sanchez';
+    font-size: 1.0em;
+    line-height: 1.5em;
+    font-weight: 100;
+
+}
+cite{
+    content: '- ';
+    font-size: 19px;
+    line-height: 1em;
+    color: #888 !important;
+    text-align: right;
 }
 
 b,
@@ -290,19 +305,22 @@ samp {
 
 
 code {
-    font-size: inherit;
-    color: inherit;
+    color: rgb(248, 248, 242);
+    background: rgb(40, 42, 54);
+    text-shadow: rgb(0 0 0 / 30%) 0px 1px;
+    font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
     word-break: normal;
-    background-color: black;
-    color: #fff;
-    border-radius: 0;
-    border-width: 0;
-    color: inherit;
-    font-family: inherit;
-    font-size: inherit;
-    font-weight: 400;
-    line-height: inherit;
-    padding: 0;
+    overflow-wrap: normal;
+    line-height: 1.5;
+    tab-size: 4;
+    hyphens: none;
+    padding: 1em;
+    margin: 0px;
+    overflow: auto;
+    border-radius: 0.3em;
 }
 
 code {
@@ -339,20 +357,25 @@ svg {
 }
 
 table {
-    caption-side: bottom;
-    border-collapse: collapse
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 1rem;
+    background-color: transparent;
+    border: 1px solid #dee2e6;
+    border-collapse: collapse;
 }
 
 caption {
     padding-top: .5rem;
     padding-bottom: .5rem;
     color: #858796;
-    text-align: left
+    text-align: left;
 }
 
-th {
+th,td {
     text-align: inherit;
-    text-align: -webkit-match-parent
+    text-align: -webkit-match-parent;
+    padding: 0.50rem;
 }
 
 thead,
@@ -363,7 +386,10 @@ td,
 th {
     border-color: inherit;
     border-style: solid;
-    border-width: 0
+    border-width: 0;
+    vertical-align: bottom;
+    border: 1px solid #dee2e6;
+  
 }
 
 label {

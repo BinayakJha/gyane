@@ -31,38 +31,33 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-lg-2">
-                        <img src="{% static 'img/defaultprofile_photo.png' %}" class="img-fluid avatar avatar--sm" alt="">
+                        <img src="{% static 'img/defaultprofile_photo.png' %}" class="img-fluid avatar avatar--sm"
+                            alt="">
                     </div>
                     <div class="col-lg-10">
                         <h5 class="card-title">
                             Hey, {{user.username}} 👋</h5>
                         <p class="card-text">Welcome back to Gyan-e!</p>
-                        <!-- make a button saying ask a question -->
-                        <!-- <a href="/ask" class="btn btn-primary btn-md" >Ask a Question</a> -->
                     </div>
                 </div>
             </div>
         </div>
-        
+
 
         <div class="col-lg-8 ">
 
             <div class="cards create-post container col-lg-10 col-sm-11">
                 <div class="card__body">
-                    <!-- make a choose file button which uploads the file to /img/profiles/markdownx/ path -->
-                    <!-- {% csrf_token %}
-                    <input type="file" name="file" id="file" class="inputfile" />
-                  
-                  <button onclick="uploadFile()" class="btn btn-primary btn-md">Choose a file</button> -->
-
                     <div class="create-post__body">
                         <!-- make a hint box which tell to press tab if in laptop -->
                         <div class="create-post__hint">
-                            <p>Press 
+                            <p>Press
                                 <span class="create-post__hint-key">
                                     <!-- make the tab key show as a tab -->
-                                    <kbd>Tab</kbd>&nbsp;after clicking the box</span>
-                                 to open toolbar </p>
+                                    <kbd>Tab</kbd>&nbsp;after clicking the box
+                                </span>
+                                to open toolbar
+                            </p>
                         </div>
 
                         <form class="form" action="notes" method="post" enctype="multipart/form-data"
@@ -80,8 +75,7 @@
                                     </div>
                                 </div>
                                 <div style="margin-top: 10px;">
-                                    <a class="btn btn-primary preview" style="margin: 0px 10px;"><i class="fas fa-eye"
-                                            style="margin-right: 8px;"></i>Preview</a>
+
                                     {% csrf_token %}
                                     <button class="btn btn-primary">
                                         <i class="fas fa-comment-alt" style="margin-right: 8px;"></i>Post Now!</button>
@@ -91,7 +85,7 @@
 
 
                         </form>
-                       
+
                     </div>
                 </div>
             </div>
@@ -119,10 +113,10 @@
                                     <div class="post__dropmenu">
                                         <div class="post-meta"><span>3 days ago</span>
                                             <!-- <span class="post__dropmenu--icon dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></span> -->
-                                            <button class="btn" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <button class="btn" type="button" id="dropdownMenuButton"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 <i class="fas fa-ellipsis-v"></i>
                                             </button>
-                                            
                                         </div>
                                         <div class="dropdown-menu cards">
                                             <div role="button" class="dropmenu__menuitem"><i
@@ -140,10 +134,9 @@
                                 <div class="post-votes"><i class="far fa-caret-up vote-icon up-arrow"></i>
                                     <p class="vote-count">+3</p><i class="far fa-caret-down vote-icon down-arrow"></i>
                                 </div>
-                                <!-- {% load markdown_deux_tags %} -->
 
                                 {% load editorjs %}
-                                <div class="post-body" id="post-bodyy">{{ Question.note_editorjs| editorjs }}</div>
+                                <div class="post-body" id="post-bodyy">{{ Question.note_editorjs| editorjs}}</div>
                             </div>
                             <div>
                                 <div class="post-actions-wrapper">
@@ -151,18 +144,13 @@
                                             class="fas fa-comments"></i><span class="post-action-text">0</span></div>
                                     <div class="action-wrapper"><i class="fas fa-comment-lines"> </i><span
                                             class="post-action-text answer-button">Answer</span>
-                                            <!-- comment form -->
-                                            
-                                            <!-- show comments -->
-                                            
-                                            
-                                        </div>
-                                            
+                                        <!-- comment form -->
+
+                                        <!-- show comments -->
+                                    </div>
                                     <div class="action-wrapper"><i class="fas fa-users"></i><span
                                             class="post-action-text">1</span></div>
                                 </div>
-                                
-                                
                             </div>
                         </div>
                     </div>
@@ -181,13 +169,13 @@
                     <div class="user-card">
                         <!-- button for new post -->
                         <div class="btn-lg">
-                            <a href="/notes/create">
+                            <a href="">
                                 <button class="btn btn-primary preview">
                                     <i class="fas fa-pencil-alt"></i>
                                     &nbsp;New Question
                                 </button>
                             </a>
-                            
+
                         </div>
                         <!-- make red logout  -->
 
@@ -201,7 +189,7 @@
                 </div>
             </div>
         </div>
-        
+
     </section>
 
     {% else %}
@@ -215,7 +203,8 @@
                             <div class="row">
                                 <div class="col-lg-6 d-none d-lg-flex">
                                     <div class="flex-grow-1 bg-login-image">
-                                        <img src="{% static 'img/login.gif' %}" alt="" style="object-fit: cover;height: 100%;">
+                                        <img src="{% static 'img/login.gif' %}" alt=""
+                                            style="object-fit: cover;height: 100%;">
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
@@ -273,36 +262,9 @@
         {% endif %}
         <script src="{% static '/assets/bootstrap/js/bootstrap.min.js' %}"></script>
         <script src="{% static '/assets/js/script.min.js' %}"></script>
-        <script>
-            function togglepreview() {
-                document.querySelector('.markdownx-preview').classList.toggle('active');
-                document.querySelector('.markdownx').classList.toggle('not-active');
-                console.log('togglepreview');
-
-            }
-            document.querySelector('.preview').addEventListener('click', togglepreview);
-            // also change the text preview to close
-        </script>
-        <!-- script for placeholder in note textarea -->
-        <script>
-            var placeholder = "Ask a question!";
-            // all textarea
-            var textarea = document.querySelectorAll('#id_note_editorjs');
-            // remove label label for='id_note'
-            var label = document.getElementsByTagName('label')[0];
-            label.textarea.removeChild(label);
-            // add animation when preview button is clicked
-            var preview = document.getElementsByClassName('markdownx-preview')[0];
-            preview.addEventListener('click', function () {
-                document.querySelector('.markdownx-preview').classList.toggle('active');
-                document.querySelector('.markdownx').classList.toggle('not-active');
-
-
-            });
-        </script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script>
-           $('#id_ajax_upload_form').submit(function (e) {
+            $('#id_ajax_upload_form').submit(function (e) {
                 e.preventDefault();
                 $form = $(this);
                 var formData = new FormData(this);
@@ -333,155 +295,169 @@
                 $(".comments").hide();
                 $(".answer-button").click(function () {
                     console.log("clicked");
-                    
-                    $(".comments").toggle("slow", function() {
+
+                    $(".comments").toggle("slow", function () {
                         // Animation complete.
-                      });
+                    });
                     // add a bit animation when the answer is clicked twice
-                    
-                    
+
+
                 });
-                
+
             });
         </script>
         <script>
             window.addEventListener("DOMContentLoaded", () => {
-              const postBody = document.getElementById("post-bodyy");
-              console.log("{{post.body|escapejs}}");
-              let body = JSON.parse("{{post.body|escapejs}}");
-              let blocks = body.blocks;
-              console.log(blocks.length);
-          
-              for (let index = 0; index <= blocks.length; index++) {
-                console.log(blocks[index], index);
-          
-                switch (blocks[index].type) {
-                  case "Header":
-                    let head = document.createElement(`h${blocks[index].data.level}`);
-                    head.textContent = blocks[index].data.text;
-                    postBody.appendChild(head);
-                    break;
-          
-                  case "Image":
-                    let div = document.createElement("div");
-                    let image = document.createElement("img");
-                    let caption = document.createElement("small");
-                    image.src = `${blocks[index].data.file.url}`;
-                    image.style = "margin-top:10px;";
-                    image.height = 200;
-                    image.width = 200;
-                    caption.textContent = blocks[index].data.caption;
-                    caption.style = "margin-top:5px;";
-                    div.appendChild(image);
-                    div.appendChild(caption);
-                    div.style = "width:30%;display:grid;place-items:center";
-                    postBody.appendChild(div);
-                    break;
-          
-                  case "List":
-                    let list;
-                    if (blocks[index].data.style == "unordered") {
-                      list = document.createElement("ul");
-                    } else {
-                      list = document.createElement("ol");
-                    }
-                    for (const item in blocks[index].data.items) {
-                      let li = document.createElement("li");
-                      li.textContent = blocks[index].data.items[item];
-                      list.appendChild(li);
-                    }
-                    postBody.appendChild(list);
-                    break;
-          
-                  case "Raw":
-                    let blockquote = document.createElement("blockquote");
-                    let code = document.createElement("code");
-                    let pre = document.createElement("pre");
-                    pre.textContent = blocks[index].data.html;
-                    pre.style.background = "#131313";
-                    pre.style.color = "#dddddd";
-                    pre.style.padding = "15px";
-                    code.appendChild(pre);
-                    postBody.appendChild(code);
-                    break;
-          
-                  case "Attaches":
-                    let parent = document.createElement("div");
-                    parent.style =
-                      "margin-top:10px;width:30%; padding:10px; border:1px solid black;border-radius:8px;";
-                    let a = document.createElement("a");
-                    let name = document.createElement("h4");
-                    a.href = `${blocks[index].data.file.url}`;
-                    a.textContent = `Download ${blocks[index].data.file.extension} (${
-                      blocks[index].data.file.size / 1000
-                    } kb)`;
-                    a.style = "grid-column: 1 / span 2";
-                    name.textContent = blocks[index].data.file.name;
-          
-                    parent.appendChild(name);
-                    parent.appendChild(a);
-          
-                    postBody.appendChild(parent);
-                    break;
-          
-                  case "paragraph":
-                    const p = document.createElement("p");
-                    p.innerHTML = blocks[index].data.text;
-                    postBody.appendChild(p);
-                    break;
-          
-                  case "Link":
-                    let parent2 = document.createElement("div");
-                    let a2 = document.createElement("a");
-                    parent2.style =
-                      " margin-top:10px; width:30%;display:grid; grid-template-columns: 1fr 50px; padding:10px; border:1px solid black;border-radius:8px;";
-          
-                    if (blocks[index].data.meta.title) {
-                      let title = document.createElement("p");
-                      title.textContent = blocks[index].data.meta.title;
-                      parent2.appendChild(title);
-                    }
-                    if (blocks[index].data.meta.image.url !== "") {
-                      let parent3 = document.createElement("div");
-                      let img = document.createElement("img");
-          
-                      img.src = blocks[index].data.meta.image.url;
-                      parent3.style = " display:grid;place-items:center";
-          
-                      img.height = 40;
-                      img.width = 40;
-                      parent3.appendChild(img);
-                      parent2.appendChild(parent3);
-                    }
-          
-                    if (blocks[index].data.meta.description) {
-                      let desc = document.createElement("small");
-                      desc.style = "grid-column: 1 / span 2";
-                      desc.textContent = blocks[index].data.meta.description;
-                      parent2.appendChild(desc);
-                    }
-                    a2.style = "text-decoration:none;color:black";
-                    a2.href = blocks[index].data.link;
-                    a2.appendChild(parent2);
-                    postBody.appendChild(a2);
-                    break;
+                const postBody = document.getElementById("post-bodyy");
+                console.log("{{post.body|escapejs}}");
+                let body = JSON.parse("{{post.body|escapejs}}");
+                let blocks = body.blocks;
+                console.log(blocks.length);
+
+                for (let index = 0; index <= blocks.length; index++) {
+                    console.log(blocks[index], index);
+
+                    switch (blocks[index].type) {
+                        case "Header":
+                            let head = document.createElement(`h${blocks[index].data.level}`);
+                            head.textContent = blocks[index].data.text;
+                            postBody.appendChild(head);
+                            break;
+
+                        case "Image":
+                            let div = document.createElement("div");
+                            let image = document.createElement("img");
+                            let caption = document.createElement("small");
+                            image.src = `${blocks[index].data.file.url}`;
+                            image.style = "margin-top:10px;";
+                            image.height = 200;
+                            image.width = 200;
+                            caption.textContent = blocks[index].data.caption;
+                            caption.style = "margin-top:5px;";
+                            div.appendChild(image);
+                            div.appendChild(caption);
+                            div.style = "width:30%;display:grid;place-items:center";
+                            postBody.appendChild(div);
+                            break;
+
+                        case "List":
+                            let list;
+                            if (blocks[index].data.style == "unordered") {
+                                list = document.createElement("ul");
+                            } else {
+                                list = document.createElement("ol");
+                            }
+                            for (const item in blocks[index].data.items) {
+                                let li = document.createElement("li");
+                                li.textContent = blocks[index].data.items[item];
+                                list.appendChild(li);
+                            }
+                            postBody.appendChild(list);
+                            break;
+
+                        case "Raw":
+                            let blockquote = document.createElement("blockquote");
+                            let code = document.createElement("code");
+                            let pre = document.createElement("pre");
+                            pre.textContent = blocks[index].data.html;
+                            pre.style.background = "#131313";
+                            pre.style.color = "#dddddd";
+                            pre.style.padding = "15px";
+                            code.appendChild(pre);
+                            postBody.appendChild(code);
+                            break;
+                        // inline code
+                        case "code":
+                            let code1 = document.createElement("code");
+                            code1.textContent = blocks[index].data.text;
+                            postBody.appendChild(code1);
+                            break;
+                        case "Attaches":
+                            let parent = document.createElement("div");
+                            parent.style =
+                                "margin-top:10px;width:30%; padding:10px; border:1px solid black;border-radius:8px;";
+                            let a = document.createElement("a");
+                            let name = document.createElement("h4");
+                            a.href = `${blocks[index].data.file.url}`;
+                            a.textContent = `Download ${blocks[index].data.file.extension} (${blocks[index].data.file.size / 1000
+                                } kb)`;
+                            a.style = "grid-column: 1 / span 2";
+                            name.textContent = blocks[index].data.file.name;
+
+                            parent.appendChild(name);
+                            parent.appendChild(a);
+
+                            postBody.appendChild(parent);
+                            break;
+
+                        case "paragraph":
+                            const p = document.createElement("p");
+                            p.innerHTML = blocks[index].data.text;
+                            postBody.appendChild(p);
+                            break;
+
+                        case "Link":
+                            let parent2 = document.createElement("div");
+                            let a2 = document.createElement("a");
+                            parent2.style =
+                                " margin-top:10px; width:30%;display:grid; grid-template-columns: 1fr 50px; padding:10px; border:1px solid black;border-radius:8px;";
+
+                            if (blocks[index].data.meta.title) {
+                                let title = document.createElement("p");
+                                title.textContent = blocks[index].data.meta.title;
+                                parent2.appendChild(title);
+                            }
+                            if (blocks[index].data.meta.image.url !== "") {
+                                let parent3 = document.createElement("div");
+                                let img = document.createElement("img");
+
+                                img.src = blocks[index].data.meta.image.url;
+                                parent3.style = " display:grid;place-items:center";
+
+                                img.height = 40;
+                                img.width = 40;
+                                parent3.appendChild(img);
+                                parent2.appendChild(parent3);
+                            }
+
+                            if (blocks[index].data.meta.description) {
+                                let desc = document.createElement("small");
+                                desc.style = "grid-column: 1 / span 2";
+                                desc.textContent = blocks[index].data.meta.description;
+                                parent2.appendChild(desc);
+                            }
+                            a2.style = "text-decoration:none;color:black";
+                            a2.href = blocks[index].data.link;
+                            a2.appendChild(parent2);
+                            postBody.appendChild(a2);
+                            break;
 
 
-          
-                  default:
-                    break;
+
+                        default:
+                            break;
+                    }
                 }
-              }
             });
-          </script>
-          <!-- script which will hide the li with data-label "Raw" -->
-            <script>
-                $(document).ready(function () {
-                $("li[data-label='Raw']").hide();
+        </script>
+       <!-- script which will hide the class ce-toolbox__button with data-tool = "Warning" -->
+        <script>
+            $(document).ready(function () {
+                $(".ce-toolbox__button[data-tool='Warning']").hide();
+                // also with data-tool= Raw
+                $(".ce-toolbox__button[data-tool='Raw']").hide();
+                // also with data-tool= Checklist
+                $(".ce-toolbox__button[data-tool='Checklist']").hide();
+            });
+            // add - at first in every cite tag 
+            $(document).ready(function () {
+                $("cite").each(function () {
+                    $(this).text("- " + $(this).text());
                 });
-            </script>
-            <!-- when post__dropmenu--icon is clicked then open the dropdown menu -->
-           
+            });
+        </script>
+
+
     </body>
 
 </html>
