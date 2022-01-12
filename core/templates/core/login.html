@@ -70,8 +70,6 @@
                                         {% csrf_token %}
                                         {{ form.media }}
                                         {{ form.as_p }}
-
-
                                     </div>
                                 </div>
                                 <div style="margin-top: 10px;">
@@ -111,22 +109,11 @@
                                 </a>
                                 <div class="post--options">
                                     <div class="post__dropmenu">
-                                        <div class="post-meta"><span>3 days ago</span>
+                                        <div class="post-meta"><span style="margin-right: -0.5rem !important;margin-bottom: -0.3rem !important;font-size: 1rem;">{{ Question.time_st|date:"M d, Y" }}</span>
                                             <!-- <span class="post__dropmenu--icon dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></span> -->
-                                            <button class="btn" type="button" id="dropdownMenuButton"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <i class="fas fa-ellipsis-v"></i>
-                                            </button>
+                                            
                                         </div>
-                                        <div class="dropdown-menu cards">
-                                            <div role="button" class="dropmenu__menuitem"><i
-                                                    class="fas fa-minus-circle post__dropmenu--navicon"></i>Hide</div>
-                                            <div role="button" class="dropmenu__menuitem"><i
-                                                    class="fas fa-user-times post__dropmenu--navicon"></i>Follow Lola_04
-                                            </div>
-                                            <div role="button" class="dropmenu__menuitem"><i
-                                                    class="fas fa-ban post__dropmenu--navicon"></i>Block Lola_04</div>
-                                        </div>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -136,20 +123,20 @@
                                 </div>
 
                                 {% load editorjs %}
-                                <div class="post-body" id="post-bodyy">{{ Question.note_editorjs| editorjs}}</div>
+                                <div class="post-body" id="post-bodyy">{{ Question.question| editorjs}}</div>
                             </div>
                             <div>
                                 <div class="post-actions-wrapper">
                                     <div class="action-wrapper action-wrapper--disabled"><i
-                                            class="fas fa-comments"></i><span class="post-action-text">0</span></div>
-                                    <div class="action-wrapper"><i class="fas fa-comment-lines"> </i><span
-                                            class="post-action-text answer-button">Answer</span>
-                                        <!-- comment form -->
-
-                                        <!-- show comments -->
+                                            class="fas fa-comments"></i><span class="post-action-text">{{ comment.count }}</span></div>
+                                    <div class="action-wrapper">
+                                        <a href="/viewnotes/{{ Question.note_id }}" style="color: #000;"><i
+                                                class="fas fa-comment-lines"> </i><span
+                                                class="post-action-text answer-button">Answer</span></a>
+                                       
                                     </div>
                                     <div class="action-wrapper"><i class="fas fa-users"></i><span
-                                            class="post-action-text">1</span></div>
+                                            class="post-action-text">{{ Question.views }}</span></div>
                                 </div>
                             </div>
                         </div>
@@ -440,7 +427,7 @@
                 }
             });
         </script>
-       <!-- script which will hide the class ce-toolbox__button with data-tool = "Warning" -->
+        <!-- script which will hide the class ce-toolbox__button with data-tool = "Warning" -->
         <script>
             $(document).ready(function () {
                 $(".ce-toolbox__button[data-tool='Warning']").hide();

@@ -20,8 +20,14 @@ urlpatterns = (
     # path('edit_profile', UserEditView.as_view(), name="edit_profile"),
     # notes
     path('notes', views.note, name='notes'),
-    path('comments', views.comment, name='comments'),
+    # path('comments', views.add_comment, name='comments'),
     path('editorjs/', include('django_editorjs_fields.urls')),
-    # path('notes/<int:note_id>/<slug:slug>/', views.note, name='note'),
+    path('viewnotes/<int:note_id>', views.viewnotes, name='viewnotes'),
+    # comment
+    # add coment
+    
+    # path('comment/<int:note_id>', views.comment, name='comment'),
+    # for opening  note 
+    # path('note/<int:pk>/', views.note_detail, name='note_detail'),
     
 )

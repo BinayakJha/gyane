@@ -21,7 +21,6 @@ from django.contrib.auth.views import PasswordChangeView
 from django.views import generic
 from django.views.generic import CreateView
 from .forms import NoteForm,ProfilePicForm,CommentForm
-import markdownify
 import gender_guesser.detector as gender
 # Create your views here.
 
@@ -32,16 +31,10 @@ import gender_guesser.detector as gender
 def home(request):
     # return render(request, 'core/login.html')
     postss = Question.objects.all().order_by('-time_st')
-    # get the comment for each post
-    for post in postss:
-        post.comments = Comment.objects.filter(comment=post).order_by('-time_st')
-
     # filter comment for each post
     form = NoteForm()
     context = {'postss':postss,
                 'form':form,
-                'form2': CommentForm(),
-                'comment':comment,
     }
     return render(request, 'core/login.html', context)
 
@@ -228,7 +221,7 @@ def note(request):
             # note_html = markdownify.markdownify(form.cleaned_data['note'])
             # # convert it  to markdown
             # print(note_html)
-            form.instance.note = form.cleaned_data['note_editorjs']
+            form.instance.note = form.cleaned_data['question']
             form.save()
             return JsonResponse({'message': 'Note added successfully'})
         else:
@@ -238,20 +231,42 @@ def note(request):
         form = NoteForm()
         return render(request, 'core/login.html',{'form':form})
 
-def comment(request):
+
+# view question
+def viewnotes(request,note_id):
+    context = {}
+    note = Question.objects.get(note_id=note_id)
+    postss = Question.objects.filter(note_id=note_id)
+    note.views += 1
+    note.save()
+
+    commentt = Comment.objects.filter(question = note).order_by('-time_st')
     if request.method == "POST":
-        # Get the post parameters
-        form = CommentForm(request.POST)
+        form = CommentForm(request.POST or None)
         if form.is_valid():
-            form.instance.user = request.user
-            form.save()
-            return JsonResponse({'message': 'Comment added successfully'})
+            comm = request.POST.get('comment')
+            f = Comment.objects.create(user=request.user, comment=comm, question=note)
+            f.save()
         else:
             messages.error(request, "Comment has not been added")
-            return render(request, 'core/login.html',{'forms':form})
+        return redirect('viewnotes',note_id=note_id)
     else:
         form = CommentForm()
-        return render(request, 'core/login.html',{'forms':form,})
+        context = {
+            'note': note,
+            'postss': postss,
+            'form': form,
+            'comment': commentt,
+        }
+        template_name = 'core/viewnotes.html'
+        return render(request, template_name, context)
+
+# def comment(request,note_id):
+#     context = {}
+#     template_name = 'core/viewnotes.html'
+   
+#     return render(request, template_name, {'comment': comment})
+
 def profile_pic(request):
     if request.method == "POST":
         form = ProfilePicForm(request.POST, request.FILES)

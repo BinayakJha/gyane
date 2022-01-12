@@ -13,8 +13,8 @@ class NoteForm(forms.ModelForm):
         model = Question
         exclude = ['user', 'slug', 'views', 'time_st', 'note_editorjs_text']
         widgets = {
-            'note_editorjs': EditorJsWidget(config={'minHeight': 100}),
-            'note_editorjs': EditorJsWidget(
+            'question': EditorJsWidget(config={'minHeight': 100}),
+            'question': EditorJsWidget(
                  plugins=[
             "@editorjs/header",
             "@editorjs/image",
@@ -47,6 +47,36 @@ class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ['comment']
+        widgets = {
+            'comment': EditorJsWidget(config={'minHeight': 100}),
+            'comment': EditorJsWidget(
+                    plugins=[
+                "@editorjs/header",
+                "@editorjs/image",
+                "@editorjs/quote",
+                "@editorjs/list",
+                "@editorjs/link",
+                "@editorjs/code",
+                "@editorjs/table@2.0.1",
+            "editorjs-hyperlink",
+            "@editorjs/inline-code",
+            "@editorjs/marker",
+        ],
+        tools={
+            "Hyperlink": {
+                "class": "Hyperlink",
+                "config": {
+                    "shortcut": 'CMD+L',
+                    "target": '_blank',
+                    "rel": 'nofollow',
+                    "availableTargets": ['_blank', '_self'],
+                    "availableRels": ['author', 'noreferrer'],
+                    "validate": False,
+                }
+            },
+        },
+        ),
+        }
 class  ProfilePicForm(forms.ModelForm):
     class Meta:
         model = profilepic 

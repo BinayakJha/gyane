@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    {% load static %}
+    <title>Gyan-e - Your Unfair Advantage</title>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.15.3/css/all.css"
+        integrity="sha384-iKbFRxucmOHIcpWdX9NTZ5WETOPm0Goy0WmfyNcl52qSYtc2Buk0NCe6jU1sWWNB" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static '/main.css' %}">
+    <link rel="stylesheet" href="{% static '/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
+    <link rel="stylesheet" href="{% static '/assets/fonts/fontawesome-all.min.css' %}">
+
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/css/medium-editor.min.css"
+        type="text/css" media="screen" charset="utf-8">
+</head>
+
+<body id="body">
+    <!-- make a button which will go back to the previous page -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <a href="/" class="btn btn-primary" style="margin-top: 59px; position: absolute;background:#59A5B9;border-color:#59A5B9;">
+                    <!-- icon of back arrow -->
+                    <i class="fas fa-arrow-left"></i>
+                </a>
+            </div>
+        </div>
+    <!-- for question in note -->
+    {% for Question in postss %}
+    <div class="cards create-post container col-lg-7 col-sm-8" id="posts">
+        <div class="card__body">
+            <div class="post-wrapper">
+                <div class="false">
+                    <div class="post-header-wrapper">
+                        <a class="author-box author-box--sm" href="/profile/Lola_04">
+                            <!-- if user last name is unknown then use default profile photo -->
+                            <!-- if user has no profile photo then use default profile photo -->
+                            {% if user.profile_pic %}
+                            <img class="avatar avatar--sm" src="{% static 'img/default.png' %}">
+                            {% else %}
+                            <img class="avatar avatar--sm" src="{% static 'img/defaultprofile_photo.png' %}">
+                            {% endif %}
+                            <div class="author-box__info">
+                                <p class="author-box__name">{{ Question.user.first_name }}</p><small
+                                    class="author-box__handle">@{{ Question.user }}</small>
+                            </div>
+                        </a>
+                        <div class="post--options">
+                            <div class="post__dropmenu">
+                                <div class="post-meta"><span style="margin-right: -0.5rem !important;margin-bottom: -0.3rem !important;font-size: 1rem;">{{ Question.time_st|date:"M d, Y" }}</span>
+                                    <!-- <span class="post__dropmenu--icon dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></span> -->
+                                    
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="post-contents">
+                        <div class="post-votes"><i class="far fa-caret-up vote-icon up-arrow"></i>
+                            <p class="vote-count">+3</p><i class="far fa-caret-down vote-icon down-arrow"></i>
+                        </div>
+
+                        {% load editorjs %}
+                        <div class="post-body" id="post-bodyy">{{ Question.question| editorjs}}</div>
+                    </div>
+                    <div>
+                        <div class="post-actions-wrapper">
+                            <div class="action-wrapper action-wrapper--disabled"><i class="fas fa-comments"></i><span
+                                    class="post-action-text">{{ comment.count }}</span></div>
+                            <div class="action-wrapper"><i class="fas fa-comment-lines"> </i><span
+                                    class="post-action-text answer-button answerr">Answer</span>
+                                
+                            </div>
+                            <div class="action-wrapper"><i class="fas fa-users"></i><span
+                                    class="post-action-text">{{ Question.views }}</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    <!-- comment form -->
+
+        <div class="cards create-post container col-lg-6 col-sm-8" style="display: none;" id="comment-form">
+            <div class="card__body">
+                <div class="create-post__body">
+                    <!-- make a hint box which tell to press tab if in laptop -->
+                    <div class="create-post__hint">
+                        <p>Press
+                            <span class="create-post__hint-key">
+                                <!-- make the tab key show as a tab -->
+                                <kbd>Tab</kbd>&nbsp;after clicking the box
+                            </span>
+                            to open toolbar
+                        </p>
+                    </div>
+
+                    <form class="form" method="post" enctype="multipart/form-data">
+
+                        <div class="form__field">
+                            <div class="container-flex">
+                                <div class="row" aria-required="true">
+                                    <!-- add placeholder using js -->
+                                    {% csrf_token %}
+                                    {{ form.media }}
+                                    {{ form.as_p }}
+                                </div>
+                            </div>
+                            <div style="margin-top: 10px;">
+
+                                {% csrf_token %}
+                                <button class="btn btn-primary">
+                                    <i class="fas fa-comment-alt" style="margin-right: 8px;"></i>Post Now!</button>
+                            </div>
+
+                        </div>
+
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    <!-- comments -->
+    <br><br>
+    <center>
+        <h2><b>Comments</b></h2>
+    </center>
+    {% for Comment in comment %}
+    <div class="cards create-post container col-lg-7 col-sm-8" id="posts">
+        <div class="card__body">
+            <div class="post-wrapper">
+                <div class="false">
+                    <div class="post-header-wrapper">
+                        <a class="author-box author-box--sm" href="/profile/Lola_04">
+                            <!-- if user last name is unknown then use default profile photo -->
+                            <!-- if user has no profile photo then use default profile photo -->
+                            {% if user.profile_pic %}
+                            <img class="avatar avatar--sm" src="{% static 'img/default.png' %}">
+                            {% else %}
+                            <img class="avatar avatar--sm" src="{% static 'img/defaultprofile_photo.png' %}">
+                            {% endif %}
+                            <div class="author-box__info">
+                                <p class="author-box__name">{{ Comment.user.first_name }}</p><small
+                                    class="author-box__handle">@{{ Comment.user }}</small>
+                            </div>
+                        </a>
+                        <div class="post--options">
+                            <div class="post__dropmenu">
+                                <div class="post-meta"><span style="margin-right: -0.5rem !important;margin-bottom: -0.3rem !important;font-size: 1rem;"> {{Comment.time_st|date:"M d, Y"}} </span>
+                                    <!-- <span class="post__dropmenu--icon dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></span> -->
+                                  
+                                </div>
+                               
+                            </div>
+                        </div>
+                    </div>
+                    <div class="post-contents">
+                        <div class="post-votes"><i class="far fa-caret-up vote-icon up-arrow"></i>
+                            <p class="vote-count">+3</p><i class="far fa-caret-down vote-icon down-arrow"></i>
+                        </div>
+
+                        {% load editorjs %}
+                        <div class="post-body" id="post-bodyy">{{ Comment.comment| editorjs}}</div>
+                    </div>
+                    <div>
+                        <div class="post-actions-wrapper">
+                            <div class="action-wrapper action-wrapper--disabled"><i class="fas fa-comments"></i><span
+                                    class="post-action-text">0</span></div>
+                            <div class="action-wrapper"><i class="fas fa-comment-lines"> </i><span
+                                    class="post-action-text answer-button">Reply</span>
+                                <!-- comment form -->
+
+                                <!-- show comments -->
+                            </div>
+                            <div class="action-wrapper"><i class="fas fa-users"></i><span
+                                    class="post-action-text">1</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    <script src="{% static '/assets/js/script.min.js' %}"></script>
+    <!-- add name="comm" in the textx editor -->
+    <!-- ajax -->
+    <!-- script for jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        // when answer button is clicked then show the comment form
+        // change the style display none to block
+        $(document).ready(function () {
+            $(".answerr").click(function () {
+                // show with animation 
+                // slide from up
+                $("#comment-form").slideDown(500);
+            });
+        });
+    </script>
+    
+</body>
+
+</html>

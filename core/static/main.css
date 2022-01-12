@@ -28,6 +28,7 @@ strong {
 }
 p{
     margin-bottom: 0.5rem !important;
+    font-size: initial;
 }
 .active {
     display: block !important;

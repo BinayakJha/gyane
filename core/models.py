@@ -29,15 +29,14 @@ class UserOTP(models.Model):
 
 class Question(models.Model):
     note_id = models.AutoField(primary_key=True)
-    note_editorjs =EditorJsJSONField(readOnly=False, autofocus=True, null=True)
+    question =EditorJsJSONField(readOnly=False, autofocus=True, null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     time_st = models.DateTimeField(auto_now_add=True)
        
-    # slug = models.SlugField(max_length=200, unique=True)
     views  = models.IntegerField(default=0)
     
     def save(self, *args, **kwargs):
-        # self.slug = slugify(self.note)
+        # self.slug = slugify(self.clean)
         super(Question, self).save(*args, **kwargs)
     
     def __str__(self):
@@ -45,7 +44,7 @@ class Question(models.Model):
 
 class Comment(models.Model):
     comment_id = models.AutoField(primary_key=True)
-    comment =  MarkdownxField(null=True, blank=True)
+    comment =  EditorJsJSONField(readOnly=False, autofocus=True, null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     time_st = models.DateTimeField(auto_now_add=True)
@@ -57,7 +56,7 @@ class Comment(models.Model):
         super(Comment, self).save(*args, **kwargs)
     
     def __str__(self):
-        return 'Comment {} by {}'.format(self.comment[:50], self.user.username)
+        return 'Comment {} by {}'.format(self.comment, self.user.username)
 class profilepic(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)
     profile_pic = models.ImageField(default="defaultprofile_photo.png", null=True, blank=True)
