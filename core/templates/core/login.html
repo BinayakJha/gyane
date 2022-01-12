@@ -88,7 +88,7 @@
                 </div>
             </div>
 
-            {% for Question in postss %}
+            {% for Question in page_obj.object_list %}
             <div class="cards create-post container col-lg-10 col-sm-11" id="posts">
                 <div class="card__body">
                     <div class="post-wrapper">
@@ -144,7 +144,39 @@
                 </div>
             </div>
             {% endfor %}
+            <center>
+                <!-- make a next and previous button to navigate through the posts -->
+                <div class="pagination" style="align-items: center; margin: 25px 0 25px 45%;">
+                    {%if page_obj.has_previous %}
+                    <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-primary ">
+                        <!-- icon of a left arrow   -->
+                        <i class="fas fa-arrow-left"></i>
+                    </a>
+                    
+                    <!-- else disable the button -->
+                    {% else %}
+                    <a href="" class="btn btn-primary disabled">
+                        <!-- icon of a left arrow   -->
+                        <i class="fas fa-arrow-left"></i>
+                    {% endif %}
+                    
+                    {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}" class="btn btn-primary" style="margin-left:25px;">
+                        <!-- icon of a right arrow -->
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                    {% else %}
+                    <a href="" class="btn btn-primary disabled" style="margin-left:25px;">
+                        <!-- icon of a right arrow -->
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                    {% endif %}
+                    <span class="page-number" style="padding-left:25px;">{{ page_obj.number }}</span>
+                </div>
+            </center>
+            
         </div>
+        
         <div class="user-card cards col-lg-3 col-md-12 ml-2" style="height: 50%;margin-top: 43px;">
             <div class="card__body container">
                 <div class="user-card__profile-summary">

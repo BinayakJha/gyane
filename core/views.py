@@ -22,6 +22,7 @@ from django.views import generic
 from django.views.generic import CreateView
 from .forms import NoteForm,ProfilePicForm,CommentForm
 import gender_guesser.detector as gender
+from django.core.paginator import Paginator
 # Create your views here.
 
 # ------------------------------------------------------------------------------------
@@ -31,10 +32,14 @@ import gender_guesser.detector as gender
 def home(request):
     # return render(request, 'core/login.html')
     postss = Question.objects.all().order_by('-time_st')
+    p = Paginator(postss, 5)
+    page_number = request.GET.get('page')
+    page_obj = p.get_page(page_number)
     # filter comment for each post
     form = NoteForm()
     context = {'postss':postss,
                 'form':form,
+                'page_obj': page_obj,
     }
     return render(request, 'core/login.html', context)
 
