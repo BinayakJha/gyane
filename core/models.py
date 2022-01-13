@@ -25,9 +25,6 @@ class UserOTP(models.Model):
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE,null=True)
     # import first name from user
-    def save(self, *args, **kwargs):
-        self.first_name = self.user.first_name
-        super(Profile, self).save(*args, **kwargs)
     first_name = models.CharField(max_length=200, null=True)
     email = models.CharField(max_length=200, null=True)
     small_intro = models.TextField(max_length=100, blank=True, null=True)

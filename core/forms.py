@@ -77,7 +77,7 @@ class CommentForm(forms.ModelForm):
 class EditProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ('email','first_name','small_intro','profile_pic')
+        fields = ('small_intro','profile_pic')
 
 class EditPersonalProfileForm(UserChangeForm):
     email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control'}))

@@ -49,11 +49,6 @@ class UserEditView(generic.UpdateView):
     def get_object(self):
         return self.request.user.profile
 
-    # return first name 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['first_name'] = self.request.user.first_name
-        return context
     
 # ------------------------------------------------------------------------------------
 # user profile edit
