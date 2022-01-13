@@ -13,6 +13,8 @@
     <title id="title">
        {{ title|editorjs }}
     </title>
+    <!-- title -->
+    <meta name="title" content="GYAN-e">
     <meta name="description" content="{{ title| editorjs }}" id="description">
     <meta name="keywords" content="{{ title| editorjs }}" id="keywords">
     {% for Question in postss %}
@@ -21,6 +23,14 @@
     <meta name="robots" content="index, follow" id="robots">
     <!-- image  -->
     <meta property="og:image" content="{% static 'img/gyane.jpeg' %}" id="image">
+ <!-- open graph meta tags -->
+    <meta property="og:title" content="{{ title|editorjs }}" id="og:title">
+    <meta property="og:description" content="{{ title|editorjs }}" id="og:description">
+    <meta property="og:url" content="{{ request.build_absolute_uri }}" id="og:url">
+    <meta property="og:image" content="{% static 'img/gyane.jpeg' %}" id="og:image">
+    <meta property="og:type" content="website" id="og:type">
+    <meta property="og:site_name" content="GYAN-e" id="og:site_name">
+    <!-- twitter meta tags -->
 
     <script>
         // remove html tags
@@ -28,12 +38,16 @@
             var str = str.replace(/<\/?[^>]+(>|$)/g, "");
             return str;
         }
+
       document.title = replace_title(document.title).toString();
     //   for meta description
     document.getElementById('description').content = replace_title(document.getElementById('description').content).toString();
     //   for meta keywords
     document.getElementById('keywords').content = replace_title(document.getElementById('keywords').content).toString();
-
+        // for og:title
+    document.getElementById('og:title').content = replace_title(document.getElementById('og:title').content).toString();
+    //   for og:description
+    document.getElementById('og:description').content = replace_title(document.getElementById('og:description').content).toString();
     </script>
     
    
