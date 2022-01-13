@@ -6,4 +6,4 @@ class PostAdmin(admin.ModelAdmin):
     list_display = ('note_id','question','user','views')
 admin.site.register(Question,PostAdmin)
 admin.site.register(Comment)
-admin.site.register(profilepic)
+admin.site.register(Profile)

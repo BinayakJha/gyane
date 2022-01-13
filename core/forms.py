@@ -3,10 +3,6 @@ from django.contrib.auth.models import User
 from django import forms
 from .models import *
 from django_editorjs_fields import EditorJsWidget
-# class EditProfileForm(UserChangeForm):
-#     class Meta:
-#         model = EditProfileForm
-#         fields = ('bio',)
 
 class NoteForm(forms.ModelForm):
     class Meta:
@@ -77,7 +73,17 @@ class CommentForm(forms.ModelForm):
         },
         ),
         }
-class  ProfilePicForm(forms.ModelForm):
+
+class EditProfileForm(forms.ModelForm):
     class Meta:
-        model = profilepic 
-        fields = ['profile_pic']
+        model = Profile
+        fields = ('email','first_name','small_intro','profile_pic')
+
+class EditPersonalProfileForm(UserChangeForm):
+    email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control'}))
+    first_name = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    last_name = forms.CharField(max_length=100, widget= forms.TextInput(attrs={'class': 'form-control'}))
+    username = forms.CharField(max_length=100, widget= forms.TextInput(attrs={'class': 'form-control'}))
+    class Meta:
+        model = User
+        fields = ('email','first_name','last_name','username')

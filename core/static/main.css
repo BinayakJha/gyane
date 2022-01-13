@@ -460,7 +460,17 @@ div[data-editorjs-holder] {
 .codex-editor__redactor{
     padding-bottom: 40px !important;
 }
-
+.codex-editor--narrow .ce-block--focused {
+    margin-right: -50px;
+    padding-right: 0px !important; 
+}
+/* disabled input */
+.form-control[disabled], fieldset[disabled] .form-control {
+    cursor: not-allowed;
+}
+.form-control{
+    width: 90% !important;
+}
 
 @media (max-width: 767px){
     div[data-editorjs-holder] {

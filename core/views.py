@@ -13,17 +13,52 @@ from django.template.loader import get_template
 from django.template import Context, context
 import math, random
 
-from .models import UserOTP,Question,Comment
+from django_editorjs_fields import fields
 
-from django.contrib.auth.forms import PasswordChangeForm
+from .models import Profile, UserOTP,Question,Comment
+
+from django.contrib.auth.forms import PasswordChangeForm,UserChangeForm
 from django.contrib.auth.views import PasswordChangeView
 
 from django.views import generic
 from django.views.generic import CreateView
-from .forms import NoteForm,ProfilePicForm,CommentForm
+from .forms import EditPersonalProfileForm, NoteForm,CommentForm,EditProfileForm
 import gender_guesser.detector as gender
 from django.core.paginator import Paginator
 # Create your views here.
+# edit profile page class
+# ------------------------------------------------------------------------------------
+# edit profile page class
+# ------------------------------------------------------------------------------------
+class UserProfileEditView(generic.UpdateView):
+    form_class = EditPersonalProfileForm
+    template_name = 'core/edit_personal.html'
+    def get_success_url(self):
+        return reverse_lazy('edit_profile', kwargs={'username': self.request.user.username})
+
+    def get_object(self):
+        return self.request.user
+class UserEditView(generic.UpdateView):
+    form_class = EditProfileForm
+    template_name = 'core/edit_profile.html'
+    # if succes remain in the same page
+    def get_success_url(self):
+        return reverse_lazy('edit_profile', kwargs={'username': self.request.user.username})
+
+
+    def get_object(self):
+        return self.request.user.profile
+
+    # return first name 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['first_name'] = self.request.user.first_name
+        return context
+    
+# ------------------------------------------------------------------------------------
+# user profile edit
+# ------------------------------------------------------------------------------------
+
 
 # ------------------------------------------------------------------------------------
 # home function
@@ -32,7 +67,7 @@ from django.core.paginator import Paginator
 def home(request):
     # return render(request, 'core/login.html')
     postss = Question.objects.all().order_by('-time_st')
-    p = Paginator(postss, 5)
+    p = Paginator(postss, 10)
     page_number = request.GET.get('page')
     page_obj = p.get_page(page_number)
     # filter comment for each post
@@ -42,6 +77,7 @@ def home(request):
                 'page_obj': page_obj,
     }
     return render(request, 'core/login.html', context)
+
 
 def signup(request):
     return render(request, 'core/register.html')
@@ -54,7 +90,9 @@ def forgot_password(request):
 
 def home_logged(request):
     return render(request, 'core/home.html')
+# ------------------------------------------------------------------------------------
 # signup function
+# ------------------------------------------------------------------------------------
 
 def handleSignUp(request):  # sourcery no-metrics
     if request.method == "POST":
@@ -91,7 +129,7 @@ def handleSignUp(request):  # sourcery no-metrics
         
         email = request.POST['email']
         fname = request.POST['first_name']
-        lname= d.get_gender(usernames)
+        lname= request.POST['last_name']
         pass1 = request.POST['password']
         pass2 = request.POST['password_repeat']
        
@@ -137,8 +175,11 @@ def handleSignUp(request):  # sourcery no-metrics
         myuser.last_name = lname
         myuser.is_staff = False
         myuser.is_active = False
-
+        # create user profile
         myuser.save()
+
+        # send otp
+
         myuser_otp = random.randint(100000, 999999)
         UserOTP.objects.create(user=myuser, otp=myuser_otp)
         template2 = get_template('core/token.html').render({ 'myuser_otp':myuser_otp})
@@ -151,41 +192,20 @@ def handleSignUp(request):  # sourcery no-metrics
         email_otp.fail_silently = False
         email_otp.content_subtype = "html"
         email_otp.send()
+        # make profile
+        myprofile = Profile(user=myuser)
+        myprofile.save()
+
         return render(request, 'core/register.html', {'otp': True, 'usr':myuser})
        
        
     else:
         return HttpResponse("404 - Not found")
 
-
-# def verify_check(request):
-#     if request.method == "POST":
-#         # Get the post parameters
-#         token = request.POST['token']
-#         letter  = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
-#         number  = '0123456789'
-#         # make the random word of 4 characters
-#         word = ''.join(random.choice(letter+number) for _ in range(6))
-#         # token_template = get_template('core/token.html').render({'word':token_create()})
-#         # token_email = EmailMessage(
-#         #     'Verify your email',
-#         #     token_template,
-#         #     settings.EMAIL_HOST_USER,
-#         #     [email],
-#         # )
-#         # token_email.content_subtype = "html"
-#         # token_email.send()
-#         if token == word:
-#             print(User.objects.filter(email=request.user.email).filter(is_active=False)[0])
-
-#             messages.success(request, "Your email has been verified")
-#             print('SUCCESSSSSSSS')
-#         else:
-#             print(User.objects.filter(email=request.user.email).filter(is_active=False))
-#             print('NOOOOOOOOOOOOO')
-#         return redirect('home')
-
+# ------------------------------------------------------------------------------------
 # login function
+# ------------------------------------------------------------------------------------
+
 def handleLogin(request): 
     if request.method=="POST":
         # Get the post parameters
@@ -204,19 +224,27 @@ def handleLogin(request):
     else:
         return HttpResponse("404- Not found")
 
+# ------------------------------------------------------------------------------------
 # logout function
+# ------------------------------------------------------------------------------------
+
 def handelLogout(request):
     logout(request)
     messages.success(request, "Successfully logged out")
     return redirect('home')
 
+# ------------------------------------------------------------------------------------
 # password change 
+# ------------------------------------------------------------------------------------
+
 def password_success(request):
     # return render (request,'registration/password_success.html')
     messages.success(request, "Password has been succesfully changed.")
     return redirect("home")
 
-# note 
+# ------------------------------------------------------------------------------------
+# note function
+# ------------------------------------------------------------------------------------
 def note(request):
     if request.method == "POST":
         # Get the post parameters
@@ -236,8 +264,10 @@ def note(request):
         form = NoteForm()
         return render(request, 'core/login.html',{'form':form})
 
-
+# ------------------------------------------------------------------------------------
 # view question
+# ------------------------------------------------------------------------------------
+
 def viewnotes(request,note_id):
     context = {}
     note = Question.objects.get(note_id=note_id)
@@ -262,39 +292,18 @@ def viewnotes(request,note_id):
             'postss': postss,
             'form': form,
             'comment': commentt,
+            'title': Question.objects.get(note_id=note_id).question,
         }
         template_name = 'core/viewnotes.html'
         return render(request, template_name, context)
 
-# def comment(request,note_id):
-#     context = {}
-#     template_name = 'core/viewnotes.html'
-   
-#     return render(request, template_name, {'comment': comment})
-
-def profile_pic(request):
-    if request.method == "POST":
-        form = ProfilePicForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.instance.user = request.user
-            form.save()
-            return JsonResponse({'message': 'Profile pic added successfully'})
-        else:
-            messages.error(request, "Profile pic has not been added")
-            return redirect("home")
-    else:
-        form = ProfilePicForm()
-        return render(request, 'core/register.html',{'form':form})
+# ------------------------------------------------------------------------------------
+# password change view
+# ------------------------------------------------------------------------------------
 class PasswordChangeView(PasswordChangeView):
     form_class = PasswordChangeForm
     template_name = 'core/password_change.html'
     success_url = reverse_lazy('password_success')
 
-# class UserEditView(generic.UpdateView):
-#     form_class = EditProfileForm
-#     template_name = 'core/editprofile.html'
-#     success_url = reverse_lazy('home')
 
-#     def get_object(self):
-#         return self.request.user
 

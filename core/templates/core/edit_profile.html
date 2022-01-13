@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    {% load static %}
+        <!-- logo -->
+    <link rel="icon" href="{% static 'img/favicon.ico' %}">
+    <title>Gyan-e Edit Profile</title>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.15.3/css/all.css"
+        integrity="sha384-iKbFRxucmOHIcpWdX9NTZ5WETOPm0Goy0WmfyNcl52qSYtc2Buk0NCe6jU1sWWNB" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static '/main.css' %}">
+    <link rel="stylesheet" href="{% static '/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
+    <link rel="stylesheet" href="{% static '/assets/fonts/fontawesome-all.min.css' %}">
+
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/css/medium-editor.min.css"
+        type="text/css" media="screen" charset="utf-8">
+</head>
+
+<body>
+
+    <!-- edit profile form -->
+    <!-- if user is authenticated -->
+    {% if user.is_authenticated %}
+
+    <div class="container-fluid">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <a href="/" class="btn btn-primary mt-4"
+                        style=" position: absolute;background:#59A5B9;border-color:#59A5B9;">
+                        <!-- icon of back arrow -->
+                        <i class="fas fa-arrow-left"></i>
+                    </a>
+                </div>
+            </div>
+            <h3 class="text-dark mb-4 text-center mt-4 mb-4 fw-bold">Edit Profile</h3>
+            <form action="" method="POST" enctype="multipart/form-data">
+                <div class="row mb-3">
+                    <div class="col-lg-4">
+                        <!-- add heading profile picture -->
+
+                        <div class="card mb-3">
+                            <div class="text-center">
+                                <h4 class="text-dark mb-4 mt-4 text-primary m-0 fw-bold">Profile Picture</h4>
+                            </div>
+                            {% if user.profile.profile_pic.url %}
+                            <div class="card-body text-center shadow"><img class=" mb-3 mt-4"
+                                    src="{{ user.profile.profile_pic.url }}" style="object-fit:cover;">
+                                <div class="mb-3"><input type="file" name="profile_pic" accept="image/*"
+                                        id="id_profile_pic" class="btn"></div>
+                            </div>
+                            {% else %}
+                            <div class="card-body text-center shadow"><img class=" mb-3 mt-4"
+                                    src="{% static 'img/defaultprofile_photo.png' %}" style="object-fit:cover;">
+                                <div class="mb-3"><input type="file" name="profile_pic" accept="image/*"
+                                        id="id_profile_pic" class="btn"></div>
+                            </div>
+
+                            {% endif %}
+
+                        </div>
+
+                    </div>
+                    <div class="col-lg-8">
+                        <div class="row mb-3 d-none">
+
+
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="card shadow mb-3">
+                                    <div class="card-header py-3">
+                                        <p class="text-primary m-0 fw-bold">User Settings</p>
+                                    </div>
+                                    <div class="card-body">
+
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="mb-3"><label class="form-label"
+                                                        for="username"><strong>Username</strong></label><input
+                                                        class="form-control" type="text" id="username"
+                                                        placeholder="user.name" name="username"
+                                                        value="{{ user.profile.user }}" disabled></div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="mb-3"><label class="form-label" for="email"><strong>Email
+                                                            Address</strong></label><input class="form-control"
+                                                        type="email" id="email" placeholder="user@example.com"
+                                                        name="email" value="{{ user.profile.email }}" disabled></div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="mb-3"><label class="form-label"
+                                                        for="first_name"><strong>First Name</strong></label><input
+                                                        class="form-control" type="text" id="first_name"
+                                                        placeholder="John" name="first_name"
+                                                        value="{{ user.profile.first_name }}" disabled></div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="mb-3"><label class="form-label" for="last_name"><strong>Last
+                                                            Name</strong></label><input class="form-control" type="text"
+                                                        id="last_name" placeholder="Doe" name="last_name"
+                                                        value="{{ request.user.last_name }}" disabled></div>
+                                            </div>
+                                            <!-- write a note that this fields cant be edited -->
+                                            <div>
+                                                <p><b>Note:</b> This fields can't be edited here. To edit these fields <a href="/edit_personal_profile">Click Here</a></p>
+                                            </div>
+                                            <hr>
+                                            <div class="mb-3"><label class="form-label" for="about_me"><strong>Short
+                                                        Intro</strong></label><textarea class="form-control"
+                                                    id="id_small_intro" rows="4" placeholder="A few words about you ..."
+                                                    name="small_intro">{{ user.profile.small_intro }}</textarea></div>
+                                        </div>
+                                        {% csrf_token %}
+                                        <div class="mb-3"><button class="btn btn-primary btn-sm" type="submit">Save
+                                                Settings</button></div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+           
+        </div>
+        {% else %}
+        <h1>Please Login to Edit Profile...</h1>
+        <br><br>
+        <a href="{% url 'login' %}">Login</a>
+        {% endif %}
+
+        
+
+
+
+
+        <script src="{% static '/assets/bootstrap/js/bootstrap.min.js' %}"></script>
+        <script src="{% static '/assets/js/script.min.js' %}"></script>
+</body>

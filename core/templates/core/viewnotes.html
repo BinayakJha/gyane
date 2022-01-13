@@ -2,10 +2,41 @@
 <html>
 
 <head>
+    {% load static %}
+     <!-- logo -->
+     <link rel="icon" href="{% static 'img/favicon.ico' %}">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    {% load static %}
-    <title>Gyan-e - Your Unfair Advantage</title>
+    <!-- SEO -->
+    <!-- meta properties -->
+  {% load editorjs %}
+    <title id="title">
+       {{ title|editorjs }}
+    </title>
+    <meta name="description" content="{{ title| editorjs }}" id="description">
+    <meta name="keywords" content="{{ title| editorjs }}" id="keywords">
+    {% for Question in postss %}
+    <meta name="author" content="{{ Question.user.first_name }}" id="author">
+    {% endfor %}
+    <meta name="robots" content="index, follow" id="robots">
+    <!-- image  -->
+    <meta property="og:image" content="{% static 'img/gyane.jpeg' %}" id="image">
+
+    <script>
+        // remove html tags
+        function replace_title(str) {
+            var str = str.replace(/<\/?[^>]+(>|$)/g, "");
+            return str;
+        }
+      document.title = replace_title(document.title).toString();
+    //   for meta description
+    document.getElementById('description').content = replace_title(document.getElementById('description').content).toString();
+    //   for meta keywords
+    document.getElementById('keywords').content = replace_title(document.getElementById('keywords').content).toString();
+
+    </script>
+    
+   
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.15.3/css/all.css"
         integrity="sha384-iKbFRxucmOHIcpWdX9NTZ5WETOPm0Goy0WmfyNcl52qSYtc2Buk0NCe6jU1sWWNB" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static '/main.css' %}">
@@ -39,11 +70,13 @@
                         <a class="author-box author-box--sm" href="/profile/Lola_04">
                             <!-- if user last name is unknown then use default profile photo -->
                             <!-- if user has no profile photo then use default profile photo -->
-                            {% if user.profile_pic %}
-                            <img class="avatar avatar--sm" src="{% static 'img/default.png' %}">
-                            {% else %}
-                            <img class="avatar avatar--sm" src="{% static 'img/defaultprofile_photo.png' %}">
-                            {% endif %}
+                            {% if Question.profile_pic.url %}
+                                    
+                            <img class="avatar avatar--sm" src="{{ Question.profile_pic.url }}">
+                        {% else %}
+                            <img src="{% static 'img/defaultprofile_photo.png' %}" class="avatar avatar--sm"
+                            alt="">
+                        {% endif %}
                             <div class="author-box__info">
                                 <p class="author-box__name">{{ Question.user.first_name }}</p><small
                                     class="author-box__handle">@{{ Question.user }}</small>
@@ -69,14 +102,58 @@
                     </div>
                     <div>
                         <div class="post-actions-wrapper">
-                            <div class="action-wrapper action-wrapper--disabled"><i class="fas fa-comments"></i><span
-                                    class="post-action-text">{{ comment.count }}</span></div>
-                            <div class="action-wrapper"><i class="fas fa-comment-lines"> </i><span
-                                    class="post-action-text answer-button answerr">Answer</span>
-                                
+                            <div class="action-wrapper action-wrapper--disabled"><i class="fas fa-comments"></i>
+                                <span class="post-action-text">{{ comment.count }}</span></div>
+                            <div class="action-wrapper"><i class="fas fa-users"></i>
+                                <span class="post-action-text">{{ Question.views }}</span>
                             </div>
-                            <div class="action-wrapper"><i class="fas fa-users"></i><span
-                                    class="post-action-text">{{ Question.views }}</span></div>
+                            <!-- share this post -->
+                            <div class="sharee" id= "{{ Question.note_id }}">
+                                       
+                                <div class="action-wrapper share" ><i class="fas fa-share-alt"></i><span
+                                        class="post-action-text"></span></div>
+                                <!-- share box will be here -->
+                                <div class="share-box{{ Question.note_id }}" 
+                                style="
+                                display: none;    
+                                position: absolute;
+                                background-color: rgb(255, 255, 255);
+                                box-shadow: rgb(0 0 0 / 50%) 0px 2px 4px 0px;
+                                padding: 14px;
+                                border-radius: 12px;
+                                align-items: center;
+                                text-align: center;
+                                ">
+                                <!-- end css -->
+                                <!-- facebook -->
+                                    <a href="https://www.facebook.com/sharer/sharer.php?u=https://thegyane.pythonanywhere.com/viewnotes/{{ Question.note_id }}"
+                                        target="_blank">
+                                    <div class="action-wrapper"><i class="fab fa-facebook-f"></i><span
+                                            class="post-action-text"></span></div>
+                                    </a>
+                                <!-- twitter -->
+                                    <a href="https://twitter.com/intent/tweet?url=https://thegyane.pythonanywhere.com/viewnotes/{{ Question.note_id }}" target="_blank">
+                                    <div class="action-wrapper"><i class="fab fa-twitter"></i><span
+                                            class="post-action-text"></span></div>
+                                    </a>
+                                <!-- linkedin -->
+                                    <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://thegyane.pythonanywhere.com/viewnotes/{{ Question.note_id }}" target="__blank">
+                                    <div class="action-wrapper"><i class="fab fa-linkedin-in"></i><span
+                                            class="post-action-text"></span></div>
+                                    </a>
+                                    
+                                </div>
+                                <!-- SCRIPT -->
+                                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+                                <script>
+                                    $(document).ready(function () {
+                                        $("#{{ Question.note_id }}").click(function () {
+                                            // toggle with animation effect 
+                                            $(".share-box{{ Question.note_id }}").toggle();
+                                        });
+                                    });
+                                </script>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -84,9 +161,23 @@
         </div>
     </div>
     {% endfor %}
+    <!-- make a box which says Know the answer to this question and add a button which says answer it -->
+    <div class="cards create-post container col-lg-6 col-sm-8 answerr" style="display: flex; padding: 20px;">
+        <p style=" margin:12px 20px;"><b>Know the answer to the question ?? </b></p>
+        <!-- if user is authenticated -->
+        {% if user.is_authenticated %}
+        <button class="btn btn-primary" style=" position: relative;background:#59A5B9;border-color:#59A5B9; margin:0px 20px;">
+            <p style="color:white;padding-top: 8px;" class="answer-text"><b>Answer it</b></p>
+        </button>
+        {% else %}
+        <a href="/" style="color: white;"><button class="btn btn-primary" style=" position: relative;background:#59A5B9;border-color:#59A5B9; margin:0px 20px;">
+            <p style="color:white;padding-top: 8px;"><b> Login To Answer</b></p>
+        </button></a>
+        {% endif %}
+    </div>
     <!-- comment form -->
 
-        <div class="cards create-post container col-lg-6 col-sm-8" style="display: none;" id="comment-form">
+        <div class="cards create-post container col-lg-7 col-sm-8" style="display: none;" id="comment-form">
             <div class="card__body">
                 <div class="create-post__body">
                     <!-- make a hint box which tell to press tab if in laptop -->
@@ -140,11 +231,13 @@
                         <a class="author-box author-box--sm" href="/profile/Lola_04">
                             <!-- if user last name is unknown then use default profile photo -->
                             <!-- if user has no profile photo then use default profile photo -->
-                            {% if user.profile_pic %}
-                            <img class="avatar avatar--sm" src="{% static 'img/default.png' %}">
-                            {% else %}
-                            <img class="avatar avatar--sm" src="{% static 'img/defaultprofile_photo.png' %}">
-                            {% endif %}
+                            {% if Comment.profile_pic.url %}
+                                    
+                            <img class="avatar avatar--sm" src="{{ Comment.profile_pic.url }}">
+                        {% else %}
+                            <img src="{% static 'img/defaultprofile_photo.png' %}" class="avatar avatar--sm"
+                            alt="">
+                        {% endif %}
                             <div class="author-box__info">
                                 <p class="author-box__name">{{ Comment.user.first_name }}</p><small
                                     class="author-box__handle">@{{ Comment.user }}</small>
@@ -199,9 +292,22 @@
             $(".answerr").click(function () {
                 // show with animation 
                 // slide from up
-                $("#comment-form").slideDown(500);
+                $("#comment-form").slideToggle("slow");
+                if ($(".answer-text").text() == "Answer it") {
+                    $(".answer-text").text("Cancel");
+                } else {
+                    $(".answer-text").text("Answer it");
+                }
             });
         });
+       
+
+    </script>
+    <script>
+       var description = document.createElement("meta");
+        description.name = "description";
+        description.content = document.getElementById("post-bodyy").innerText;
+        document.getElementsByTagName("head")[0].appendChild(description);
     </script>
     
 </body>

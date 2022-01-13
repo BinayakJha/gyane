@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    {% load static %}
+        <!-- logo -->
+    <link rel="icon" href="{% static 'img/favicon.ico' %}">
+    <title>Gyan-e Edit Profile</title>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.15.3/css/all.css"
+        integrity="sha384-iKbFRxucmOHIcpWdX9NTZ5WETOPm0Goy0WmfyNcl52qSYtc2Buk0NCe6jU1sWWNB" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static '/main.css' %}">
+    <link rel="stylesheet" href="{% static '/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
+    <link rel="stylesheet" href="{% static '/assets/fonts/fontawesome-all.min.css' %}">
+
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/css/medium-editor.min.css"
+        type="text/css" media="screen" charset="utf-8">
+</head>
+
+<center><div class="col-lg-8" style="margin-top: 30px;">
+    
+    <form action="" method="POST">
+        {% csrf_token %}
+    <div class="row" style="width: 60%;">
+        <div class="col">
+            <div class="card shadow mb-3">
+                <a href="/edit_profile/{{ user.username }}" class="btn btn-primary mt-2 ml-1"
+                        style=" position: absolute;background:#59A5B9;border-color:#59A5B9;margin-left: 10px;">
+                        <!-- icon of back arrow -->
+                        <i class="fas fa-arrow-left"></i>
+                    </a> 
+                <div class="card-header py-3">
+                    
+                    <p class="text-primary m-0 fw-bold">User Settings</p>
+                </div>
+                <div class="card-body">
+
+                    <div>
+                        <div class="col">
+                            <div class="mb-3">
+                                <label class="form-label"
+                                    for="id_username"><strong>Username</strong></label>
+                                    <input class="form-control" type="text" id="id_username"
+                                    placeholder="username" name="username" value="{{user.username}}" ></div>
+                        </div>
+                        <div class="col">
+                            <div class="mb-3"><label class="form-label" for="id_email"><strong>Email
+                                        Address</strong></label><input class="form-control"
+                                    type="email" id="id_email" placeholder="user@example.com"
+                                    name="email" value="{{ user.email }}"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="col">
+                            <div class="mb-3"><label class="form-label"
+                                    for="first_name"><strong>First Name</strong></label><input
+                                    class="form-control" type="text" id="first_name"
+                                    placeholder="John" name="first_name"
+                                    value="{{ user.profile.first_name }}"></div>
+                        </div>
+                        <div class="col">
+                            <div class="mb-3"><label class="form-label" for="last_name"><strong>Last
+                                        Name</strong></label><input class="form-control" type="text"
+                                    id="last_name" placeholder="Doe" name="last_name"
+                                    value="{{ request.user.last_name }}"></div>
+                        </div>
+                      
+                    </div>
+                    {% csrf_token %}
+                    <div class="mb-3"><button class="btn btn-primary btn-sm" type="submit">Save
+                            Settings</button></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</form>
+</div></center>
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+</form>
+
+<script src="{% static '/assets/bootstrap/js/bootstrap.min.js' %}"></script>
+<script src="{% static '/assets/js/script.min.js' %}"></script>
+</body>

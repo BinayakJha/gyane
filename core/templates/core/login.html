@@ -2,9 +2,33 @@
 <html>
 
 <head>
+    {% load static %}
+    <!-- logo -->
+    <link rel="icon" href="{% static 'img/favicon.ico' %}">
+    <!-- meta property  -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    {% load static %}
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta property="type" content="question & answer website">
+    <meta property="title" content="Gyan-e">
+    <meta property="description" content="Gyan-e is a platform for students to connect with each other and share their knowledge.">
+    <meta name="keywords" content="gyane, thegyane, ask-mattrab, quora, education, studies, class 11, class 10, class 9, questions, answers, physics, chemistry, biology, maths, computer, economics, account, english, nepali, science, health, high-quality educational contents, programming">
+    <meta name="author" content="Gyan-e">
+    <!-- open graph meta tags -->
+    <meta property="og:type" content="question & answer website">
+    <meta property="og:title" content="Gyan-e">
+    <meta property="og:description" content="Gyan-e is a platform for students to connect with each other and share their knowledge.">
+    <meta property="og:image" content="{% static 'img/gyane.jpeg' %}">
+    <meta property="og:url" content="https://thegyane.pythonanywhere.com/">
+    <meta property="og:site_name" content="Gyan-e- Your Unfair Advantage">
+    <meta property="og:locale" content="en_US">
+    <!-- twitter tags -->
+    <meta name="twitter:card" content="{% static 'img/gyane.jpeg' %}">
+    <meta name="twitter:site" content="@thegyane">
+    <meta name="twitter:creator" content="@thegyane">
+    <meta name="twitter:title" content="Gyan-e">
+    <meta name="twitter:description" content="Gyan-e is a platform for students to connect with each other and share their knowledge.">
+    <!-- meta property end -->
     <title>Gyan-e - Your Unfair Advantage</title>
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.15.3/css/all.css"
         integrity="sha384-iKbFRxucmOHIcpWdX9NTZ5WETOPm0Goy0WmfyNcl52qSYtc2Buk0NCe6jU1sWWNB" crossorigin="anonymous">
@@ -31,8 +55,13 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-lg-2">
+                        {% if user.profile.profile_pic.url %}
+                        <img src="{{ user.profile.profile_pic.url }}" alt="profile pic"
+                        class="img-fluid avatar avatar--sm">
+                        {% else %}
                         <img src="{% static 'img/defaultprofile_photo.png' %}" class="img-fluid avatar avatar--sm"
                             alt="">
+                        {% endif %}
                     </div>
                     <div class="col-lg-10">
                         <h5 class="card-title">
@@ -95,13 +124,14 @@
                         <div class="false">
                             <div class="post-header-wrapper">
                                 <a class="author-box author-box--sm" href="/profile/Lola_04">
-                                    <!-- if user last name is unknown then use default profile photo -->
-                                    <!-- if user has no profile photo then use default profile photo -->
-                                    {% if user.profile_pic %}
-                                    <img class="avatar avatar--sm" src="{% static 'img/default.png' %}">
-                                    {% else %}
-                                    <img class="avatar avatar--sm" src="{% static 'img/defaultprofile_photo.png' %}">
-                                    {% endif %}
+                                    <!-- if profile photo is not available then use default profile photo -->
+                                    {% if Question.profile_pic.url %}
+                                    
+                                    <img class="avatar avatar--sm" src="{{ Question.profile_pic.url }}">
+                                {% else %}
+                                    <img src="{% static 'img/defaultprofile_photo.png' %}" class="avatar avatar--sm"
+                                    alt="">
+                                {% endif %}
                                     <div class="author-box__info">
                                         <p class="author-box__name">{{ Question.user.first_name }}</p><small
                                             class="author-box__handle">@{{ Question.user }}</small>
@@ -123,20 +153,69 @@
                                 </div>
 
                                 {% load editorjs %}
-                                <div class="post-body" id="post-bodyy">{{ Question.question| editorjs}}</div>
+                                <div class="post-body" id="post-bodyy">{{ Question.question| editorjs }}</div>
                             </div>
                             <div>
                                 <div class="post-actions-wrapper">
-                                    <div class="action-wrapper action-wrapper--disabled"><i
-                                            class="fas fa-comments"></i><span class="post-action-text">{{ comment.count }}</span></div>
+                                    <div class="action-wrapper"><i class="fas fa-users"></i><span
+                                        class="post-action-text">{{ Question.views }}</span></div>
+                                  
                                     <div class="action-wrapper">
                                         <a href="/viewnotes/{{ Question.note_id }}" style="color: #000;"><i
                                                 class="fas fa-comment-lines"> </i><span
                                                 class="post-action-text answer-button">Answer</span></a>
                                        
                                     </div>
-                                    <div class="action-wrapper"><i class="fas fa-users"></i><span
-                                            class="post-action-text">{{ Question.views }}</span></div>
+                                     <!-- share this post -->
+                                    <div class="sharee" id= "{{ Question.note_id }}">
+                                       
+                                        <div class="action-wrapper share" ><i class="fas fa-share-alt"></i><span
+                                                class="post-action-text"></span></div>
+                                        <!-- share box will be here -->
+                                        <div class="share-box{{ Question.note_id }}" 
+                                        style="
+                                        display: none;    
+                                        position: absolute;
+                                        background-color: rgb(255, 255, 255);
+                                        box-shadow: rgb(0 0 0 / 50%) 0px 2px 4px 0px;
+                                        padding: 14px;
+                                        border-radius: 12px;
+                                        align-items: center;
+                                        text-align: center;
+                                        ">
+                                        <!-- end css -->
+                                        <!-- facebook -->
+                                            <a href="https://www.facebook.com/sharer/sharer.php?u=https://thegyane.pythonanywhere.com/viewnotes/{{ Question.note_id }}"
+                                                target="_blank">
+                                            <div class="action-wrapper"><i class="fab fa-facebook-f"></i><span
+                                                    class="post-action-text"></span></div>
+                                            </a>
+                                        <!-- twitter -->
+                                            <a href="https://twitter.com/intent/tweet?url=https://thegyane.pythonanywhere.com/viewnotes/{{ Question.note_id }}" target="_blank">
+                                            <div class="action-wrapper"><i class="fab fa-twitter"></i><span
+                                                    class="post-action-text"></span></div>
+                                            </a>
+                                        <!-- linkedin -->
+                                            <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://thegyane.pythonanywhere.com/viewnotes/{{ Question.note_id }}" target="__blank">
+                                            <div class="action-wrapper"><i class="fab fa-linkedin-in"></i><span
+                                                    class="post-action-text"></span></div>
+                                            </a>
+                                            
+                                        </div>
+                                        <!-- SCRIPT -->
+                                        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+                                        <script>
+                                            $(document).ready(function () {
+                                                $("#{{ Question.note_id }}").click(function () {
+                                                    // toggle with animation effect 
+                                                    $(".share-box{{ Question.note_id }}").toggle();
+                                                });
+                                            });
+                                        </script>
+                                    </div>
+
+                                    
+
                                 </div>
                             </div>
                         </div>
@@ -180,18 +259,30 @@
         <div class="user-card cards col-lg-3 col-md-12 ml-2" style="height: 50%;margin-top: 43px;">
             <div class="card__body container">
                 <div class="user-card__profile-summary">
-                    <img class="user-card__profile-pic avatar avatar--lg" alt="img-description"
+                    
+                        <!-- profile pic uploaded then -->
+                        {% if user.profile.profile_pic.url %}
+                        <img class="user-card__profile-pic avatar avatar--lg" alt="img-description"
+                        src="{{ user.profile.profile_pic.url }}" style>
+                        {% else %}
+                        <img class="user-card__profile-pic avatar avatar--lg" alt="img-description"
                         src="{% static 'img/defaultprofile_photo.png' %}" style>
-                    <h1 class="user-card__profile-name">{{user.first_name}}</h1><i>@{{user.username}}</i>
+                        {% endif %}
+                        <h1 class="user-card__profile-name">{{user.first_name}}</h1><i>@{{user.username}}</i>
                     <div class="custom-spacer"></div>
-                    <p>A Nepalese full-stack web developer and machine learning enthusiast.</p>
+                    {% if user.profile.small_intro %}
+                    <p>{{ user.profile.small_intro }}</p>
+                    {% else %}
+                    <p><b><a href="edit_profile/{{ user.username }}/"><i class="fas fa-pencil-alt"></i></a>&nbsp;&nbsp;<u>Write small intro about yourself</u></b></p>
+                    {% endif %}
                     <div class="user-card">
                         <!-- button for new post -->
                         <div class="btn-lg">
-                            <a href="">
-                                <button class="btn btn-primary preview">
-                                    <i class="fas fa-pencil-alt"></i>
-                                    &nbsp;New Question
+                            <a href="edit_profile/{{ user.username }}/" style="color: #ffffff !important;">
+                                <button class="btn btn-primary preview" >
+                                    <i class="fas fa-pencil-alt" style="color: #ffffff !important;"></i>
+                                    &nbsp; 
+                                   Edit Profile
                                 </button>
                             </a>
 
@@ -210,7 +301,7 @@
         </div>
 
     </section>
-
+<!-- if user not authenticated  -->
     {% else %}
 
     <body class="bg-gradient-primary">
@@ -475,6 +566,8 @@
                 });
             });
         </script>
+        <!-- when we click share button it will show the share box -->
+ 
 
 
     </body>
