@@ -57,9 +57,20 @@ class UserEditView(generic.UpdateView):
 
     
 # ------------------------------------------------------------------------------------
-# user profile edit
+# user profile 
 # ------------------------------------------------------------------------------------
-
+def UserProfileView(request, username):
+    user = User.objects.get(username=username)
+    profile = Profile.objects.get(user=user)
+    quest = Question.objects.filter(user=user)
+    ans = Comment.objects.filter(user=user)
+    context = {
+        'user': user,
+        'profile': profile,
+        'quest': quest,
+        'ans': ans,
+    }
+    return render(request, 'core/profile.html', context)
 # ------------------------------------------------------------------------------------
 # home function
 # ------------------------------------------------------------------------------------
