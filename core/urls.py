@@ -25,6 +25,7 @@ urlpatterns = (
     path('notes', views.note, name='notes'),
     path('viewnotes/<int:note_id>', views.viewnotes, name='viewnotes'),
     path('editorjs/', include('django_editorjs_fields.urls')), 
+    
     # for edit profile
 
 )

@@ -99,6 +99,8 @@
                                         {% csrf_token %}
                                         {{ form.media }}
                                         {{ form.as_p }}
+
+                                        
                                     </div>
                                 </div>
                                 <div style="margin-top: 10px;">
@@ -372,6 +374,7 @@
         {% endif %}
         <script src="{% static '/assets/bootstrap/js/bootstrap.min.js' %}"></script>
         <script src="{% static '/assets/js/script.min.js' %}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@editorjs/link@2.0.0"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script>
             $('#id_ajax_upload_form').submit(function (e) {

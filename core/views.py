@@ -25,8 +25,14 @@ from django.views.generic import CreateView
 from .forms import EditPersonalProfileForm, NoteForm,CommentForm,EditProfileForm
 import gender_guesser.detector as gender
 from django.core.paginator import Paginator
+from django.shortcuts import render
 # Create your views here.
 # edit profile page class
+# ------------------------------------------------------------------------------------
+# 404 page
+# ------------------------------------------------------------------------------------
+def page_not_found_view(request, exception):
+    return render(request, 'core/404.html', status=404)
 # ------------------------------------------------------------------------------------
 # edit profile page class
 # ------------------------------------------------------------------------------------
@@ -53,7 +59,6 @@ class UserEditView(generic.UpdateView):
 # ------------------------------------------------------------------------------------
 # user profile edit
 # ------------------------------------------------------------------------------------
-
 
 # ------------------------------------------------------------------------------------
 # home function

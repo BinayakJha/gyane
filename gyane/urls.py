@@ -33,3 +33,5 @@ urlpatterns = [
     path('sentry-debug/', trigger_error),
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+handler404 = "core.views.page_not_found_view"
