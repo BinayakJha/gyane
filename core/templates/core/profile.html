@@ -82,117 +82,137 @@
                                     <div class="card-body">
 
                                         <div class="row">
-                                            {% for Question in quest %}
-                                            <div class="cards create-post container col-lg-10 col-sm-11" id="posts" style="border: 1px solid gray;
-                                            border-radius: 12px;">
-                                                <div class="card__body">
-                                                    <div class="post-wrapper">
-                                                        <div class="false">
-                                                            <div class="post-header-wrapper">
-                                                                <a class="author-box author-box--sm" href="{% url 'profile' Question.user.username %}">
-                                                                    <!-- when hovered over the image, the profile will be shown -->
-                                                                  
-                                                                      
-                                                                    <!-- if profile photo is not available then use default profile photo -->
-                                                                    {% if Question.profile_pic.url %}
-                                                                    
-                                                                    <img class="avatar avatar--sm" src="{{ Question.profile_pic.url }}">
-                                                                {% else %}
-                                                                    <img src="{% static 'img/defaultprofile_photo.png' %}" class="avatar avatar--sm"
-                                                                    alt="">
-                                                                {% endif %}
-                                                                    <div class="author-box__info">
-                                                                        <p class="author-box__name">{{ Question.user.first_name }}</p><small
-                                                                            class="author-box__handle">@{{ Question.user }}</small>
-                                                                    </div>
-                                                                </a>
-                                                                <div class="post--options">
-                                                                    <div class="post__dropmenu">
-                                                                        <div class="post-meta"><span style="margin-right: -0.5rem !important;margin-bottom: -0.3rem !important;font-size: 1rem;">{{ Question.time_st|date:"M d, Y" }}</span>
-                                                                            <!-- <span class="post__dropmenu--icon dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></span> -->
-                                                                            
-                                                                        </div>
+                                            {% if quest.count %}
+                                                {% for Question in quest %}
+                                            
+                                                    <div class="cards create-post container col-lg-10 col-sm-11" id="posts" style="border: 1px solid gray;
+                                                    border-radius: 12px;">
+                                                        <div class="card__body">
+                                                            <div class="post-wrapper">
+                                                                <div class="false">
+                                                                    <div class="post-header-wrapper">
+                                                                        <a class="author-box author-box--sm" href="{% url 'profile' Question.user.username %}">
+                                                                            <!-- when hovered over the image, the profile will be shown -->
                                                                         
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="post-contents">
-                                                                <div class="post-votes"><i class="far fa-caret-up vote-icon up-arrow"></i>
-                                                                    <p class="vote-count">+3</p><i class="far fa-caret-down vote-icon down-arrow"></i>
-                                                                </div>
-                                
-                                                                {% load editorjs %}
-                                                                <div class="post-body" id="post-bodyy">{{ Question.question| editorjs }}</div>
-                                                            </div>
-                                                            <div>
-                                                                <div class="post-actions-wrapper">
-                                                                    <div class="action-wrapper"><i class="fas fa-users"></i><span
-                                                                        class="post-action-text">{{ Question.views }}</span></div>
-                                                                  
-                                                                    <div class="action-wrapper">
-                                                                        <a href="/viewnotes/{{ Question.note_id }}" style="color: #000;"><i
-                                                                                class="fas fa-comment-lines"> </i><span
-                                                                                class="post-action-text answer-button">Answer</span></a>
-                                                                       
-                                                                    </div>
-                                                                     <!-- share this post -->
-                                                                    <div class="sharee" id= "{{ Question.note_id }}">
-                                                                       
-                                                                        <div class="action-wrapper share" ><i class="fas fa-share-alt"></i><span
-                                                                                class="post-action-text"></span></div>
-                                                                        <!-- share box will be here -->
-                                                                        <div class="share-box{{ Question.note_id }}" 
-                                                                        style="
-                                                                        display: none;    
-                                                                        position: absolute;
-                                                                        background-color: rgb(255, 255, 255);
-                                                                        box-shadow: rgb(0 0 0 / 50%) 0px 2px 4px 0px;
-                                                                        padding: 14px;
-                                                                        border-radius: 12px;
-                                                                        align-items: center;
-                                                                        text-align: center;
-                                                                        ">
-                                                                        <!-- end css -->
-                                                                        <!-- facebook -->
-                                                                            <a href="https://www.facebook.com/sharer/sharer.php?u=https://thegyane.pythonanywhere.com/viewnotes/{{ Question.note_id }}"
-                                                                                target="_blank">
-                                                                            <div class="action-wrapper"><i class="fab fa-facebook-f"></i><span
-                                                                                    class="post-action-text"></span></div>
-                                                                            </a>
-                                                                        <!-- twitter -->
-                                                                            <a href="https://twitter.com/intent/tweet?url=https://thegyane.pythonanywhere.com/viewnotes/{{ Question.note_id }}" target="_blank">
-                                                                            <div class="action-wrapper"><i class="fab fa-twitter"></i><span
-                                                                                    class="post-action-text"></span></div>
-                                                                            </a>
-                                                                        <!-- linkedin -->
-                                                                            <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://thegyane.pythonanywhere.com/viewnotes/{{ Question.note_id }}" target="__blank">
-                                                                            <div class="action-wrapper"><i class="fab fa-linkedin-in"></i><span
-                                                                                    class="post-action-text"></span></div>
-                                                                            </a>
                                                                             
+                                                                            <!-- if profile photo is not available then use default profile photo -->
+                                                                            {% if Question.profile_pic.url %}
+                                                                            
+                                                                            <img class="avatar avatar--sm" src="{{ Question.profile_pic.url }}">
+                                                                        {% else %}
+                                                                            <img src="{% static 'img/defaultprofile_photo.png' %}" class="avatar avatar--sm"
+                                                                            alt="">
+                                                                        {% endif %}
+                                                                            <div class="author-box__info">
+                                                                                <p class="author-box__name">{{ Question.user.first_name }}</p><small
+                                                                                    class="author-box__handle">@{{ Question.user }}</small>
+                                                                            </div>
+                                                                        </a>
+                                                                        <div class="post--options">
+                                                                            <div class="post__dropmenu">
+                                                                                <div class="post-meta"><span style="margin-right: -0.5rem !important;margin-bottom: -0.3rem !important;font-size: 1rem;">{{ Question.time_st|date:"M d, Y" }}</span>
+                                                                                    <!-- <span class="post__dropmenu--icon dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></span> -->
+                                                                                    
+                                                                                </div>
+                                                                                
+                                                                            </div>
                                                                         </div>
-                                                                        <!-- SCRIPT -->
-                                                                        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-                                                                        <script>
-                                                                            $(document).ready(function () {
-                                                                                $("#{{ Question.note_id }}").click(function () {
-                                                                                    // toggle with animation effect 
-                                                                                    $(".share-box{{ Question.note_id }}").toggle();
-                                                                                });
-                                                                            });
-                                                                        </script>
                                                                     </div>
-                                
-                                                                    
-                                
+                                                                    <div class="post-contents">
+                                                                        <div class="post-votes"><i class="far fa-caret-up vote-icon up-arrow"></i>
+                                                                            <p class="vote-count">+3</p><i class="far fa-caret-down vote-icon down-arrow"></i>
+                                                                        </div>
+                                        
+                                                                        {% load editorjs %}
+                                                                        <div class="post-body" id="post-bodyy">{{ Question.question| editorjs }}</div>
+                                                                    </div>
+                                                                    <div>
+                                                                        <div class="post-actions-wrapper">
+                                                                            <div class="action-wrapper"><i class="fas fa-users"></i><span
+                                                                                class="post-action-text">{{ Question.views }}</span></div>
+                                                                        
+                                                                            <div class="action-wrapper">
+                                                                                <a href="/viewnotes/{{ Question.note_id }}" style="color: #000;"><i
+                                                                                        class="fas fa-comment-lines"> </i><span
+                                                                                        class="post-action-text answer-button">Answer</span></a>
+                                                                            
+                                                                            </div>
+                                                                            <!-- share this post -->
+                                                                            <div class="sharee" id= "{{ Question.note_id }}">
+                                                                            
+                                                                                <div class="action-wrapper share" ><i class="fas fa-share-alt"></i><span
+                                                                                        class="post-action-text"></span></div>
+                                                                                <!-- share box will be here -->
+                                                                                <div class="share-box{{ Question.note_id }}" 
+                                                                                style="
+                                                                                display: none;    
+                                                                                position: absolute;
+                                                                                background-color: rgb(255, 255, 255);
+                                                                                box-shadow: rgb(0 0 0 / 50%) 0px 2px 4px 0px;
+                                                                                padding: 14px;
+                                                                                border-radius: 12px;
+                                                                                align-items: center;
+                                                                                text-align: center;
+                                                                                ">
+                                                                                <!-- end css -->
+                                                                                <!-- facebook -->
+                                                                                    <a href="https://www.facebook.com/sharer/sharer.php?u=https://thegyane.pythonanywhere.com/viewnotes/{{ Question.note_id }}"
+                                                                                        target="_blank">
+                                                                                    <div class="action-wrapper"><i class="fab fa-facebook-f"></i><span
+                                                                                            class="post-action-text"></span></div>
+                                                                                    </a>
+                                                                                <!-- twitter -->
+                                                                                    <a href="https://twitter.com/intent/tweet?url=https://thegyane.pythonanywhere.com/viewnotes/{{ Question.note_id }}" target="_blank">
+                                                                                    <div class="action-wrapper"><i class="fab fa-twitter"></i><span
+                                                                                            class="post-action-text"></span></div>
+                                                                                    </a>
+                                                                                <!-- linkedin -->
+                                                                                    <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://thegyane.pythonanywhere.com/viewnotes/{{ Question.note_id }}" target="__blank">
+                                                                                    <div class="action-wrapper"><i class="fab fa-linkedin-in"></i><span
+                                                                                            class="post-action-text"></span></div>
+                                                                                    </a>
+                                                                                    
+                                                                                </div>
+                                                                                <!-- SCRIPT -->
+                                                                                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+                                                                                <script>
+                                                                                    $(document).ready(function () {
+                                                                                        $("#{{ Question.note_id }}").click(function () {
+                                                                                            // toggle with animation effect 
+                                                                                            $(".share-box{{ Question.note_id }}").toggle();
+                                                                                        });
+                                                                                    });
+                                                                                </script>
+                                                                            </div>
+                                        
+                                                                            
+                                        
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </div>
-                                    {% endfor %}
+                                                {% endfor %}
+                                            {% else %}
+                                                <!-- make a button Ask question Now !!! -->
+                                                <div>
+                                                    <div class="post-wrapper">
+                                                        <div class="post-container">
+                                                            <div class="post-content">
+                                                                <div class="post-header">
+                                                                    <div class="post-title">
+                                                                        <h2 class="post-title__text">No Questions Yet</h2>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            {% endif %}
+
+
                                         <div class="row">
                                             
                                         </div>
