@@ -29,6 +29,10 @@ urlpatterns = (
     path('editorjs/', include('django_editorjs_fields.urls')), 
     # search
     path('search', views.search, name='search'),
+    # likes
+    # path('like/<int:note_id>', LikeView , name='like_post'),
+    path('like/<int:note_id>', views.like, name='like'),
     # for edit profile
 
 )
+

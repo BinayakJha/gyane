@@ -7,7 +7,7 @@ from django_editorjs_fields import EditorJsWidget
 class NoteForm(forms.ModelForm):
     class Meta:
         model = Question
-        exclude = ['user', 'slug', 'views', 'time_st', 'note_editorjs_text']
+        exclude = ['user', 'slug', 'views', 'time_st', 'note_editorjs_text','likes']
         widgets = {
             'question': EditorJsWidget(config={'minHeight': 100}),
             'question': EditorJsWidget(

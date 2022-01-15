@@ -38,7 +38,10 @@ class Question(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     time_st = models.DateTimeField(auto_now_add=True)
     profile_pic = property(lambda self: self.user.profile.profile_pic)
-       
+    likes = models.ManyToManyField(User, related_name='likes', blank=True)
+    @property
+    def total_likes(self):
+        return self.likes.count()
     views  = models.IntegerField(default=0)
     
     def save(self, *args, **kwargs):
@@ -65,6 +68,3 @@ class Comment(models.Model):
         return 'Comment {} by {}'.format(self.comment, self.user.username)
 
 # like class 
-class Like(models.Model):
-    questionn = models.ForeignKey(Question, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='likes')

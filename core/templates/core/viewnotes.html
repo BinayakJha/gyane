@@ -110,7 +110,7 @@
                     </div>
                     <div class="post-contents">
                         <div class="post-votes"><i class="far fa-caret-up vote-icon up-arrow"></i>
-                            <p class="vote-count">+3</p><i class="far fa-caret-down vote-icon down-arrow"></i>
+                            <i class="far fa-caret-down vote-icon down-arrow"></i>
                         </div>
 
                         {% load editorjs %}
@@ -118,11 +118,52 @@
                     </div>
                     <div>
                         <div class="post-actions-wrapper">
+                                <div class="action-wrapper"><button type="submit" id="post_id" name="post_id" style="border: none;background-color: transparent;color: black;"><i class="fas fa-thumbs-up like-click" data-answer = "{{ Question.note_id }}"></i></button><span
+                                    class="post-action-text like-count-{{ Question.note_id }}" id="likee">{{ Question.likes.count }}</span>
+                                    <!-- <input type="button" id="post_id" name="post_id" value="Like" />
+                                    <span class="like-count-{{ Question.note_id }}" id="likee">{{ Question.likes.count }}</span> -->
+                                </div>
+                                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+                                <script>
+                                    $('#post_id').click(function(){
+                                          $.ajax({
+                                                   type: "POST",
+                                                   url: "{% url 'like' Question.note_id %}",
+                                                    data: {
+                                                    'post_id': $(this).data('post_id'),
+                                                    'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val()
+                                                    },
+                                                    success: function(data){
+                                                        // increase the like count
+                                                        // if message:"liked" then increase the like count
+                                                        var prevdata = $('.like-count-{{ Question.note_id }}').text();
+                                                        if(data.message == "liked"){
+                                                            $('#likee').text(parseInt(prevdata)+1);
+                                                            // change the color of the like button to blue
+                                                        }
+                                                       
+                                                        else{
+                                                            $('#likee').text(parseInt(prevdata)-1);
+                                                        }
+
+                                                        console.log(data);
+                                                        $('#like').html(data);
+                                                    },
+                                                    error: function(data){
+                                                        console.log(data);
+                                                    }
+                                                });
+                                                // change the like count without 
+                                                // reloading the #likee
+                                                
+                                    });
+                            
+                                </script>
                             <div class="action-wrapper action-wrapper--disabled"><i class="fas fa-comments"></i>
                                 <span class="post-action-text">{{ comment.count }}</span></div>
-                            <div class="action-wrapper"><i class="fas fa-users"></i>
+                            <!-- <div class="action-wrapper"><i class="fas fa-users"></i>
                                 <span class="post-action-text">{{ Question.views }}</span>
-                            </div>
+                            </div> -->
                             <!-- share this post -->
                             <div class="sharee" id= "{{ Question.note_id }}">
                                        
@@ -271,7 +312,7 @@
                     </div>
                     <div class="post-contents">
                         <div class="post-votes"><i class="far fa-caret-up vote-icon up-arrow"></i>
-                            <p class="vote-count">+3</p><i class="far fa-caret-down vote-icon down-arrow"></i>
+                           <i class="far fa-caret-down vote-icon down-arrow"></i>
                         </div>
 
                         {% load editorjs %}
@@ -301,6 +342,7 @@
     <!-- ajax -->
     <!-- script for jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    
     <script>
         // when answer button is clicked then show the comment form
         // change the style display none to block
@@ -325,6 +367,8 @@
         description.content = document.getElementById("post-bodyy").innerText;
         document.getElementsByTagName("head")[0].appendChild(description);
     </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- ajax for like  -->
     
 </body>
 

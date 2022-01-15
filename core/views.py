@@ -1,7 +1,7 @@
 from django import template
-from django.urls import reverse_lazy
-from django.http import HttpResponse, request, JsonResponse
-from django.shortcuts import render,redirect
+from django.urls import reverse_lazy,reverse
+from django.http import HttpResponse, request, JsonResponse,HttpResponseRedirect
+from django.shortcuts import render,redirect,get_object_or_404
 from django.contrib import messages 
 from django.contrib.auth.models import User 
 from django.contrib.auth import authenticate, login, logout
@@ -11,7 +11,7 @@ from django.conf import settings
 from django.template.loader import render_to_string
 from django.template.loader import get_template
 from django.template import Context, context
-import math, random
+import math, random,json
 
 from django_editorjs_fields import fields
 
@@ -295,7 +295,7 @@ def viewnotes(request,note_id):
             f.save()
             
         else:
-            return HttpResponse("Comment could not be added :(")
+            print("error")
         return redirect('viewnotes',note_id=note_id)
     else:
         form = CommentForm()
@@ -335,3 +335,20 @@ def search(request):
     params = {'all_questions': allPostsTitle, 'query': query}
     return render(request, 'core/search.html', params)
 
+# like function
+
+
+
+
+def like(request,note_id):
+    if request.method == 'POST':
+        user = request.user
+        question = get_object_or_404(Question, note_id=note_id)
+        if user in question.likes.all():
+            question.likes.remove(user)
+            message = 'unliked'
+        else:
+            question.likes.add(user)
+            message = 'liked'
+        ctx = { 'likes_count': question.total_likes , 'message': message}
+        return HttpResponse(json.dumps(ctx), content_type='application/json')
