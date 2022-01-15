@@ -24,7 +24,7 @@ iframe{
 }
 b,
 strong {
-    font-weight: 600 !important;
+    font-weight: bolder !important;
 }
 p{
     margin-bottom: 0.5rem !important;

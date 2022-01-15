@@ -37,7 +37,6 @@ class Question(models.Model):
     question =EditorJsJSONField(readOnly=False, autofocus=True, null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     time_st = models.DateTimeField(auto_now_add=True)
-    # join the Profile.profile_pic fiels to profile
     profile_pic = property(lambda self: self.user.profile.profile_pic)
        
     views  = models.IntegerField(default=0)

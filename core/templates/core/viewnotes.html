@@ -63,7 +63,8 @@
         type="text/css" media="screen" charset="utf-8">
 </head>
 
-<body id="body">
+<body id="page-top">
+    {% include 'core/navbar.html' %} 
     <!-- make a button which will go back to the previous page -->
     <div class="container">
         <div class="row">
@@ -181,7 +182,7 @@
         <!-- if user is authenticated -->
         {% if user.is_authenticated %}
         <button class="btn btn-primary" style=" position: relative;background:#59A5B9;border-color:#59A5B9; margin:0px 20px;">
-            <p style="color:white;padding-top: 8px;" class="answer-text"><b>Answer it</b></p>
+            <p style="color:white;padding-top: 8px;" class="answer-text"><b style="color: white !important;">Answer it</b></p>
         </button>
         {% else %}
         <a href="/" style="color: white;"><button class="btn btn-primary" style=" position: relative;background:#59A5B9;border-color:#59A5B9; margin:0px 20px;">
@@ -279,7 +280,7 @@
                         <div class="post-actions-wrapper">
                             <div class="action-wrapper action-wrapper--disabled"><i class="fas fa-comments"></i><span
                                     class="post-action-text">0</span></div>
-                            <div class="action-wrapper"><i class="fas fa-comment-lines"> </i><span
+                            <div class="action-wrapper"><i class="fas fa-comment"> </i><span
                                     class="post-action-text answer-button">Reply</span>
                                 <!-- comment form -->
 

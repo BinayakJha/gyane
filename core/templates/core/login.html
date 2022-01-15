@@ -42,15 +42,16 @@
         type="text/css" media="screen" charset="utf-8">
 </head>
 
-<body id="body">
+<body id="page-top">
     {% if user.is_authenticated %}
 
-
+<!-- include 'includes/navbar.html' -->
+{% include 'core/navbar.html' %}
 
     <!-- home -->
     <section class="row container-flex">
 
-        <div class="cards shadow-lg col-lg-5 container welcome-card">
+        <div class="cards shadow-lg col-lg-5 container welcome-card" style="margin-top: -1% !important;">
             <!-- user image and then say hey user at the side -->
             <div class="card-body">
                 <div class="row">
@@ -144,7 +145,8 @@
                                 </a>
                                 <div class="post--options">
                                     <div class="post__dropmenu">
-                                        <div class="post-meta"><span style="margin-right: -0.5rem !important;margin-bottom: -0.3rem !important;font-size: 1rem;">{{ Question.time_st|date:"M d, Y" }}</span>
+                                        {% load humanize %}
+                                        <div class="post-meta"><span style="margin-right: -0.5rem !important;margin-bottom: -0.3rem !important;font-size: 1rem;">{{ Question.time_st | naturalday }}</span> 
                                             <!-- <span class="post__dropmenu--icon dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></span> -->
                                             
                                         </div>
@@ -167,7 +169,7 @@
                                   
                                     <div class="action-wrapper">
                                         <a href="/viewnotes/{{ Question.note_id }}" style="color: #000;"><i
-                                                class="fas fa-comment-lines"> </i><span
+                                                class="fas fa-comment"> </i><span
                                                 class="post-action-text answer-button">Answer</span></a>
                                        
                                     </div>
