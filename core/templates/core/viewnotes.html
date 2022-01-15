@@ -99,7 +99,8 @@
                         </a>
                         <div class="post--options">
                             <div class="post__dropmenu">
-                                <div class="post-meta"><span style="margin-right: -0.5rem !important;margin-bottom: -0.3rem !important;font-size: 1rem;">{{ Question.time_st|date:"M d, Y" }}</span>
+                                {% load humanize %}
+                                <div class="post-meta"><span style="margin-right: -0.5rem !important;margin-bottom: -0.3rem !important;font-size: 1rem;">{{ Question.time_st| naturalday }}</span>
                                     <!-- <span class="post__dropmenu--icon dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></span> -->
                                     
                                 </div>
@@ -260,7 +261,7 @@
                         </a>
                         <div class="post--options">
                             <div class="post__dropmenu">
-                                <div class="post-meta"><span style="margin-right: -0.5rem !important;margin-bottom: -0.3rem !important;font-size: 1rem;"> {{Comment.time_st|date:"M d, Y"}} </span>
+                                <div class="post-meta"><span style="margin-right: -0.5rem !important;margin-bottom: -0.3rem !important;font-size: 1rem;"> {{ Comment.time_st| naturalday }} </span>
                                     <!-- <span class="post__dropmenu--icon dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></span> -->
                                   
                                 </div>
