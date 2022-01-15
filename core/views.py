@@ -77,6 +77,7 @@ def UserProfileView(request, username):
 
 def home(request):
     # return render(request, 'core/login.html')
+    # order by views
     postss = Question.objects.all().order_by('-time_st')
     p = Paginator(postss, 10)
     page_number = request.GET.get('page')

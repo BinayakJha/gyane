@@ -39,10 +39,10 @@ class Question(models.Model):
     time_st = models.DateTimeField(auto_now_add=True)
     profile_pic = property(lambda self: self.user.profile.profile_pic)
     likes = models.ManyToManyField(User, related_name='likes', blank=True)
+    views  = models.IntegerField(default=0)
     @property
     def total_likes(self):
         return self.likes.count()
-    views  = models.IntegerField(default=0)
     
     def save(self, *args, **kwargs):
         # self.slug = slugify(self.clean)
