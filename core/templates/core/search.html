@@ -5,9 +5,129 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ query }} - Gyan-e</title>
+    {% load static %}
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.15.3/css/all.css"
+        integrity="sha384-iKbFRxucmOHIcpWdX9NTZ5WETOPm0Goy0WmfyNcl52qSYtc2Buk0NCe6jU1sWWNB" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static '/main.css' %}">
+    <link rel="stylesheet" href="{% static '/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
+    <link rel="stylesheet" href="{% static '/assets/fonts/fontawesome-all.min.css' %}">
+
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/css/medium-editor.min.css"
+        type="text/css" media="screen" charset="utf-8">
     {% include 'core/navbar.html' %}
-</head>
-<body>
     
+</head>
+<!-- css -->
+<style>
+    li{
+        list-style: none;
+    }
+</style>
+<body>
+  <div class="welcome-card ">
+        {% if searched %}
+            <center><h1> You searched for <b>" {{ searched }} "</b></h1></center>
+            <center>Total results found <b>{{ queries.count }}</b></center>
+            <br>
+            {% for Question in queries %}
+                <div class="cards create-post container col-lg-7 col-sm-10" id="posts">
+                    <div class="card__body">
+                        <div class="post-wrapper">
+                            <div class="false">
+                                <div class="post-header-wrapper">
+                                    <a class="author-box author-box--sm" href="{% url 'profile' Question.user.username %}">
+                                        <!-- when hovered over the image, the profile will be shown -->
+                                    
+                                        
+                                        <!-- if profile photo is not available then use default profile photo -->
+                                        {% if Question.profile_pic.url %}
+                                        
+                                        <img class="avatar avatar--sm" src="{{ Question.profile_pic.url }}">
+                                        {% else %}
+                                        
+                                        <img src="{% static 'img/defaultprofile_photo.png' %}" class="avatar avatar--sm"
+                                        alt="">
+                                        {% endif %}
+                                        <div class="author-box__info">
+                                            <p class="author-box__name">{{ Question.user.first_name }} {{ Question.user.last_name }}</p><small
+                                                class="author-box__handle">@{{ Question.user }}</small>
+                                        </div>
+                                    </a>
+                                    <div class="post--options">
+                                        <div class="post__dropmenu">
+                                            {% load humanize %}
+                                            <div class="post-meta "><span class="date">{{ Question.time_st | naturalday }}</span> 
+                                                <!-- <span class="post__dropmenu--icon dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></span> -->
+                                                
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="post-contents">
+                                   
+
+                                    {% load editorjs %}
+                                    <div class="post-body" id="post-bodyy">{{ Question.question| editorjs }}</div>
+                                </div>
+                                <div>
+                                    <div class="post-actions-wrapper">
+                                        <div class="action-wrapper likes">
+                                            <!-- CLAPPING HAND ICON -->
+                                            <i class="fas fa-thumbs-up" style="visibility: hidden;"></i><span
+                                            class="post-action-text"><a href="/viewnotes/{{ Question.note_id }}" style="color: black;">{{ Question.likes.count }} likes </a> </span>
+                                        </div>
+                                    
+                                        <!-- script end -->
+                                        <div class="action-wrapper answerrs">
+                                            <a href="/viewnotes/{{ Question.note_id }}" style="color: #000;"><i
+                                                    class="fas fa-comment"> </i><span
+                                                    class="post-action-text answer-button">Answer</span></a>
+                                        
+                                        </div>
+                                        <div class="action-wrapper viewss"><i class="fas fa-users"></i><span
+                                            class="post-action-text"  style="color: black;">{{ Question.views }}</span>
+                                        </div>
+                                    
+                                        
+                                        <!-- share this post -->
+                                    
+
+                                        
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            <!-- if queries count is 0 then show this -->
+            {% if queries.count == 0 %}
+            <center> <div class="container" style="margin-top: 3.5rem;">
+                <h2>Search results : </h2>
+                 <p>No search results</p>
+                    Your search query : <b>{{ searched }}</b> did not match any documents. <br>
+                    Suggestions:
+                    <!-- remove . from the list -->
+                   
+                   <center> <ul>
+                        <li>Make sure that all words are spelled correctly.</li>
+                        <li>Try more general keywords.</li>
+                        <li> Try fewer keywords.</li>
+                        <li> Try different keywords.</li>
+                        
+                    </ul></center>
+                
+            </div></center>
+            {% endif %}
+        {% else %}
+                
+       
+
+      {% endif %}
+            </div>
 </body>
 </html>

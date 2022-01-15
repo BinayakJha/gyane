@@ -265,6 +265,7 @@ a {
     font-size: 1.2rem;
     width: 100%;
     height: 100%;
+    margin: 23px 0px;
 }
 
 .post-actions-wrapper {
@@ -558,7 +559,7 @@ fieldset[disabled] .form-control {
         width: 3rem;
     }
     .post-body{
-        margin-top: 11px;
+        margin: 23px 0px
     }
     .author-box__name {
         font-size: 0.79rem;

@@ -323,18 +323,14 @@ class PasswordChangeView(PasswordChangeView):
 # ------------------------------------------------------------------------------------
 
 def search(request):
-    query = request.GET.get('query')
-    if len(query) > 78:
-        all_questions = Question.objects.none()
-    # what is does is it checks if the query exsist
-    # if it does it will search for the query
+    if request.method == "GET":
+        searched = request.GET['searched']
+        query = Question.objects.filter(question__icontains = searched)
+        return render(request, 'core/search.html',{'searched': searched,'queries':query})
     else:
-        allPostsTitle= Question.objects.filter(question__icontains=query)
+        return render(request, 'core/search.html',{})
     
-    if allPostsTitle.count() == 0:
-        messages.error(request, "No search results found")
-    params = {'all_questions': allPostsTitle, 'query': query}
-    return render(request, 'core/search.html', params)
+        
 
 # like function
 

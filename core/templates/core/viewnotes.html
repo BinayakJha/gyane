@@ -66,7 +66,7 @@
 <body id="page-top">
     {% include 'core/navbar.html' %} 
     <!-- make a button which will go back to the previous page -->
-    <div class="container">
+    <div class="container" style="margin-top: 3rem;">
         <div class="row">
             <div class="col-md-12">
                 <a href="/" class="btn btn-primary" style="margin-top: 59px; position: absolute;background:#59A5B9;border-color:#59A5B9;">
@@ -109,9 +109,7 @@
                         </div>
                     </div>
                     <div class="post-contents">
-                        <div class="post-votes"><i class="far fa-caret-up vote-icon up-arrow"></i>
-                            <i class="far fa-caret-down vote-icon down-arrow"></i>
-                        </div>
+                      
 
                         {% load editorjs %}
                         <div class="post-body" id="post-bodyy">{{ Question.question| editorjs}}</div>
@@ -311,9 +309,7 @@
                         </div>
                     </div>
                     <div class="post-contents">
-                        <div class="post-votes"><i class="far fa-caret-up vote-icon up-arrow"></i>
-                           <i class="far fa-caret-down vote-icon down-arrow"></i>
-                        </div>
+                     
 
                         {% load editorjs %}
                         <div class="post-body" id="post-bodyy">{{ Comment.comment| editorjs}}</div>
