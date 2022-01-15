@@ -2910,7 +2910,8 @@ textarea.form-control-lg {
     flex-wrap: wrap;
     flex-flow: nowrap;
     align-items: stretch;
-    width: 100%
+    width: 91%;
+    height: 40px;
 }
 
 .input-group>.form-control,

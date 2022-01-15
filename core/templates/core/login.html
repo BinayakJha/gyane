@@ -51,7 +51,7 @@
     <!-- home -->
     <section class="row container-flex">
 
-        <div class="cards shadow-lg col-lg-5 container welcome-card" style="margin-top: -1% !important;">
+        <div class="cards shadow-lg col-lg-5 col-sm-11 container welcome-card">
             <!-- user image and then say hey user at the side -->
             <div class="card-body">
                 <div class="row">
@@ -146,7 +146,7 @@
                                 <div class="post--options">
                                     <div class="post__dropmenu">
                                         {% load humanize %}
-                                        <div class="post-meta"><span style="margin-right: -0.5rem !important;margin-bottom: -0.3rem !important;font-size: 1rem;">{{ Question.time_st | naturalday }}</span> 
+                                        <div class="post-meta "><span class="date">{{ Question.time_st | naturalday }}</span> 
                                             <!-- <span class="post__dropmenu--icon dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></span> -->
                                             
                                         </div>
@@ -164,20 +164,20 @@
                             </div>
                             <div>
                                 <div class="post-actions-wrapper">
-                                    <div class="action-wrapper">
+                                    <div class="action-wrapper likes">
                                         <!-- CLAPPING HAND ICON -->
                                         <i class="fas fa-thumbs-up" style="visibility: hidden;"></i><span
                                         class="post-action-text"><a href="/viewnotes/{{ Question.note_id }}" style="color: black;">{{ Question.likes.count }} likes </a> </span>
                                     </div>
                                    
                                     <!-- script end -->
-                                    <div class="action-wrapper">
+                                    <div class="action-wrapper answerrs">
                                         <a href="/viewnotes/{{ Question.note_id }}" style="color: #000;"><i
                                                 class="fas fa-comment"> </i><span
                                                 class="post-action-text answer-button">Answer</span></a>
                                        
                                     </div>
-                                    <div class="action-wrapper"><i class="fas fa-users"></i><span
+                                    <div class="action-wrapper viewss"><i class="fas fa-users"></i><span
                                         class="post-action-text"  style="color: black;">{{ Question.views }}</span>
                                     </div>
                                   

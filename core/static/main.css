@@ -14,7 +14,8 @@ body {
     text-rendering: optimizeSpeed;
     scroll-behavior: smooth;
 }
-iframe{
+
+iframe {
     border: 0;
     width: 100%;
     height: 100%;
@@ -22,14 +23,17 @@ iframe{
     border-radius: 12px;
     object-fit: cover;
 }
+
 b,
 strong {
     font-weight: bolder !important;
 }
-p{
+
+p {
     margin-bottom: 0.5rem !important;
     font-size: initial;
 }
+
 .active {
     display: block !important;
     /* add animation */
@@ -79,24 +83,26 @@ textarea {
 
 /* end text areas */
 /* home */
-.welcome-card{
-    margin-top: 0.5rem !important;
+.welcome-card {
+    margin-top: 7% !important;
 }
+
 .cards {
     /* border-radius: 1rem; */
     background-color: #fffefd;
     /* border: 1.5px solid #e5e7eb; */
     border-radius: 12px;
-    box-shadow:0 12px 16px 0 rgb(0 0 0 / 3%), 0 1px 2px 0 rgb(0 0 0 / 4%);
+    box-shadow: 0 12px 16px 0 rgb(0 0 0 / 3%), 0 1px 2px 0 rgb(0 0 0 / 4%);
     width: auto;
     height: auto;
     margin-top: 2.5rem;
     margin-bottom: .5rem;
     overflow: hidden;
     line-height: 1.6;
-    
+
 }
-card-title{
+
+card-title {
     font-weight: 500;
     color: black;
 }
@@ -105,6 +111,7 @@ card-title{
 .card__header {
     padding: 2rem 2.5rem;
 }
+
 .post-header-wrapper {
     display: -webkit-flex;
     display: flex;
@@ -303,6 +310,7 @@ a {
     height: 8rem;
     width: 8rem;
 }
+
 .user-card__profile-name {
     font-size: 28px;
 }
@@ -380,7 +388,7 @@ a {
 }
 
 /* link block */
-.link-block{
+.link-block {
     position: relative;
     background: #fff;
     border: 1px solid rgba(201, 201, 204, 0.48);
@@ -390,12 +398,14 @@ a {
     animation: link-in 450ms 1 cubic-bezier(0.215, 0.61, 0.355, 1);
     margin: 10px 0px;
 }
-.link-block a{
+
+.link-block a {
     display: block;
     padding: 25px;
     color: #000;
 }
-.link-block__image{
+
+.link-block__image {
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -405,13 +415,15 @@ a {
     border-radius: 3px;
     float: right;
 }
-.link-block__title{
+
+.link-block__title {
     font-size: 15px;
     font-weight: 600;
     line-height: 1.5em;
     margin: 0 0 10px 0;
 }
-.link-block__description{
+
+.link-block__description {
     margin: 0 0 20px 0;
     font-size: 12px;
     line-height: 1.55em;
@@ -420,7 +432,8 @@ a {
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
-.link-block__link{
+
+.link-block__link {
     display: block;
     font-size: 11px;
     line-height: 1em;
@@ -457,25 +470,92 @@ div[data-editorjs-holder] {
     max-height: fit-content !important;
     min-height: 160px !important;
 }
-.codex-editor__redactor{
+
+.codex-editor__redactor {
     padding-bottom: 40px !important;
 }
+
 .codex-editor--narrow .ce-block--focused {
     margin-right: -50px;
-    padding-right: 0px !important; 
+    padding-right: 0px !important;
 }
+
+/* date  */
+.date {
+    margin-right: -0.5rem !important;
+    margin-bottom: -0.3rem !important;
+    font-size: 1rem;
+}
+
 /* disabled input */
-.form-control[disabled], fieldset[disabled] .form-control {
+
+.form-control[disabled],
+fieldset[disabled] .form-control {
     cursor: not-allowed;
 }
-.form-control{
+
+.form-control {
     width: 90% !important;
 }
 
-@media (max-width: 767px){
+/* media screens for welcome-card */
+@media (max-width: 990px) and (min-width: 768px) {
+    .welcome-card {
+        margin-top: 12% !important;
+    }
+
+}
+
+@media (max-width: 768px) and (min-width: 425px) {
     div[data-editorjs-holder] {
         width: 100% !important;
     }
+
+    .welcome-card {
+        margin-top: 13% !important;
+    }
 }
 
+@media (max-width: 425px) and (min-width: 320px) {
+    .welcome-card {
+        margin-top: 20% !important;
+    }
+    .cards{
+        margin-left: 3px !important;
+    }
+}
 
+    
+@media (max-width: 320px) {
+    .welcome-card {
+        margin-top: 25% !important;
+    }
+}
+
+/* for editor js */
+@media (max-width: 767px) {
+    div[data-editorjs-holder] {
+        width: 100% !important;
+    }
+
+    .fa-thumbs-up {
+        visibility: visible !important;
+    }
+
+    .viewss {
+        display: none;
+    }
+    .date {
+        margin-right: -2.5rem !important;
+        margin-bottom: -0.3rem !important;
+        font-size: 0.75rem !important;
+    }
+    p{
+        word-break: break-word;
+    }
+    .avatar--sm {
+        height: 3rem;
+        width: 3rem;
+    }
+    
+}
