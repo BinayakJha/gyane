@@ -557,5 +557,8 @@ fieldset[disabled] .form-control {
         height: 3rem;
         width: 3rem;
     }
+    .post-body{
+        margin-top: 11px;
+    }
     
 }
