@@ -51,32 +51,31 @@
     <!-- home -->
     <section class="row container-flex">
 
-        <div class="cards shadow-lg col-lg-5 col-sm-11 container welcome-card">
+        <div class="cards shadow-lg col-lg-2
+            col-sm-8 container welcome-card" style="
+            height: 20%;
+            width: 19%;
+            margin-top: 10rem !important;
+            margin-right: 9px;
+        ">
             <!-- user image and then say hey user at the side -->
             <div class="card-body">
                 <div class="row">
-                    <div class="col-lg-2">
-                        {% if user.profile.profile_pic.url %}
-                        <img src="{{ user.profile.profile_pic.url }}" alt="profile pic"
-                        class="img-fluid avatar avatar--sm">
-                        {% else %}
-                        <img src="{% static 'img/defaultprofile_photo.png' %}" class="img-fluid avatar avatar--sm"
-                            alt="">
-                        {% endif %}
-                    </div>
-                    <div class="col-lg-10">
-                        <h5 class="card-title">
-                            Hey, {{user.username}} 👋</h5>
-                        <p class="card-text">Welcome back to Gyan-e!</p>
+                    
+                    <div class="col-lg-10" style="color: #000;">
+                        Topics you are following<br>
+                        <b>will be added soon !</b>
                     </div>
                 </div>
             </div>
+
         </div>
+        
 
 
-        <div class="col-lg-8 ">
+        <div class="col-lg-6 " style="margin-top: 7rem;">
 
-            <div class="cards create-post container col-lg-10 col-sm-11">
+            <div class="cards create-post container col-lg-11 col-sm-11">
                 <div class="card__body">
                     <div class="create-post__body">
                         <!-- make a hint box which tell to press tab if in laptop -->
@@ -121,7 +120,7 @@
             </div>
 
             {% for Question in page_obj.object_list %}
-            <div class="cards create-post container col-lg-10 col-sm-11" id="posts">
+            <div class="cards create-post container col-lg-11 col-sm-11" id="posts">
                 <div class="card__body">
                     <div class="post-wrapper">
                         <div class="false">
@@ -225,7 +224,7 @@
             
         </div>
         
-        <div class="user-card cards col-lg-3 col-md-12 ml-2" style="height: 50%;margin-top: 43px;">
+        <div class="user-card cards col-lg-3 col-md-12 " style="height: 50%;margin-top: 10rem;margin-right: 32px;">
             <div class="card__body container">
                 <div class="user-card__profile-summary">
                     
