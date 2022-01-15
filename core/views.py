@@ -267,7 +267,7 @@ def note(request):
             # print(note_html)
             form.instance.note = form.cleaned_data['question']
             form.save()
-            return JsonResponse({'message': 'Note added successfully'})
+            return JsonResponse({'bool':True})
         else:
             messages.error(request, "Note has not been added")
             return redirect("home")
@@ -293,8 +293,9 @@ def viewnotes(request,note_id):
             comm = request.POST.get('comment')
             f = Comment.objects.create(user=request.user, comment=comm, question=note)
             f.save()
+            
         else:
-            messages.error(request, "Comment has not been added")
+            return HttpResponse("Comment could not be added :(")
         return redirect('viewnotes',note_id=note_id)
     else:
         form = CommentForm()
@@ -316,5 +317,21 @@ class PasswordChangeView(PasswordChangeView):
     template_name = 'core/password_change.html'
     success_url = reverse_lazy('password_success')
 
+# ------------------------------------------------------------------------------------
+# search function
+# ------------------------------------------------------------------------------------
 
+def search(request):
+    query = request.GET.get('query')
+    if len(query) > 78:
+        all_questions = Question.objects.none()
+    # what is does is it checks if the query exsist
+    # if it does it will search for the query
+    else:
+        allPostsTitle= Question.objects.filter(question__icontains=query)
+    
+    if allPostsTitle.count() == 0:
+        messages.error(request, "No search results found")
+    params = {'all_questions': allPostsTitle, 'query': query}
+    return render(request, 'core/search.html', params)
 

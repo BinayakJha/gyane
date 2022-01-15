@@ -10,7 +10,7 @@
 body {
     font-family: 'Poppins', sans-serif !important;
     background-color: #edf2f7 !important;
-    overflow-x: hidden;
+    overflow-x: hidden !important;
     text-rendering: optimizeSpeed;
     scroll-behavior: smooth;
 }
@@ -233,7 +233,7 @@ a {
 }
 
 .post-votes {
-    padding: 20px;
+    padding: 15px 0px;
     text-align: center;
 }
 

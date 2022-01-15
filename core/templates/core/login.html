@@ -156,7 +156,7 @@
                             </div>
                             <div class="post-contents">
                                 <div class="post-votes"><i class="far fa-caret-up vote-icon up-arrow"></i>
-                                    <p class="vote-count">+3</p><i class="far fa-caret-down vote-icon down-arrow"></i>
+                                    <i class="far fa-caret-down vote-icon down-arrow"></i>
                                 </div>
 
                                 {% load editorjs %}
@@ -164,8 +164,12 @@
                             </div>
                             <div>
                                 <div class="post-actions-wrapper">
+                                    <div class="action-wrapper"><i class="fas fa-thumbs-up like-click" data-answer = "{{ Question.note_id }}"></i><span
+                                        class="post-action-text like-count-{{ Question.note_id }}">{{ Question.views }}</span>
+                                    </div>
                                     <div class="action-wrapper"><i class="fas fa-users"></i><span
-                                        class="post-action-text">{{ Question.views }}</span></div>
+                                        class="post-action-text">{{ Question.views }}</span>
+                                    </div>
                                   
                                     <div class="action-wrapper">
                                         <a href="/viewnotes/{{ Question.note_id }}" style="color: #000;"><i
@@ -405,6 +409,8 @@
                 $('#body').load(location.href + '#body');
             });
         </script>
+        <!-- like function -->
+        
         <script>
             // show the answers only when answer is clicked
             // only show the answer of the perticuler question when clicked

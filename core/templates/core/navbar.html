@@ -18,7 +18,7 @@
                     <div class="container-fluid">
                         <!-- logo -->
                         <div>
-                            <a class="navbar-brand" href="#">
+                            <a class="navbar-brand" href="/">
                                 <img src="{% static 'img/gyane.jpeg' %}" class="navbar-brand-img logo" alt="..."
                                     style="border-radius: 12px;
                                 width: 71px;
@@ -26,11 +26,12 @@
                             </a>
                         </div>
                         <!-- form search -->
-                        <form
-                            class="d-none d-sm-inline-block me-auto ms-md-3 my-2 my-md-0 mw-100 navbar-search justify-content-center">
-                            <div class="input-group"><input class="bg-light form-control border-0 small" type="text"
-                                    placeholder="Search for ..."><button class="btn btn-primary py-0" type="button"><i
-                                        class="fas fa-search"></i></button></div>
+                        <form class="d-none d-sm-inline-block me-auto ms-md-3 my-2 my-md-0 mw-100 navbar-search justify-content-center" method="get" action="/search">
+                            <div class="input-group">
+                                <input class="bg-light form-control border-0 small" type="text" placeholder="Search for ..." name="query">
+                                
+                                <button class="btn btn-primary py-0" type="submit">
+                                <i class="fas fa-search"></i></button></div>
                         </form>
                         <ul class="navbar-nav flex-nowrap ms-auto">
                             <li class="nav-item dropdown d-sm-none no-arrow"><a class="dropdown-toggle nav-link"

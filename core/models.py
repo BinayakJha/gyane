@@ -64,3 +64,7 @@ class Comment(models.Model):
     def __str__(self):
         return 'Comment {} by {}'.format(self.comment, self.user.username)
 
+# like class 
+class Like(models.Model):
+    questionn = models.ForeignKey(Question, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='likes')
