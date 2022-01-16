@@ -15,6 +15,9 @@ from django.contrib.messages import constants as messages
 import os
 import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -40,7 +43,6 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'cloudinary_storage',
     'django.contrib.staticfiles',
     'cloudinary',
     'django.contrib.humanize',
@@ -134,11 +136,16 @@ MEDIA_URL = '/core/media/'
 STATIC_ROOT = os.path.join(BASE_DIR,'core/static/')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'core/media/')
 # cloudinary 
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME':'https-thegyane',
-    'API_KEY': '295964748116244',
-    'API_SECRET': 'pGAmSWZI264Rg2wNkeiKJLYDoJg'
-}
+# CLOUDINARY_STORAGE = {
+#     'CLOUD_NAME':'https-thegyane',
+#     'API_KEY': '295964748116244',
+#     'API_SECRET': 'pGAmSWZI264Rg2wNkeiKJLYDoJg'
+# }
+cloudinary.config(
+    cloud_name = "https-thegyane",
+    api_key = "295964748116244",
+    api_secret = "pGAmSWZI264Rg2wNkeiKJLYDoJg"
+)
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
