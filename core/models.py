@@ -68,4 +68,11 @@ class Comment(models.Model):
     def __str__(self):
         return 'Comment {} by {}'.format(self.comment, self.user.username)
 
-# like class 
+class Updates(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    update_title = models.CharField(max_length=200, null=True)
+    update = models.TextField()
+    seen = models.BooleanField(default=False)
+    time_st = models.DateTimeField(auto_now_add=True)
+    def __str__(self):
+        return self.update_title

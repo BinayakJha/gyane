@@ -1,5 +1,6 @@
 <head>
     {% load static %}
+    
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Blank Page - Brand</title>
@@ -77,23 +78,30 @@
                             <li class="nav-item dropdown no-arrow mx-1">
                                 <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link"
                                         aria-expanded="false" data-bs-toggle="dropdown" href="#"><span
-                                            class="badge bg-danger badge-counter">7</span><i
+                                            class="badge bg-danger badge-counter" style="color: red;">.</span><i
                                             class="fas fa-envelope fa-fw"></i></a>
                                     <div class="dropdown-menu dropdown-menu-end dropdown-list animated--grow-in">
-                                        <h6 class="dropdown-header">alerts center</h6>
-                                        <!-- <a
+                                        <h6 class="dropdown-header">Updates center</h6>
+                                        {% for u in updates %}
+                                        
+                                        <a
                                             class="dropdown-item d-flex align-items-center" href="#">
-                                            <div class="dropdown-list-image me-3"><img class="rounded-circle"
-                                                    src="/assets/img/avatars/avatar4.jpeg?h=fefb30b61c8459a66bd338b7d790c3d5">
+                                            <div class="dropdown-list-image me-3"><img class=""
+                                                    src="{% static 'img/gyane.jpeg' %}">
                                                 <div class="bg-success status-indicator"></div>
                                             </div>
                                             <div class="fw-bold">
-                                                <div class="text-truncate"><span>.</span></div>
-                                                <p class="small text-gray-500 mb-0"></p>
+                                                <!-- humanize load -->
+                                                {% load humanize %}
+                                                <div class="text-truncate"><span>{{ u.update_title }}</span></div>
+                                                <p class="small text-gray-500 mb-0">{{ u.update }}  <span style="color: black;">- {{ u.time_st | naturalday }} </span></p>
+
                                             </div>
-                                        </a> -->
+                                        </a>
+                                       
+                                        {% endfor %}
                                         <a class="dropdown-item text-center small text-gray-500" href="#">Show All
-                                            Alerts</a>
+                                            Updates</a>
                                     </div>
                                 </div>
                                 <div class="shadow dropdown-list dropdown-menu dropdown-menu-end"

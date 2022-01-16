@@ -12730,7 +12730,13 @@ a:focus {
     right: 0;
     border: .125rem solid #fff
 }
-
+.sidebar .nav-item .nav-link .badge-counter, .topbar .nav-item .nav-link .badge-counter {
+    position: absolute;
+    transform: scale(0.4) !important;
+    transform-origin: top right;
+    right: 0.6rem !important;
+    margin-top: -0.05rem !important;
+}
 .dropdown .dropdown-list .dropdown-item .text-truncate {
     max-width: 10rem
 }

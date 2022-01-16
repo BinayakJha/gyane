@@ -77,33 +77,62 @@
         </div>
     <!-- for question in note -->
     {% for Question in postss %}
-    <div class="cards create-post container col-lg-7 col-sm-8" id="posts">
+    <div class="cards create-post container col-lg-7 col-sm-11" id="posts">
         <div class="card__body">
             <div class="post-wrapper">
                 <div class="false">
                     <div class="post-header-wrapper">
-                        <a class="author-box author-box--sm" href="/profile/Lola_04">
-                            <!-- if user last name is unknown then use default profile photo -->
-                            <!-- if user has no profile photo then use default profile photo -->
+                        <a class="author-box author-box--sm" href="{% url 'profile' Question.user.username %}">
+                            <!-- when hovered over the image, the profile will be shown -->
+                          
+                              
+                            <!-- if profile photo is not available then use default profile photo -->
+                            {% load humanize %}
                             {% if Question.profile_pic.url %}
-                                    
+                            
                             <img class="avatar avatar--sm" src="{{ Question.profile_pic.url }}">
                         {% else %}
                             <img src="{% static 'img/defaultprofile_photo.png' %}" class="avatar avatar--sm"
                             alt="">
                         {% endif %}
                             <div class="author-box__info">
-                                <p class="author-box__name">{{ Question.user.first_name }}</p><small
-                                    class="author-box__handle">@{{ Question.user }}</small>
+                                <p class="author-box__name">{{ Question.user.first_name }} {{ Question.user.last_name }} {{ Question.user.id }}</p>
+                                <small class="author-box__handle">@{{ Question.user }} - {{ Question.time_st | naturalday }} </small>
+                                
+                                
                             </div>
+                            <br>
+                           
                         </a>
                         <div class="post--options">
                             <div class="post__dropmenu">
-                                {% load humanize %}
-                                <div class="post-meta"><span style="margin-right: -0.5rem !important;margin-bottom: -0.3rem !important;font-size: 1rem;">{{ Question.time_st| naturalday }}</span>
-                                    <!-- <span class="post__dropmenu--icon dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></span> -->
+                               
+                                <div class="post-meta ">
+                                    
                                     
                                 </div>
+                                {% if user.is_authenticated %}
+                                    {% if request.user.id == Question.user.id %}
+                                        <div class="nav-item dropdown no-arrow ">
+                                            <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link"
+                                                    aria-expanded="false" data-bs-toggle="dropdown" href="#" style="
+                                                    margin-top: -15px;position:absolute !important;color: #000;">
+                                                    <i class="fas fa-ellipsis-v"></i>
+                                                </a>
+                                                <div class="dropdown-menu shadow dropdown-menu-end animated--fade-in">
+                                                <a class="dropdown-item" href="/question/edit/{{ Question.note_id }}">
+                                                    <i class="fas fa-edit fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Edit</a>
+
+                                                        <!-- delete icon -->
+                                                        
+
+                                                        <div class="dropdown-divider"></div>
+                                                    <a class="dropdown-item" href="/question/delete/{{ Question.note_id }}"><i class="fas fa-trash fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Delete</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                {% endif %}
                                 
                             </div>
                         </div>
@@ -280,7 +309,7 @@
             <div class="post-wrapper">
                 <div class="false">
                     <div class="post-header-wrapper">
-                        <a class="author-box author-box--sm" href="/profile/Lola_04">
+                        <a class="author-box author-box--sm" href="/profile/{{ Comment.user.username }}">
                             <!-- if user last name is unknown then use default profile photo -->
                             <!-- if user has no profile photo then use default profile photo -->
                             {% if Comment.profile_pic.url %}
@@ -297,11 +326,34 @@
                         </a>
                         <div class="post--options">
                             <div class="post__dropmenu">
-                                <div class="post-meta"><span style="margin-right: -0.5rem !important;margin-bottom: -0.3rem !important;font-size: 1rem;"> {{ Comment.time_st| naturalday }} </span>
-                                    <!-- <span class="post__dropmenu--icon dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></span> -->
-                                  
-                                </div>
                                
+                                <div class="post-meta ">
+                                    
+                                    
+                                </div>
+                                {% if user.is_authenticated %}
+                                    {% if request.user.id == Comment.user.id %}
+                                        <div class="nav-item dropdown no-arrow ">
+                                            <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link"
+                                                    aria-expanded="false" data-bs-toggle="dropdown" href="#" style="
+                                                    margin-top: -15px;position:absolute !important;color: #000;">
+                                                    <i class="fas fa-ellipsis-v"></i>
+                                                </a>
+                                                <div class="dropdown-menu shadow dropdown-menu-end animated--fade-in">
+                                                <a class="dropdown-item" href="/comment/edit/{{ Comment.comment_id }}">
+                                                    <i class="fas fa-edit fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Edit</a>
+
+                                                        <!-- delete icon -->
+                                                        
+
+                                                        <div class="dropdown-divider"></div>
+                                                    <a class="dropdown-item" href="/comment/delete/{{ Comment.comment_id }}"><i class="fas fa-trash fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Delete</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                {% endif %}
+                                
                             </div>
                         </div>
                     </div>

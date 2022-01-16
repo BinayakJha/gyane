@@ -32,6 +32,12 @@ urlpatterns = (
     # likes
     # path('like/<int:note_id>', LikeView , name='like_post'),
     path('like/<int:note_id>', views.like, name='like'),
+    # edit question
+    path('question/edit/<int:pk>', UpdatePostView.as_view(), name='edit_question'),
+    path('question/delete/<int:pk>', DeletePostView.as_view(), name='delete_question'),
+    # comments
+    path('comment/edit/<int:pk>', CommentEdit.as_view(), name='comment'),
+    path('comment/delete/<int:pk>', CommentDelete.as_view(), name='delete_comment'),
     # for edit profile
 
 )

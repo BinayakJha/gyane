@@ -7,3 +7,4 @@ class PostAdmin(admin.ModelAdmin):
 admin.site.register(Question,PostAdmin)
 admin.site.register(Comment)
 admin.site.register(Profile)
+admin.site.register(Updates)

@@ -1,3 +1,4 @@
+from pyexpat import model
 from django import template
 from django.urls import reverse_lazy,reverse
 from django.http import HttpResponse, request, JsonResponse,HttpResponseRedirect
@@ -15,19 +16,42 @@ import math, random,json
 
 from django_editorjs_fields import fields
 
-from .models import Profile, UserOTP,Question,Comment
+from .models import Profile, Updates, UserOTP,Question,Comment
 
 from django.contrib.auth.forms import PasswordChangeForm,UserChangeForm
 from django.contrib.auth.views import PasswordChangeView
 
 from django.views import generic
-from django.views.generic import CreateView
+from django.views.generic import CreateView,UpdateView, DeleteView
 from .forms import EditPersonalProfileForm, NoteForm,CommentForm,EditProfileForm
-import gender_guesser.detector as gender
 from django.core.paginator import Paginator
 from django.shortcuts import render
 # Create your views here.
 # edit profile page class
+
+class UpdatePostView(UpdateView):
+   model = Question
+   form_class = NoteForm
+   template_name = 'core/updatequestion.html'
+#    fields = ['question']
+   success_url = reverse_lazy('home')
+
+# DELETE A POST
+class DeletePostView(DeleteView):
+    model = Question
+    template_name = 'core/delete_post.html'
+    success_url = reverse_lazy('home')
+# COMMENT EDIT AND DELETE
+class CommentEdit(UpdateView):
+    model = Comment
+    form_class = CommentForm
+    template_name = 'core/commentedit.html'
+    success_url = reverse_lazy('home')
+
+class CommentDelete(DeleteView):
+    model = Comment
+    template_name = 'core/comment_delete.html'
+    success_url = reverse_lazy('home')
 # ------------------------------------------------------------------------------------
 # 404 page
 # ------------------------------------------------------------------------------------
@@ -82,11 +106,13 @@ def home(request):
     p = Paginator(postss, 10)
     page_number = request.GET.get('page')
     page_obj = p.get_page(page_number)
+    up = Updates.objects.all().order_by('-time_st')
     # filter comment for each post
     form = NoteForm()
     context = {'postss':postss,
                 'form':form,
                 'page_obj': page_obj,
+                'updates': up,
     }
     return render(request, 'core/login.html', context)
 
@@ -325,17 +351,12 @@ class PasswordChangeView(PasswordChangeView):
 def search(request):
     if request.method == "GET":
         searched = request.GET['searched']
+        # transform json to simple string
         query = Question.objects.filter(question__icontains = searched)
         return render(request, 'core/search.html',{'searched': searched,'queries':query})
     else:
         return render(request, 'core/search.html',{})
     
-        
-
-# like function
-
-
-
 
 def like(request,note_id):
     if request.method == 'POST':
@@ -349,3 +370,4 @@ def like(request,note_id):
             message = 'liked'
         ctx = { 'likes_count': question.total_likes , 'message': message}
         return HttpResponse(json.dumps(ctx), content_type='application/json')
+

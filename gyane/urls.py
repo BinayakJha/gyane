@@ -27,10 +27,7 @@ def trigger_error(request):
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('core.urls')),
-    path('martor/', include('martor.urls')),
-    url(r'^markdownx/', include(markdownx)),
     # sentry
-    path('sentry-debug/', trigger_error),
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
