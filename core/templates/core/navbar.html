@@ -107,7 +107,7 @@
                                             {{request.user.last_name }}</span>
                                         {% if request.user.profile.profile_pic.url %}
                                         <img class="border rounded-circle img-profile"
-                                            src="{{ user.profile.profile_pic.url }}">
+                                            src="{{ request.user.profile.profile_pic.url }}">
                                         {% else %}
                                         <img class="border rounded-circle img-profile"
                                             src="{% static 'img/defaultprofile_photo.png' %}">
