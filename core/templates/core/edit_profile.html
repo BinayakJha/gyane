@@ -88,13 +88,13 @@
                                                         for="username"><strong>Username</strong></label><input
                                                         class="form-control" type="text" id="username"
                                                         placeholder="user.name" name="username"
-                                                        value="{{ user.profile.user }}" disabled></div>
+                                                        value="{{ user.username }}" disabled></div>
                                             </div>
                                             <div class="col">
                                                 <div class="mb-3"><label class="form-label" for="email"><strong>Email
                                                             Address</strong></label><input class="form-control"
                                                         type="email" id="email" placeholder="user@example.com"
-                                                        name="email" value="{{ user.profile.email }}" disabled></div>
+                                                        name="email" value="{{ user.email }}" disabled></div>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -103,13 +103,13 @@
                                                         for="first_name"><strong>First Name</strong></label><input
                                                         class="form-control" type="text" id="first_name"
                                                         placeholder="John" name="first_name"
-                                                        value="{{ user.profile.first_name }}" disabled></div>
+                                                        value="{{ user.first_name }}" disabled></div>
                                             </div>
                                             <div class="col">
                                                 <div class="mb-3"><label class="form-label" for="last_name"><strong>Last
                                                             Name</strong></label><input class="form-control" type="text"
                                                         id="last_name" placeholder="Doe" name="last_name"
-                                                        value="{{ request.user.last_name }}" disabled></div>
+                                                        value="{{ user.last_name }}" disabled></div>
                                             </div>
                                             <!-- write a note that this fields cant be edited -->
                                             <div>

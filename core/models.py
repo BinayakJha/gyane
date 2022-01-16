@@ -30,6 +30,7 @@ class Profile(models.Model):
     small_intro = models.TextField(max_length=100, blank=True, null=True)
     profile_pic = models.ImageField(default="defaultprofile_photo.png", null=True, blank=True)
 
+    
     def __str__(self):
         return str(self.user)
 class Question(models.Model):

@@ -59,13 +59,13 @@
                                     for="first_name"><strong>First Name</strong></label><input
                                     class="form-control" type="text" id="first_name"
                                     placeholder="John" name="first_name"
-                                    value="{{ user.profile.first_name }}"></div>
+                                    value="{{ user.first_name }}"></div>
                         </div>
                         <div class="col">
                             <div class="mb-3"><label class="form-label" for="last_name"><strong>Last
                                         Name</strong></label><input class="form-control" type="text"
                                     id="last_name" placeholder="Doe" name="last_name"
-                                    value="{{ request.user.last_name }}"></div>
+                                    value="{{ user.last_name }}"></div>
                         </div>
                       
                     </div>
