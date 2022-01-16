@@ -513,13 +513,13 @@ fieldset[disabled] .form-control {
     }
 
     .welcome-card {
-        margin-top: 13% !important;
+        display: none;
     }
 }
 
 @media (max-width: 425px) and (min-width: 320px) {
     .welcome-card {
-        margin-top: 20% !important;
+        display: none;
     }
     .cards{
         margin-left: 3px !important;
@@ -529,7 +529,7 @@ fieldset[disabled] .form-control {
     
 @media (max-width: 320px) {
     .welcome-card {
-        margin-top: 25% !important;
+        display: none;
     }
 }
 

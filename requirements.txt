@@ -8,3 +8,4 @@ gender_guesser==0.4.0
 markdownify==0.10.1
 sentry_sdk==1.5.0
 django-editorjs-fields
+django-cloudinary-storage

@@ -40,11 +40,14 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'cloudinary_storage',
     'django.contrib.staticfiles',
+    'cloudinary',
     'django.contrib.humanize',
     'django.forms',
     'core',
     'django_editorjs_fields',
+
 ]
 
 MIDDLEWARE = [
@@ -130,6 +133,13 @@ STATIC_URL = '/core/static/'
 MEDIA_URL = '/core/media/'
 STATIC_ROOT = os.path.join(BASE_DIR,'core/static/')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'core/media/')
+# cloudinary 
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME':'https-thegyane',
+    'API_KEY': '295964748116244',
+    'API_SECRET': 'pGAmSWZI264Rg2wNkeiKJLYDoJg'
+}
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
