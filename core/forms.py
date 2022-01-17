@@ -77,6 +77,11 @@ class CommentForm(forms.ModelForm):
         ),
         }
 
+# class ReplyForm(forms.ModelForm):
+#     class Meta:
+#         model = Reply
+#         fields = ['reply']
+        
 class EditProfileForm(forms.ModelForm):
     class Meta:
         model = Profile

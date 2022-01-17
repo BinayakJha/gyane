@@ -103,17 +103,21 @@ def home(request):
     # return render(request, 'core/login.html')
     # order by views
     postss = Question.objects.all().order_by('-time_st')
+
+
     p = Paginator(postss, 10)
     page_number = request.GET.get('page')
     page_obj = p.get_page(page_number)
     up = Updates.objects.all().order_by('-time_st')
     # filter comment for each post
     form = NoteForm()
+
     context = {'postss':postss,
                 'form':form,
                 'page_obj': page_obj,
                 'updates': up,
     }
+    
     return render(request, 'core/login.html', context)
 
 
@@ -252,7 +256,6 @@ def handleLogin(request):
         user=authenticate(username= loginemail, password= loginpassword)
         if user is not None:
             login(request, user)
-            messages.success(request, "Successfully Logged In")
             return redirect("home")
         else:
             messages.error(request, "Invalid credentials! Please try again")
@@ -295,7 +298,6 @@ def note(request):
             form.save()
             return JsonResponse({'bool':True})
         else:
-            messages.error(request, "Note has not been added")
             return redirect("home")
     else:
         form = NoteForm()
@@ -315,16 +317,18 @@ def viewnotes(request,note_id):
     commentt = Comment.objects.filter(question = note).order_by('-time_st')
     if request.method == "POST":
         form = CommentForm(request.POST or None)
+        
         if form.is_valid():
             comm = request.POST.get('comment')
             f = Comment.objects.create(user=request.user, comment=comm, question=note)
             f.save()
-            
         else:
-            print("error")
+            messages.error(request, "Some error occured please try again")
+            
         return redirect('viewnotes',note_id=note_id)
     else:
         form = CommentForm()
+      
         context = {
             'note': note,
             'postss': postss,
@@ -335,6 +339,8 @@ def viewnotes(request,note_id):
         template_name = 'core/viewnotes.html'
         return render(request, template_name, context)
 
+# reply function
+    
 # ------------------------------------------------------------------------------------
 # password change view
 # ------------------------------------------------------------------------------------

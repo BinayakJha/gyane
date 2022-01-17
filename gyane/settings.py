@@ -147,7 +147,6 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER ='jha36binayak@gmail.com' #sender's email-id
 EMAIL_HOST_PASSWORD = 'ueuyqjcfuehcglid'#password associated with above email-id
-EMAIL_PAGE_DOMAIN = 'http://127.0.0.1:8000/'
 
 sentry_sdk.init(
     dsn="https://75aba05ee81d4f9e9fe64329cffc5efd@o1083669.ingest.sentry.io/6093430",

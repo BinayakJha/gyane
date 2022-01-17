@@ -119,6 +119,11 @@
     <script src="{% static '/assets/bootstrap/js/bootstrap.min.js' %}"></script>
     <script src="{% static '/assets/js/script.min.js' %}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $("#alert").fadeTo(2000, 500).slideUp(500, function(){
+     $("#alert").slideUp(400);
+     });
+     </script>
     <!-- Optional JavaScript -->
     <script>
         function checkPasswordMatch() {

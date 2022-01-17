@@ -1,3 +1,4 @@
+from pyexpat import model
 from django.db import models
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserChangeForm
@@ -41,6 +42,16 @@ class Question(models.Model):
     profile_pic = property(lambda self: self.user.profile.profile_pic)
     likes = models.ManyToManyField(User, related_name='likes', blank=True)
     views  = models.IntegerField(default=0)
+    total_comments = property(lambda self: self.comment_set.count())
+    # remove word Comment from comments
+    # get the first comment 
+    def get_first_comment(self):
+        return self.comment_set.all()[:1].get()
+    comment = get_first_comment
+    # remove word 'Comment' from comment
+    
+
+
     @property
     def total_likes(self):
         return self.likes.count()
@@ -57,6 +68,7 @@ class Comment(models.Model):
     comment =  EditorJsJSONField(readOnly=False, autofocus=True, null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    questionid = property(lambda self: self.question_set.note_id)
     time_st = models.DateTimeField(auto_now_add=True)
     views  = models.IntegerField(default=0)
     profile_pic = property(lambda self: self.user.profile.profile_pic)
@@ -68,6 +80,21 @@ class Comment(models.Model):
     def __str__(self):
         return 'Comment {} by {}'.format(self.comment, self.user.username)
 
+# class Reply(models.Model):
+#     reply_id = models.AutoField(primary_key=True)
+#     reply = models.TextField(max_length=200, null=True)
+#     user = models.ForeignKey(User, on_delete=models.CASCADE)
+#     comment = models.ForeignKey(Comment, on_delete=models.CASCADE)
+#     time_st = models.DateTimeField(auto_now_add=True)
+#     views  = models.IntegerField(default=0)
+#     profile_pic = property(lambda self: self.user.profile.profile_pic)
+    
+#     def save(self, *args, **kwargs):
+#         self.slug = slugify(self.reply)
+#         super(Reply, self).save(*args, **kwargs)
+    
+#     def __str__(self):
+#         return 'Reply {} by {}'.format(self.reply, self.user.username)
 class Updates(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     update_title = models.CharField(max_length=200, null=True)

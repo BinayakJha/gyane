@@ -6,7 +6,9 @@
     margin: 0;
     padding: 0;
 }
-
+html{
+    overflow-x: hidden;
+}
 body {
     font-family: 'Poppins', sans-serif !important;
     background-color: #edf2f7 !important;
@@ -152,7 +154,7 @@ a {
 
 .author-box__info {
     margin-left: 1rem;
-    line-height: 0.8;
+    line-height: 0.7;
 }
 
 .author-box__name {
@@ -564,6 +566,7 @@ fieldset[disabled] .form-control {
     .avatar--sm {
         height: 3rem;
         width: 3rem;
+        margin-bottom: 10px;
     }
     .post-body{
         margin: 23px 0px
