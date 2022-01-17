@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-^ip98o4$#vn9ukq7s#^hji(vwsm+s7$he5s=6@2k5iyy!5wwpr'
+SECRET_KEY = str(os.getenv('SECRET_KEY'))
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -140,13 +140,13 @@ MESSAGE_TAGS = {
 
 FORM_RENDERER = 'django.forms.renderers.TemplatesSetting'
 EMAIL_ACTIVE_FIELD = 'is_active'
-EMAIL_SERVER = 'smtp.gmail.com'
-EMAIL_PORT = 587
+EMAIL_SERVER = 'corporate.vip4.noc401.com'
+EMAIL_PORT = 465
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST = 'corporate.vip4.noc401.com'
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER ='jha36binayak@gmail.com' #sender's email-id
-EMAIL_HOST_PASSWORD = 'ueuyqjcfuehcglid'#password associated with above email-id
+EMAIL_HOST_USER ='noreply@gyane.xyz' #sender's email-id
+EMAIL_HOST_PASSWORD = str(os.getenv('EMAIL_HOST_PASSWORD'))
 
 sentry_sdk.init(
     dsn="https://75aba05ee81d4f9e9fe64329cffc5efd@o1083669.ingest.sentry.io/6093430",

@@ -99,7 +99,7 @@ class Updates(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     update_title = models.CharField(max_length=200, null=True)
     update = models.TextField()
-    seen = models.BooleanField(default=False)
+    link = models.URLField(max_length=200, null=True)
     time_st = models.DateTimeField(auto_now_add=True)
     def __str__(self):
         return self.update_title

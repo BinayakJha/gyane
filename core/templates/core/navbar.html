@@ -56,10 +56,11 @@
                             <li class="nav-item dropdown no-arrow mx-1">
                                 <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link"
                                         aria-expanded="false" data-bs-toggle="dropdown" href="#"><span
-                                            class="badge bg-danger badge-counter">3+</span><i
+                                            class="badge bg-danger badge-counter"></span><i
                                             class="fas fa-bell fa-fw"></i></a>
                                     <div class="dropdown-menu dropdown-menu-end dropdown-list animated--grow-in">
                                          <h6 class="dropdown-header">alerts center</h6>
+                                         <center><p>None for now</p></center>
                                           <!--  <a
                                             class="dropdown-item d-flex align-items-center" href="#">
                                             <div class="me-3">
@@ -85,23 +86,26 @@
                                         {% for u in updates %}
                                         
                                         <a
-                                            class="dropdown-item d-flex align-items-center" href="#">
+                                            class="dropdown-item d-flex align-items-center" href="{{ u.link }}">
                                             <div class="dropdown-list-image me-3"><img class=""
                                                     src="{% static 'img/gyane.jpeg' %}">
                                                 <div class="bg-success status-indicator"></div>
-                                            </div>
+                                            </div>ae 
                                             <div class="fw-bold">
                                                 <!-- humanize load -->
                                                 {% load humanize %}
-                                                <div class="text-truncate"><span>{{ u.update_title }}</span></div>
+                                              <div class="text-truncate"><span>
+                                                   
+                                                    {{ u.update_title }}
+
+                                                </span></div>
                                                 <p class="small text-gray-500 mb-0">{{ u.update }}  <span style="color: black;">- {{ u.time_st | naturalday }} </span></p>
 
                                             </div>
                                         </a>
                                        
                                         {% endfor %}
-                                        <a class="dropdown-item text-center small text-gray-500" href="#">Show All
-                                            Updates</a>
+                                       
                                     </div>
                                 </div>
                                 <div class="shadow dropdown-list dropdown-menu dropdown-menu-end"

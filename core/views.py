@@ -339,6 +339,7 @@ def viewnotes(request,note_id):
         template_name = 'core/viewnotes.html'
         return render(request, template_name, context)
 
+
 # reply function
     
 # ------------------------------------------------------------------------------------
