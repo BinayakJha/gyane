@@ -83,121 +83,97 @@
                                             {% if quest.count %}
                                                 {% for Question in quest %}
                                             
-                                                    <div class="cards create-post container col-lg-10 col-sm-11" id="posts" style="border-radius: 12px;">
-                                                        <div class="card__body" >
-                                                            <div class="post-wrapper">
-                                                                <div class="false">
-                                                                    <div class="post-header-wrapper">
-                                                                        <a class="author-box author-box--sm" href="{% url 'profile' Question.user.username %}">
-                                                                            <!-- when hovered over the image, the profile will be shown -->
+                                                <div class="cards create-post container col-lg-11 col-sm-11" id="posts">
+                                                    <div class="card__body">
+                                                        <div class="post-wrapper">
+                                                            <div class="false">
+                                                                <div class="post-header-wrapper">
+                                                                    <a class="author-box author-box--sm" href="{% url 'profile' Question.user.username %}">
+                                                                        <!-- when hovered over the image, the profile will be shown -->
+                                                                      
+                                                                          
+                                                                        <!-- if profile photo is not available then use default profile photo -->
+                                                                        {% load humanize %}
+                                                                        {% if Question.profile_pic.url %}
                                                                         
-                                                                            
-                                                                            <!-- if profile photo is not available then use default profile photo -->
-                                                                            {% if Question.profile_pic.url %}
-                                                                            
-                                                                            <img class="avatar avatar--sm" src="{{ Question.profile_pic.url }}">
-                                                                        {% else %}
-                                                                            <img src="{% static 'img/defaultprofile_photo.png' %}" class="avatar avatar--sm"
-                                                                            alt="">
-                                                                        {% endif %}
-                                                                            <div class="author-box__info">
-                                                                                <p class="author-box__name">{{ Question.user.first_name }}</p><small
-                                                                                    class="author-box__handle">@{{ Question.user }}</small>
-                                                                            </div>
-                                                                        </a>
+                                                                        <img class="avatar avatar--sm" src="{{ Question.profile_pic.url }}">
+                                                                    {% else %}
+                                                                        <img src="{% static 'img/defaultprofile_photo.png' %}" class="avatar avatar--sm"
+                                                                        alt="">
+                                                                    {% endif %}
+                                                                        <div class="author-box__info">
+                                                                            <p class="author-box__name">{{ Question.user.first_name }} {{ Question.user.last_name }}</p>
+                                                                            <small class="author-box__handle">@{{ Question.user }} - {{ Question.time_st | naturalday }} </small> <br> <br>
+                                                                            <small class="author-box__handle"  > 
+                                                                                {% if Question.total_comments > 0 %}
+                                                                                <!-- if there is comment write answered in green -->
                                                                               
-                                        </div>
-                                        {% if user.is_authenticated %}
-                                            {% if request.user.id == Question.user.id %}
-                                                <div class="nav-item dropdown no-arrow ">
-                                                    <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link"
-                                                            aria-expanded="false" data-bs-toggle="dropdown" href="#" style="
-                                                            margin-top: -15px;position:absolute !important;color: #000;">
-                                                            <i class="fas fa-cogs"></i>
-                                                        </a>
-                                                        <div class="dropdown-menu shadow dropdown-menu-end animated--fade-in">
-                                                        <a class="dropdown-item" href="/question/edit/{{ Question.note_id }}">
-                                                            <i class="fas fa-edit fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Edit</a>
-                                                                <div class="dropdown-divider"></div>
-                                                            <a class="dropdown-item" href="/question/delete/{{ Question.note_id }}"><i class="fas fa-trash fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Delete</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            {% endif %}
-                                        {% endif %}
-                                        
-                                    </div>
+                                                                                <p style="color: green;font-size: 13px;">  <i class="fas fa-check-circle" style="color: green;"></i> {{ Question.total_comments }} Answers</p>
+                                                                                {% else %}
+                                                                                <!-- if there is no comment write unanswered in red -->
+                                                                                
+                                                                                <p style="color: red;font-size: 13px;"><i class="fas fa-times-circle" style="color: red;"></i> No Answers</p>
+                                                                                {% endif %}
+                                                                            </small>
+                                                                        </div>
+                                                                        <br>
+                                                                    </a>
+                                                                    <div class="post--options">
+                                                                        <div class="post__dropmenu">
+                                                                           
+                                                                            <div class="post-meta ">
+                                                                                
+                                                                                
+                                                                            </div>
+                                                                            {% if user.is_authenticated %}
+                                                                                {% if request.user.id == Question.user.id %}
+                                                                                    <div class="nav-item dropdown no-arrow ">
+                                                                                        <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link"
+                                                                                                aria-expanded="false" data-bs-toggle="dropdown" href="#" style="
+                                                                                                margin-top: -15px;position:absolute !important;color: #000;">
+                                                                                                <i class="fas fa-cogs"></i>
+                                                                                            </a>
+                                                                                            <div class="dropdown-menu shadow dropdown-menu-end animated--fade-in">
+                                                                                            <a class="dropdown-item" href="/question/edit/{{ Question.note_id }}">
+                                                                                                <i class="fas fa-edit fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Edit</a>
+                                                                                                    <div class="dropdown-divider"></div>
+                                                                                                <a class="dropdown-item" href="/question/delete/{{ Question.note_id }}"><i class="fas fa-trash fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Delete</a>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                {% endif %}
+                                                                            {% endif %}
+                                                                            
+                                                                        </div>
                                                                     </div>
-                                                                    <div class="post-contents">
+                                                                </div>
+                                                                <div class="post-contents">
+                                                                    
+                                                                    <input type="hidden" name="question_id" value="{{ Question.note_id }}">
+                                                                    {% load editorjs %}
+                                                                    <div class="post-body" id="post-bodyy">{{ Question.question| editorjs }}</div>
+                                                              
+                                                                
+                                                                </div>
+                                                                <div>
+                                                                    <div class="post-actions-wrapper">
+                                                                        <div class="action-wrapper likes">
+                                                                            <!-- CLAPPING HAND ICON -->
+                                                                            <i class="fas fa-thumbs-up" style="visibility: hidden;"></i><span
+                                                                            class="post-action-text"><a href="/viewnotes/{{ Question.note_id }}" style="color: black;">{{ Question.likes.count }} likes </a> </span>
+                                                                        </div>
                                                                        
-                                        
-                                                                        {% load editorjs %}
-                                                                        <div class="post-body" id="post-bodyy">{{ Question.question| editorjs }}</div>
-                                                                    </div>
-                                                                    <div>
-                                                                        <div class="post-actions-wrapper">
-                                                                            <div class="action-wrapper">
-                                                                                <!-- CLAPPING HAND ICON -->
-                                                                                <i class="fas fa-thumbs-up" style="visibility: hidden;"></i><span
-                                                                                class="post-action-text"><a href="/viewnotes/{{ Question.note_id }}" style="color: black;">{{ Question.likes.count }} likes </a> </span>
-                                                                            </div>
-                                                                        
-                                                                            <div class="action-wrapper">
-                                                                                <a href="/viewnotes/{{ Question.note_id }}" style="color: #000;"><i
-                                                                                        class="fas fa-comments"> </i><span
-                                                                                        class="post-action-text answer-button">Answer</span></a>
-                                                                            
-                                                                            </div>
-                                                                            <!-- share this post -->
-                                                                            <div class="sharee" id= "{{ Question.note_id }}">
-                                                                            
-                                                                                <div class="action-wrapper share" ><i class="fas fa-share-alt"></i><span
-                                                                                        class="post-action-text"></span></div>
-                                                                                <!-- share box will be here -->
-                                                                                <div class="share-box{{ Question.note_id }}" 
-                                                                                style="
-                                                                                display: none;    
-                                                                                position: absolute;
-                                                                                background-color: rgb(255, 255, 255);
-                                                                                box-shadow: rgb(0 0 0 / 50%) 0px 2px 4px 0px;
-                                                                                padding: 14px;
-                                                                                border-radius: 12px;
-                                                                                align-items: center;
-                                                                                text-align: center;
-                                                                                ">
-                                                                                <!-- end css -->
-                                                                                <!-- facebook -->
-                                                                                    <a href="https://www.facebook.com/sharer/sharer.php?u=https://thegyane.pythonanywhere.com/viewnotes/{{ Question.note_id }}"
-                                                                                        target="_blank">
-                                                                                    <div class="action-wrapper"><i class="fab fa-facebook-f"></i><span
-                                                                                            class="post-action-text"></span></div>
-                                                                                    </a>
-                                                                                <!-- twitter -->
-                                                                                    <a href="https://twitter.com/intent/tweet?url=https://thegyane.pythonanywhere.com/viewnotes/{{ Question.note_id }}" target="_blank">
-                                                                                    <div class="action-wrapper"><i class="fab fa-twitter"></i><span
-                                                                                            class="post-action-text"></span></div>
-                                                                                    </a>
-                                                                                <!-- linkedin -->
-                                                                                    <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://thegyane.pythonanywhere.com/viewnotes/{{ Question.note_id }}" target="__blank">
-                                                                                    <div class="action-wrapper"><i class="fab fa-linkedin-in"></i><span
-                                                                                            class="post-action-text"></span></div>
-                                                                                    </a>
-                                                                                    
-                                                                                </div>
-                                                                                <!-- SCRIPT -->
-                                                                                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-                                                                                <script>
-                                                                                    $(document).ready(function () {
-                                                                                        $("#{{ Question.note_id }}").click(function () {
-                                                                                            // toggle with animation effect 
-                                                                                            $(".share-box{{ Question.note_id }}").toggle();
-                                                                                        });
-                                                                                    });
-                                                                                </script>
-                                                                            </div>
-                                        
-                                                                            
-                                        
+                                                                        <!-- script end -->
+                                                                        <div class="action-wrapper answerrs">
+                                                                            <a href="/viewnotes/{{ Question.note_id }}" style="color: #000;"><i
+                                                                                    class="fas fa-comments"> </i><span
+                                                                                    class="post-action-text answer-button">Answer 
+                                                                             
+                                                                                </span></a>
+                                                                           
+                                                                        </div>
+                                                                        <div class="action-wrapper viewss"><i class="fas fa-eye"></i><span
+                                                                            class="post-action-text"  style="color: black;">{{ Question.views }}</span>
                                                                         </div>
                                                                     </div>
                                                                 </div>
