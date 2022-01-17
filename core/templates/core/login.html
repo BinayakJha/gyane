@@ -399,7 +399,9 @@
                     }
                 });
                 $('#id_ajax_upload_form').trigger('reset');
-               location.reload();
+                location.reload();
+                $('#page-top').load(location.href + '#page-top');
+
                 
             });
         </script>
