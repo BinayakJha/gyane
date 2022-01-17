@@ -525,12 +525,18 @@ fieldset[disabled] .form-control {
     .cards{
         margin-left: 3px !important;
     }
+    .box button{
+        font-size: 20px;
+    }
 }
 
     
 @media (max-width: 320px) {
     .welcome-card {
         display: none;
+    }
+    .box button{
+        font-size: 15px;
     }
 }
 

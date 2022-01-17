@@ -78,42 +78,49 @@
             <div class="cards create-post container col-lg-11 col-sm-11">
                 <div class="card__body">
                     <div class="create-post__body">
-                        <!-- make a hint box which tell to press tab if in laptop -->
-                        <div class="create-post__hint">
-                            <p>Press
-                                <span class="create-post__hint-key">
-                                    <!-- make the tab key show as a tab -->
-                                    <kbd>Tab</kbd>&nbsp;after clicking the box
-                                </span>
-                                to open toolbar
-                            </p>
-                        </div>
-
-                        <form class="form" action="notes" method="post" enctype="multipart/form-data"
-                            id="id_ajax_upload_form">
-
-                            <div class="form__field">
-                                <div class="container-flex">
-                                    <div class="row" aria-required="true">
-                                        <!-- add placeholder using js -->
-                                        {% csrf_token %}
-                                        {{ form.media }}
-                                        {{ form.as_p }}
-
-                                        
-                                    </div>
-                                </div>
-                                <div style="margin-top: 10px;">
-
-                                    {% csrf_token %}
-                                    <button class="btn btn-primary">
-                                        <i class="fas fa-comment-alt" style="margin-right: 8px;"></i>Post Now!</button>
-                                </div>
-
+                       
+                        <!-- make a dotted box which when clicked popsup the form -->
+                        <div>
+                            <div class="box row" style="border: 2px dotted black; height: 80px;border-radius: 12px;" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                   <center> <p style="font-size: 1.5rem;padding: 15px;">
+                                       <button href=""  style="border: none;background-color: transparent;"> <i class="fas fa-pencil-alt"></i>
+                                        Create a post </button>
+                                    </p>
+                                </center>
                             </div>
+                        </div>
+                        <!-- form -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-lg">
+                                <div class="modal-content" style="border-radius: 12px;">
+                                    <form class="form  " action="notes" method="post" enctype="multipart/form-data"
+                                    id="id_ajax_upload_form">
+
+                                    <div class="form__field">
+                                        <div class="container">
+                                            <div class="row" aria-required="true">
+                                                <!-- add placeholder using js -->
+                                                {% csrf_token %}
+                                                {{ form.media }}
+                                                {{ form.as_p }}
+
+                                                
+                                            </div>
+                                        </div>
+                                        <div style="margin-top: 10px; margin-left: 10px;">
+
+                                            {% csrf_token %}
+                                            <button class="btn btn-primary">
+                                                <i class="fas fa-comment-alt" style="margin-right: 8px;"></i>Post Now!</button>
+                                        </div>
+
+                                    </div>
 
 
-                        </form>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
 
                     </div>
                 </div>
@@ -371,14 +378,15 @@
                     contentType: false,
                     processData: false,
                     success: function (data) {
-
+                        // update the query section
+                        $('#body').load(location.href + '#body');
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
                         console.log(textStatus);
                     }
                 });
                 $('#id_ajax_upload_form').trigger('reset');
-                location.reload();
+               location.reload();
                 
             });
         </script>
