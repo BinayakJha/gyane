@@ -163,7 +163,6 @@ def handleSignUp(request):  # sourcery no-metrics
                 messages.error(request, "Invalid OTP")
                 return render(request, 'core/register.html',{'otp':True, 'usr':usr})
         usernames = request.POST['username']
-        d = gender.Detector()
         
         email = request.POST['email']
         fname = request.POST['first_name']
@@ -370,4 +369,3 @@ def like(request,note_id):
             message = 'liked'
         ctx = { 'likes_count': question.total_likes , 'message': message}
         return HttpResponse(json.dumps(ctx), content_type='application/json')
-
