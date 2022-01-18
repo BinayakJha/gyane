@@ -2,7 +2,6 @@ from pyexpat import model
 from django.db import models
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserChangeForm
-from markdownx.models import MarkdownxField
 from django.utils.text import slugify
 from django_editorjs_fields import EditorJsJSONField  # Django >= 3.1
 from django_editorjs_fields import EditorJsTextField
