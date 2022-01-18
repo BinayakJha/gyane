@@ -84,7 +84,7 @@ WSGI_APPLICATION = 'gyane.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'gyane',
+        'NAME': 'gyanexyz_gyane',
         'USER': 'gyanexyz_admin',
         'PASSWORD': 'gyane123admin$',
         'HOST': 'localhost',
