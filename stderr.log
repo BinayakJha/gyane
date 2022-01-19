@@ -1,0 +1,1126 @@
+[UID:1500][4033984] Child process with pid: 4034029 was killed by signal: 15, core dump: 0
+Traceback (most recent call last):
+  File "/home2/gyanexyz/public_html/Gyane/passenger_wsgi.py", line 8, in <module>
+    wsgi = imp.load_source('wsgi', 'gyane/wsgi.py')
+  File "/home2/gyanexyz/virtualenv/public_html/Gyane/3.7/lib64/python3.7/imp.py", line 171, in load_source
+    module = _load(spec)
+  File "<frozen importlib._bootstrap>", line 696, in _load
+  File "<frozen importlib._bootstrap>", line 677, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 728, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "gyane/wsgi.py", line 12, in <module>
+    from django.core.wsgi import get_wsgi_application
+ModuleNotFoundError: No module named 'django'
+Traceback (most recent call last):
+  File "/home2/gyanexyz/public_html/Gyane/passenger_wsgi.py", line 8, in <module>
+    wsgi = imp.load_source('wsgi', 'gyane/wsgi.py')
+  File "/home2/gyanexyz/virtualenv/public_html/Gyane/3.7/lib64/python3.7/imp.py", line 171, in load_source
+    module = _load(spec)
+  File "<frozen importlib._bootstrap>", line 696, in _load
+  File "<frozen importlib._bootstrap>", line 677, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 728, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "gyane/wsgi.py", line 16, in <module>
+    application = get_wsgi_application()
+  File "/home2/gyanexyz/virtualenv/public_html/Gyane/3.7/lib/python3.7/site-packages/django/core/wsgi.py", line 12, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "/home2/gyanexyz/virtualenv/public_html/Gyane/3.7/lib/python3.7/site-packages/django/__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/home2/gyanexyz/virtualenv/public_html/Gyane/3.7/lib/python3.7/site-packages/django/apps/registry.py", line 91, in populate
+    app_config = AppConfig.create(entry)
+  File "/home2/gyanexyz/virtualenv/public_html/Gyane/3.7/lib/python3.7/site-packages/django/apps/config.py", line 224, in create
+    import_module(entry)
+  File "/home2/gyanexyz/virtualenv/public_html/Gyane/3.7/lib64/python3.7/importlib/__init__.py", line 127, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1006, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 983, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 965, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'core'
+[UID:1500][4044737] Child process with pid: 4044750 was killed by signal: 15, core dump: 0
+Traceback (most recent call last):
+  File "/home2/gyanexyz/public_html/Gyane/passenger_wsgi.py", line 8, in <module>
+    wsgi = imp.load_source('wsgi', 'gyane/wsgi.py')
+  File "/home2/gyanexyz/virtualenv/public_html/Gyane/3.7/lib64/python3.7/imp.py", line 171, in load_source
+    module = _load(spec)
+  File "<frozen importlib._bootstrap>", line 696, in _load
+  File "<frozen importlib._bootstrap>", line 677, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 728, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "gyane/wsgi.py", line 16, in <module>
+    application = get_wsgi_application()
+  File "/home2/gyanexyz/virtualenv/public_html/Gyane/3.7/lib/python3.7/site-packages/django/core/wsgi.py", line 12, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "/home2/gyanexyz/virtualenv/public_html/Gyane/3.7/lib/python3.7/site-packages/django/__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/home2/gyanexyz/virtualenv/public_html/Gyane/3.7/lib/python3.7/site-packages/django/apps/registry.py", line 91, in populate
+    app_config = AppConfig.create(entry)
+  File "/home2/gyanexyz/virtualenv/public_html/Gyane/3.7/lib/python3.7/site-packages/django/apps/config.py", line 224, in create
+    import_module(entry)
+  File "/home2/gyanexyz/virtualenv/public_html/Gyane/3.7/lib64/python3.7/importlib/__init__.py", line 127, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1006, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 983, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 965, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'core'
+[UID:1500][4044737] Child process with pid: 4046284 was killed by signal: 15, core dump: 0
+Traceback (most recent call last):
+  File "/home2/gyanexyz/public_html/Gyane/passenger_wsgi.py", line 8, in <module>
+    wsgi = imp.load_source('wsgi', 'gyane/wsgi.py')
+  File "/home2/gyanexyz/virtualenv/public_html/Gyane/3.7/lib64/python3.7/imp.py", line 171, in load_source
+    module = _load(spec)
+  File "<frozen importlib._bootstrap>", line 696, in _load
+  File "<frozen importlib._bootstrap>", line 677, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 728, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "gyane/wsgi.py", line 16, in <module>
+    application = get_wsgi_application()
+  File "/home2/gyanexyz/virtualenv/public_html/Gyane/3.7/lib/python3.7/site-packages/django/core/wsgi.py", line 12, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "/home2/gyanexyz/virtualenv/public_html/Gyane/3.7/lib/python3.7/site-packages/django/__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/home2/gyanexyz/virtualenv/public_html/Gyane/3.7/lib/python3.7/site-packages/django/apps/registry.py", line 91, in populate
+    app_config = AppConfig.create(entry)
+  File "/home2/gyanexyz/virtualenv/public_html/Gyane/3.7/lib/python3.7/site-packages/django/apps/config.py", line 224, in create
+    import_module(entry)
+  File "/home2/gyanexyz/virtualenv/public_html/Gyane/3.7/lib64/python3.7/importlib/__init__.py", line 127, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1006, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 983, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 965, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'core'
+Not Found: /core/static/main.css
+Not Found: /core/static/bootstrap/css/bootstrap.min.css
+Not Found: /core/static/assets/fonts/fontawesome-all.min.css
+Not Found: /core/static/img/login.gif
+Not Found: /core/static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /core/static/assets/js/script.min.js
+Sentry is attempting to send 2 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Sentry is attempting to send 2 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Sentry is attempting to send 2 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Not Found: /core/static/assets/js/script.min.js
+Not Found: /core/static/img/favicon.ico
+Not Found: /core/static/img/favicon.ico
+Sentry is attempting to send 3 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Not Found: /core/static/main.css
+Not Found: /core/static/bootstrap/css/bootstrap.min.css
+Not Found: /core/static/assets/fonts/fontawesome-all.min.css
+Not Found: /core/static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /core/static/img/login.gif
+Not Found: /core/static/assets/js/script.min.js
+Not Found: /core/static/img/favicon.ico
+Sentry is attempting to send 4 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Sentry is attempting to send 3 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Not Found: /core/static/main.css
+Not Found: /core/static/bootstrap/css/bootstrap.min.css
+Not Found: /core/static/assets/fonts/fontawesome-all.min.css
+Not Found: /core/static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /core/static/assets/js/script.min.js
+Not Found: /core/static/img/login.gif
+Not Found: /core/static/img/favicon.ico
+Sentry is attempting to send 2 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Sentry is attempting to send 2 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Not Found: /static/main.css
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/bootstrap/css/bootstrap.min.css
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/img/login.gif
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/img/favicon.ico
+Not Found: /static/img/favicon.ico
+Not Found: /static/main.css
+Not Found: /static/bootstrap/css/bootstrap.min.css
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/img/login.gif
+Not Found: /static/img/favicon.ico
+Sentry is attempting to send 5 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Sentry is attempting to send 3 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Not Found: /static/main.css
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/bootstrap/css/bootstrap.min.css
+Not Found: /static/img/login.gif
+Not Found: /static/assets/js/script.min.js
+Sentry is attempting to send 4 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Not Found: /static/img/favicon.ico
+Sentry is attempting to send 2 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Sentry is attempting to send 2 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Not Found: /static/main.css
+Not Found: /static/bootstrap/css/bootstrap.min.css
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/img/login.gif
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/img/favicon.ico
+Sentry is attempting to send 5 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Sentry is attempting to send 2 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Sentry is attempting to send 3 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Not Found: /static/main.css
+Not Found: /static/bootstrap/css/bootstrap.min.css
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/img/login.gif
+Not Found: /static/img/favicon.ico
+Sentry is attempting to send 2 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Sentry is attempting to send 2 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Not Found: /static/main.css
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/bootstrap/css/bootstrap.min.css
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/img/login.gif
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/img/favicon.ico
+Not Found: /static/bootstrap/css/bootstrap.min.css
+Not Found: /static/main.css
+Sentry is attempting to send 2 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Sentry is attempting to send 2 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Sentry is attempting to send 3 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Not Found: /home2/gyanexyz/public_html/Gyane/static/main.css
+Sentry is attempting to send 2 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Not Found: /static/main.css
+Not Found: /public_html/static/main.css
+Not Found: /public_html/Gyane/static/main.css
+Not Found: /public_html/Gyane/core/static/main.css
+Not Found: /static/main.css
+Sentry is attempting to send 3 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Sentry is attempting to send 5 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Sentry is attempting to send 3 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/js/script.min.js
+Sentry is attempting to send 2 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Sentry is attempting to send 2 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Sentry is attempting to send 3 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Sentry is attempting to send 2 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Sentry is attempting to send 2 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Sentry is attempting to send 2 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Sentry is attempting to send 2 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+OSError: LSAPI: Socket read/write error
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Internal Server Error: /edit_profile/gyane123/
+Traceback (most recent call last):
+  File "/home2/gyanexyz/virtualenv/public_html/Gyane/3.7/lib/python3.7/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home2/gyanexyz/virtualenv/public_html/Gyane/3.7/lib/python3.7/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home2/gyanexyz/virtualenv/public_html/Gyane/3.7/lib/python3.7/site-packages/sentry_sdk/integrations/django/views.py", line 67, in sentry_wrapped_callback
+    return callback(request, *args, **kwargs)
+  File "/home2/gyanexyz/virtualenv/public_html/Gyane/3.7/lib/python3.7/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home2/gyanexyz/virtualenv/public_html/Gyane/3.7/lib/python3.7/site-packages/django/views/generic/base.py", line 98, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home2/gyanexyz/virtualenv/public_html/Gyane/3.7/lib/python3.7/site-packages/django/views/generic/edit.py", line 189, in get
+    self.object = self.get_object()
+  File "/home2/gyanexyz/public_html/Gyane/core/views.py", line 80, in get_object
+    return self.request.user.profile
+  File "/home2/gyanexyz/virtualenv/public_html/Gyane/3.7/lib/python3.7/site-packages/django/utils/functional.py", line 247, in inner
+    return func(self._wrapped, *args)
+  File "/home2/gyanexyz/virtualenv/public_html/Gyane/3.7/lib/python3.7/site-packages/django/db/models/fields/related_descriptors.py", line 424, in __get__
+    self.related.get_accessor_name()
+django.contrib.auth.models.User.profile.RelatedObjectDoesNotExist: User has no profile.
+Not Found: /ad
+Sentry is attempting to send 3 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+[UID:1500][4071216] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1500][4071216] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1500][4071216] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1500][4071216] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1500][4071216] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1500][4071216] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1500][4071216] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1500][4071216] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1500][4071216] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1500][4071216] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1500][4071216] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1500][4071216] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1500][4071216] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1500][4071216] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1500][4071216] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1500][4071216] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1500][4071216] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1500][4071216] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+Sentry is attempting to send 2 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+[UID:1500][4071216] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1500][4071216] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1500][4071216] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1500][4071216] Reached max children process limit: 6, extra: 2, current: 8, busy: 7, please increase LSAPI_CHILDREN.
+Sentry is attempting to send 2 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Sentry is attempting to send 2 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+[UID:1500][4071216] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1500][4071216] Reached max children process limit: 6, extra: 2, current: 8, busy: 7, please increase LSAPI_CHILDREN.
+[UID:1500][4071216] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1500][4071216] Reached max children process limit: 6, extra: 2, current: 8, busy: 7, please increase LSAPI_CHILDREN.
+[UID:1500][4071216] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1500][4071216] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1500][4071216] Reached max children process limit: 6, extra: 2, current: 8, busy: 7, please increase LSAPI_CHILDREN.
+[UID:1500][4071216] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1500][4071216] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1500][4071216] Reached max children process limit: 6, extra: 2, current: 8, busy: 7, please increase LSAPI_CHILDREN.
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Sentry is attempting to send 2 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Sentry is attempting to send 2 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Sentry is attempting to send 2 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Sentry is attempting to send 2 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Sentry is attempting to send 2 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Sentry is attempting to send 2 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Sentry is attempting to send 2 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Internal Server Error: /signup_success
+Traceback (most recent call last):
+  File "/home2/gyanexyz/virtualenv/public_html/Gyane/3.7/lib/python3.7/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home2/gyanexyz/virtualenv/public_html/Gyane/3.7/lib/python3.7/site-packages/django/db/backends/mysql/base.py", line 73, in execute
+    return self.cursor.execute(query, args)
+  File "/home2/gyanexyz/virtualenv/public_html/Gyane/3.7/lib/python3.7/site-packages/pymysql/cursors.py", line 148, in execute
+    result = self._query(query)
+  File "/home2/gyanexyz/virtualenv/public_html/Gyane/3.7/lib/python3.7/site-packages/pymysql/cursors.py", line 310, in _query
+    conn.query(q)
+  File "/home2/gyanexyz/virtualenv/public_html/Gyane/3.7/lib/python3.7/site-packages/pymysql/connections.py", line 548, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "/home2/gyanexyz/virtualenv/public_html/Gyane/3.7/lib/python3.7/site-packages/pymysql/connections.py", line 775, in _read_query_result
+    result.read()
+  File "/home2/gyanexyz/virtualenv/public_html/Gyane/3.7/lib/python3.7/site-packages/pymysql/connections.py", line 1156, in read
+    first_packet = self.connection._read_packet()
+  File "/home2/gyanexyz/virtualenv/public_html/Gyane/3.7/lib/python3.7/site-packages/pymysql/connections.py", line 725, in _read_packet
+    packet.raise_for_error()
+  File "/home2/gyanexyz/virtualenv/public_html/Gyane/3.7/lib/python3.7/site-packages/pymysql/protocol.py", line 221, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "/home2/gyanexyz/virtualenv/public_html/Gyane/3.7/lib/python3.7/site-packages/pymysql/err.py", line 143, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.DataError: (1264, "Out of range value for column 'otp' at row 1")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home2/gyanexyz/virtualenv/public_html/Gyane/3.7/lib/python3.7/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home2/gyanexyz/virtualenv/public_html/Gyane/3.7/lib/python3.7/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home2/gyanexyz/virtualenv/public_html/Gyane/3.7/lib/python3.7/site-packages/sentry_sdk/integrations/django/views.py", line 67, in sentry_wrapped_callback
+    return callback(request, *args, **kwargs)
+  File "/home2/gyanexyz/public_html/Gyane/core/views.py", line 225, in handleSignUp
+    UserOTP.objects.create(user=myuser, otp=myuser_otp)
+  File "/home2/gyanexyz/virtualenv/public_html/Gyane/3.7/lib/python3.7/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home2/gyanexyz/virtualenv/public_html/Gyane/3.7/lib/python3.7/site-packages/django/db/models/query.py", line 453, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/home2/gyanexyz/virtualenv/public_html/Gyane/3.7/lib/python3.7/site-packages/django/db/models/base.py", line 740, in save
+    force_update=force_update, update_fields=update_fields)
+  File "/home2/gyanexyz/virtualenv/public_html/Gyane/3.7/lib/python3.7/site-packages/django/db/models/base.py", line 778, in save_base
+    force_update, using, update_fields,
+  File "/home2/gyanexyz/virtualenv/public_html/Gyane/3.7/lib/python3.7/site-packages/django/db/models/base.py", line 881, in _save_table
+    results = self._do_insert(cls._base_manager, using, fields, returning_fields, raw)
+  File "/home2/gyanexyz/virtualenv/public_html/Gyane/3.7/lib/python3.7/site-packages/django/db/models/base.py", line 921, in _do_insert
+    using=using, raw=raw,
+  File "/home2/gyanexyz/virtualenv/public_html/Gyane/3.7/lib/python3.7/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home2/gyanexyz/virtualenv/public_html/Gyane/3.7/lib/python3.7/site-packages/django/db/models/query.py", line 1270, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "/home2/gyanexyz/virtualenv/public_html/Gyane/3.7/lib/python3.7/site-packages/django/db/models/sql/compiler.py", line 1416, in execute_sql
+    cursor.execute(sql, params)
+  File "/home2/gyanexyz/virtualenv/public_html/Gyane/3.7/lib/python3.7/site-packages/django/db/backends/utils.py", line 98, in execute
+    return super().execute(sql, params)
+  File "/home2/gyanexyz/virtualenv/public_html/Gyane/3.7/lib/python3.7/site-packages/sentry_sdk/integrations/django/__init__.py", line 500, in execute
+    return real_execute(self, sql, params)
+  File "/home2/gyanexyz/virtualenv/public_html/Gyane/3.7/lib/python3.7/site-packages/django/db/backends/utils.py", line 66, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "/home2/gyanexyz/virtualenv/public_html/Gyane/3.7/lib/python3.7/site-packages/django/db/backends/utils.py", line 75, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/home2/gyanexyz/virtualenv/public_html/Gyane/3.7/lib/python3.7/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home2/gyanexyz/virtualenv/public_html/Gyane/3.7/lib/python3.7/site-packages/django/db/utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home2/gyanexyz/virtualenv/public_html/Gyane/3.7/lib/python3.7/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home2/gyanexyz/virtualenv/public_html/Gyane/3.7/lib/python3.7/site-packages/django/db/backends/mysql/base.py", line 73, in execute
+    return self.cursor.execute(query, args)
+  File "/home2/gyanexyz/virtualenv/public_html/Gyane/3.7/lib/python3.7/site-packages/pymysql/cursors.py", line 148, in execute
+    result = self._query(query)
+  File "/home2/gyanexyz/virtualenv/public_html/Gyane/3.7/lib/python3.7/site-packages/pymysql/cursors.py", line 310, in _query
+    conn.query(q)
+  File "/home2/gyanexyz/virtualenv/public_html/Gyane/3.7/lib/python3.7/site-packages/pymysql/connections.py", line 548, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "/home2/gyanexyz/virtualenv/public_html/Gyane/3.7/lib/python3.7/site-packages/pymysql/connections.py", line 775, in _read_query_result
+    result.read()
+  File "/home2/gyanexyz/virtualenv/public_html/Gyane/3.7/lib/python3.7/site-packages/pymysql/connections.py", line 1156, in read
+    first_packet = self.connection._read_packet()
+  File "/home2/gyanexyz/virtualenv/public_html/Gyane/3.7/lib/python3.7/site-packages/pymysql/connections.py", line 725, in _read_packet
+    packet.raise_for_error()
+  File "/home2/gyanexyz/virtualenv/public_html/Gyane/3.7/lib/python3.7/site-packages/pymysql/protocol.py", line 221, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "/home2/gyanexyz/virtualenv/public_html/Gyane/3.7/lib/python3.7/site-packages/pymysql/err.py", line 143, in raise_mysql_exception
+    raise errorclass(errno, errval)
+django.db.utils.DataError: (1264, "Out of range value for column 'otp' at row 1")
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Not Found: /ad
+Sentry is attempting to send 4 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Sentry is attempting to send 3 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Sentry is attempting to send 3 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Sentry is attempting to send 2 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Sentry is attempting to send 6 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+[UID:1500][4071216] Child process with pid: 4076700 was killed by signal: 15, core dump: 0
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Sentry is attempting to send 6 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Sentry is attempting to send 9 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Sentry is attempting to send 6 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Sentry is attempting to send 4 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Sentry is attempting to send 2 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Sentry is attempting to send 3 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Sentry is attempting to send 2 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Sentry is attempting to send 2 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+[UID:1500][4082179] Child process with pid: 4082234 was killed by signal: 15, core dump: 0
+Sentry is attempting to send 3 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Sentry is attempting to send 2 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Sentry is attempting to send 2 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Sentry is attempting to send 3 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Sentry is attempting to send 2 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Sentry is attempting to send 2 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Sentry is attempting to send 2 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Sentry is attempting to send 3 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Sentry is attempting to send 2 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Sentry is attempting to send 2 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Sentry is attempting to send 2 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Sentry is attempting to send 2 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Sentry is attempting to send 4 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Sentry is attempting to send 2 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Sentry is attempting to send 5 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Sentry is attempting to send 3 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Sentry is attempting to send 2 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Sentry is attempting to send 2 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Sentry is attempting to send 2 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Sentry is attempting to send 4 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+[UID:1500][4088551] Reached max children process limit: 6, extra: 2, current: 8, busy: 7, please increase LSAPI_CHILDREN.
+[UID:1500][4088551] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1500][4088551] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1500][4088551] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1500][4088551] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1500][4088551] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1500][4088551] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1500][4088551] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1500][4088551] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1500][4088551] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1500][4088551] Reached max children process limit: 6, extra: 2, current: 8, busy: 7, please increase LSAPI_CHILDREN.
+[UID:1500][4088551] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+Sentry is attempting to send 3 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Sentry is attempting to send 2 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Sentry is attempting to send 3 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Sentry is attempting to send 2 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Sentry is attempting to send 2 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Sentry is attempting to send 2 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Internal Server Error: /signup_success
+Traceback (most recent call last):
+  File "/home2/gyanexyz/virtualenv/public_html/Gyane/3.7/lib/python3.7/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home2/gyanexyz/virtualenv/public_html/Gyane/3.7/lib/python3.7/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home2/gyanexyz/virtualenv/public_html/Gyane/3.7/lib/python3.7/site-packages/sentry_sdk/integrations/django/views.py", line 67, in sentry_wrapped_callback
+    return callback(request, *args, **kwargs)
+  File "/home2/gyanexyz/public_html/Gyane/core/views.py", line 235, in handleSignUp
+    email_otp.send()
+  File "/home2/gyanexyz/virtualenv/public_html/Gyane/3.7/lib/python3.7/site-packages/django/core/mail/message.py", line 284, in send
+    return self.get_connection(fail_silently).send_messages([self])
+  File "/home2/gyanexyz/virtualenv/public_html/Gyane/3.7/lib/python3.7/site-packages/django/core/mail/backends/smtp.py", line 102, in send_messages
+    new_conn_created = self.open()
+  File "/home2/gyanexyz/virtualenv/public_html/Gyane/3.7/lib/python3.7/site-packages/django/core/mail/backends/smtp.py", line 62, in open
+    self.connection = self.connection_class(self.host, self.port, **connection_params)
+  File "/opt/alt/python37/lib64/python3.7/smtplib.py", line 251, in __init__
+    (code, msg) = self.connect(host, port)
+  File "/opt/alt/python37/lib64/python3.7/smtplib.py", line 338, in connect
+    (code, msg) = self.getreply()
+  File "/opt/alt/python37/lib64/python3.7/smtplib.py", line 394, in getreply
+    raise SMTPServerDisconnected("Connection unexpectedly closed")
+smtplib.SMTPServerDisconnected: Connection unexpectedly closed
+Sentry is attempting to send 2 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Sentry is attempting to send 3 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+OSError: LSAPI: Socket read/write error
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Sentry is attempting to send 2 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+OSError: LSAPI: Socket read/write error
+Sentry is attempting to send 2 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Sentry is attempting to send 5 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Sentry is attempting to send 4 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Invalid HTTP_HOST header: 'www.gyane.xyz'. You may need to add 'www.gyane.xyz' to ALLOWED_HOSTS.
+Bad Request: /
+Invalid HTTP_HOST header: 'www.gyane.xyz'. You may need to add 'www.gyane.xyz' to ALLOWED_HOSTS.
+Bad Request: /favicon.ico
+Sentry is attempting to send 2 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Not Found: /robots.txt
+Not Found: /robots.txt
+Sentry is attempting to send 2 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+[UID:1500][4108775] Reached max children process limit: 6, extra: 2, current: 8, busy: 7, please increase LSAPI_CHILDREN.
+[UID:1500][4108775] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+[UID:1500][4108775] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1500][4108775] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1500][4108775] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1500][4108775] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1500][4108775] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+[UID:1500][4108775] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1500][4108775] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1500][4108775] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+Sentry is attempting to send 5 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Sentry is attempting to send 3 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+[UID:1500][4108775] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+Not Found: /static/assets/js/script.min.js
+Sentry is attempting to send 6 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Sentry is attempting to send 3 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Sentry is attempting to send 4 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/js/script.min.js
+Not Found: /robots.txt
+Sentry is attempting to send 3 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Sentry is attempting to send 4 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Sentry is attempting to send 2 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Sentry is attempting to send 4 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Not Found: /robots.txt
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Sentry is attempting to send 2 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/js/script.min.js
+Invalid HTTP_HOST header: 'mail.gyane.xyz'. You may need to add 'mail.gyane.xyz' to ALLOWED_HOSTS.
+Bad Request: /
+Not Found: /robots.txt
+Sentry is attempting to send 3 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Not Found: /favicon.ico
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Sentry is attempting to send 2 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Sentry is attempting to send 3 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Sentry is attempting to send 2 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Invalid HTTP_HOST header: 'mail.gyane.xyz'. You may need to add 'mail.gyane.xyz' to ALLOWED_HOSTS.
+Bad Request: /
+Invalid HTTP_HOST header: 'mail.gyane.xyz'. You may need to add 'mail.gyane.xyz' to ALLOWED_HOSTS.
+Bad Request: /favicon.ico
+Invalid HTTP_HOST header: 'mail.gyane.xyz'. You may need to add 'mail.gyane.xyz' to ALLOWED_HOSTS.
+Bad Request: /
+Invalid HTTP_HOST header: 'mail.gyane.xyz'. You may need to add 'mail.gyane.xyz' to ALLOWED_HOSTS.
+Bad Request: /favicon.ico
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Sentry is attempting to send 2 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Sentry is attempting to send 2 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/js/script.min.js
+Sentry is attempting to send 2 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/js/script.min.js
+Sentry is attempting to send 2 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Sentry is attempting to send 2 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Sentry is attempting to send 3 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Not Found: /favicon.ico
+Sentry is attempting to send 2 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Sentry is attempting to send 2 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Sentry is attempting to send 2 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+[UID:1500][93946] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1500][93946] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1500][93946] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1500][93946] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1500][93946] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1500][93946] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1500][93946] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1500][93946] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1500][93946] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1500][93946] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1500][93946] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1500][93946] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1500][93946] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1500][93946] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1500][93946] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1500][93946] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+Sentry is attempting to send 2 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Sentry is attempting to send 2 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Sentry is attempting to send 3 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+[UID:1500][93946] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1500][93946] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1500][93946] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+Sentry is attempting to send 3 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Sentry is attempting to send 2 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Sentry is attempting to send 3 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Sentry is attempting to send 2 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/js/script.min.js
+Sentry is attempting to send 2 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /robots.txt
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Sentry is attempting to send 2 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Sentry is attempting to send 3 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/bootstrap/js/bootstrap.min.js
+Not Found: /static/assets/js/script.min.js
+Not Found: /static/assets/fonts/fontawesome-all.min.css
+Not Found: /static/assets/fonts/fontawesome-all.min.css

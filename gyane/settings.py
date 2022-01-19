@@ -27,9 +27,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = str(os.getenv('SECRET_KEY'))
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['https://gyane.xyz/','www.gyane.xyz/','gyane.xyz','www.gyane.xyz']
 
 
 # Application definition
@@ -128,11 +128,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-STATIC_URL = '/core/static/'
+STATIC_URL = '/static/'
 
-MEDIA_URL = '/core/media/'
-STATIC_ROOT = os.path.join(BASE_DIR,'core/static/')
-MEDIA_ROOT = os.path.join(BASE_DIR, 'core/media/')
+MEDIA_URL = '/media/'
+STATIC_ROOT = os.path.join(BASE_DIR,'static/')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
@@ -143,13 +143,13 @@ MESSAGE_TAGS = {
 
 FORM_RENDERER = 'django.forms.renderers.TemplatesSetting'
 EMAIL_ACTIVE_FIELD = 'is_active'
-EMAIL_SERVER = 'corporate.vip4.noc401.com'
-EMAIL_PORT = 465
+EMAIL_SERVER = 'smtp.gmail.com'
+EMAIL_PORT = 587
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'corporate.vip4.noc401.com'
+EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER ='noreply@gyane.xyz' #sender's email-id
-EMAIL_HOST_PASSWORD = str(os.getenv('EMAIL_HOST_PASSWORD'))
+EMAIL_HOST_USER ='jha36binayak@gmail.com' #sender's email-id
+EMAIL_HOST_PASSWORD ='ueuyqjcfuehcglid' 
 
 sentry_sdk.init(
     dsn="https://75aba05ee81d4f9e9fe64329cffc5efd@o1083669.ingest.sentry.io/6093430",
