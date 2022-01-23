@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html>
-
+<html lang='en'>
 <head>
     {% load static %}
+ 
     <!-- logo -->
     <link rel="icon" href="{% static 'img/favicon.ico' %}">
     <!-- meta property  -->
@@ -11,6 +11,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta property="type" content="question & answer website">
     <meta property="title" content="Gyan-e">
+    <meta name="description" content="Gyan-e is a Question and Answer forum like platform for students to connect with each other and share their knowledge.">
     <meta property="description" content="Gyan-e is a platform for students to connect with each other and share their knowledge.">
     <meta name="keywords" content="gyane, thegyane, ask-mattrab, quora, education, studies, class 11, class 10, class 9, questions, answers, physics, chemistry, biology, maths, computer, economics, account, english, nepali, science, health, high-quality educational contents, programming">
     <meta name="author" content="Gyan-e">
@@ -28,6 +29,7 @@
     <meta name="twitter:creator" content="@thegyane">
     <meta name="twitter:title" content="Gyan-e">
     <meta name="twitter:description" content="Gyan-e is a platform for students to connect with each other and share their knowledge.">
+    <meta name="msvalidate.01" content="41A5AEE1429B17783242742A44B6EA20" />
     <!-- meta property end -->
     <title>Gyan-e - Your Unfair Advantage</title>
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.15.3/css/all.css"
@@ -147,7 +149,7 @@
                                 {% endif %}
                                     <div class="author-box__info">
                                         <p class="author-box__name">{{ Question.user.first_name }} {{ Question.user.last_name }}</p>
-                                        <small class="author-box__handle">@{{ Question.user }} - {{ Question.time_st | naturalday }} </small> <br> <br>
+                                        <small class="author-box__handle">@{{ Question.user }} - {{ Question.time_st | naturalday }}</small> <br> <br>
                                         <small class="author-box__handle"  > 
                                             {% if Question.total_comments > 0 %}
                                             <!-- if there is comment write answered in green -->
@@ -195,6 +197,7 @@
                                 
                                 <input type="hidden" name="question_id" value="{{ Question.note_id }}">
                                 {% load editorjs %}
+
                                 <div class="post-body" id="post-bodyy">{{ Question.question| editorjs }}</div>
                           
                             
@@ -306,105 +309,15 @@
     </section>
 <!-- if user not authenticated  -->
     {% else %}
-
-    <body class="bg-gradient-primary">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-9 col-lg-12 col-xl-10">
-                    <div class="card shadow-lg o-hidden border-0 my-5">
-                        <div class="card-body p-0">
-                            <div class="row">
-                                <div class="col-lg-6 d-none d-lg-flex">
-                                    <div class="flex-grow-1 bg-login-image">
-                                        <img src="{% static 'img/login.gif' %}" alt=""
-                                            style="object-fit: cover;height: 100%;">
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="p-5">
-                                        <div class="text-center">
-                                            <h4 class="text-dark mb-4">Welcome Back!</h4>
-                                        </div>
-                                        <form class="user" method="post" action="/login_success">
-                                            {% csrf_token %}
-                                            <div class="mb-3">
-                                                <input class="form-control form-control-user" type="text"
-                                                    id="loginemail" aria-describedby="emailHelp"
-                                                    placeholder="Enter Your Username..." name="loginemail">
-                                            </div>
-                                            <div class="mb-3">
-                                                <input class="form-control form-control-user" type="password"
-                                                    id="loginpassword" placeholder="Password" name="loginpassword">
-                                            </div>
-                                            <div class="mb-3">
-                                                <div class="custom-control custom-checkbox small">
-                                                    <div class="form-check"><input
-                                                            class="form-check-input custom-control-input"
-                                                            type="checkbox" id="formCheck-1"><label
-                                                            class="form-check-label custom-control-label"
-                                                            for="formCheck-1">Remember Me</label></div>
-                                                </div>
-                                                
-                                            </div>
-                                            {% for message in messages %}
-                                            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert"
-                                                id="alert" style="width:100%;margin-top: 10px;">
-                                                <strong>Message: </strong> {{ message }}&nbsp; !!
-                                            </div>
-                                            {% endfor %}
-                                            {% csrf_token %}
-                                            <button class="btn btn-primary d-block btn-user w-100" type="submit">Login
-                                            </button>
-                                            {% csrf_token %}
-                                            <hr>
-                                            
-        
-                                        </form>
-                                        <div class="text-center"><a class="small"
-                                                href="{% url 'password_reset' %}">Forgot
-                                                Password?</a></div>
-                                        <div class="text-center"><a class="small" href="{% url 'signup' %}">Create an
-                                                Account!</a></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    {% include 'core/index.html' %}
         {% endif %}
+
+    
         <script src="{% static '/assets/bootstrap/js/bootstrap.min.js' %}"></script>
         <script src="{% static '/assets/js/script.min.js' %}"></script>
         <script src="https://cdn.jsdelivr.net/npm/@editorjs/link@2.0.0"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script>
-            $('#id_ajax_upload_form').submit(function (e) {
-                e.preventDefault();
-                $form = $(this);
-                var formData = new FormData(this);
-                $.ajax({
-                    url: $form.attr('action'),
-                    type: $form.attr('method'),
-                    data: formData,
-                    cache: false,
-                    contentType: false,
-                    processData: false,
-                    success: function (data) {
-                        // update the query section
-                        $('#body').load(location.href + '#body');
-                    },
-                    error: function (jqXHR, textStatus, errorThrown) {
-                        console.log(textStatus);
-                    }
-                });
-                $('#id_ajax_upload_form').trigger('reset');
-                location.reload();
-                $('#page-top').load(location.href + '#page-top');
-
-                
-            });
-        </script>
+        
     <!-- close btn functionality -->
   
     <script>
@@ -412,6 +325,33 @@
      $("#alert").slideUp(400);
      });
      </script>
+      <script>
+        $('#id_ajax_upload_form').submit(function (e) {
+            e.preventDefault();
+            $form = $(this);
+            var formData = new FormData(this);
+            $.ajax({
+                url: $form.attr('action'),
+                type: $form.attr('method'),
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function (data) {
+                    // update the query section
+                    $('#body').load(location.href + '#body');
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.log(textStatus);
+                }
+            });
+            $('#id_ajax_upload_form').trigger('reset');
+            location.reload();
+            $('#page-top').load(location.href + '#page-top');
+
+            
+        });
+    </script>
         <script>
             // show the answers only when answer is clicked
             // only show the answer of the perticuler question when clicked
@@ -581,6 +521,7 @@
                 });
             });
         </script>
+
         <!-- when we click share button it will show the share box -->
  
     

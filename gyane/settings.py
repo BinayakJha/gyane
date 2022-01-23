@@ -25,11 +25,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = str(os.getenv('SECRET_KEY'))
+SESSION_COOKIE_HTTPONLY = True
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['https://gyane.xyz/','www.gyane.xyz/','gyane.xyz','www.gyane.xyz']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -39,12 +40,15 @@ INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
+    'django.contrib.sitemaps',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
     'django.forms',
     'core',
     'django_editorjs_fields',
+    'sanitizer',
+
 ]
 
 MIDDLEWARE = [
@@ -84,11 +88,14 @@ WSGI_APPLICATION = 'gyane.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'gyanexyz_gyane',
-        'USER': 'gyanexyz_admin',
-        'PASSWORD': 'gyane123admin$',
+        'NAME': 'gyane',
+        'USER': 'root',
+        'PASSWORD': '',
         'HOST': 'localhost',
         'PORT': '3306',
+        'OPTIONS': {
+                    'charset': 'utf8mb4',
+                    'use_unicode': True, },
     }
 }
 
@@ -148,8 +155,8 @@ EMAIL_PORT = 587
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER ='jha36binayak@gmail.com' #sender's email-id
-EMAIL_HOST_PASSWORD ='ueuyqjcfuehcglid' 
+EMAIL_HOST_USER ='thegyane@gmail.com' #sender's email-id
+EMAIL_HOST_PASSWORD ='ejeibfhvfdenrixu' 
 
 sentry_sdk.init(
     dsn="https://75aba05ee81d4f9e9fe64329cffc5efd@o1083669.ingest.sentry.io/6093430",
@@ -164,3 +171,4 @@ sentry_sdk.init(
     # django.contrib.auth) you may enable sending PII data.
     send_default_pii=True
 )
+

@@ -16,16 +16,19 @@ type="text/css" media="screen" charset="utf-8">
 {% include 'core/navbar.html' %}
  <body>
      {% if user.is_authenticated %}
-        <h1>Delete Post</h1>
-        <br><br>
-        <center><div class="form-group cards create-post container col-lg-7 col-sm-8">
+       
+        <center><div class="form-group cards create-post container col-lg-7 col-sm-8 mt-10">
             <div class="card__body">
             <form method="POST">
                 {% csrf_token %}
-               <h1><b> ARE YOU SURE ?</b> </h1><br>
-                <button class="btn-primary btn">
-                    <!-- delete icon -->
-                    <i class="fas fa-trash-alt" style="margin-right: 8px;"></i>Delete</button>
+                <div style="margin-bottom: 10px; font-size: 1.1em;"><strong>Delete Post?</strong></div>
+                <div class="grey" style="font-size: .85em; margin-bottom: 15px;">
+                    This can’t be undone and it will be removed from your profile, and from Gyan-e search results.
+                </div>
+                <div style="padding: 0px 5%;">
+                    <button class="btn btn-light float-left" onclick="remove_popup()">Cancel</button>
+                    <button class="btn btn-danger float-right" id="delete_post_btn">Delete</button>
+                </div>
             </form>
         </div>
         </div></center>

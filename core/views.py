@@ -1,3 +1,5 @@
+import email
+from os import link
 from pyexpat import model
 from django import template
 from django.urls import reverse_lazy,reverse
@@ -16,17 +18,22 @@ import math, random,json
 
 from django_editorjs_fields import fields
 
-from .models import Profile, Updates, UserOTP,Question,Comment
+from .models import Profile, Updates, UserOTP,Question,Comment,Contact
 
-from django.contrib.auth.forms import PasswordChangeForm,UserChangeForm
-from django.contrib.auth.views import PasswordChangeView
+from django.contrib.auth.forms import PasswordChangeForm,UserChangeForm,PasswordResetForm
+from django.contrib.auth.views import PasswordChangeView,PasswordResetView,PasswordResetDoneView,PasswordResetConfirmView,PasswordResetCompleteView
 
 from django.views import generic
-from django.views.generic import CreateView,UpdateView, DeleteView
+from django.views.generic import CreateView,UpdateView, DeleteView,View
 from .forms import EditPersonalProfileForm, NoteForm,CommentForm,EditProfileForm
 from django.core.paginator import Paginator
 from django.shortcuts import render
-# Create your views here.
+from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
+from django.contrib.sites.shortcuts import get_current_site
+# import force_bytes
+from django.utils.encoding import force_bytes, force_text
+# import token generator from utils.py
+from .utils import token_generator
 # edit profile page class
 
 class UpdatePostView(UpdateView):
@@ -98,7 +105,6 @@ def UserProfileView(request, username):
 # ------------------------------------------------------------------------------------
 # home function
 # ------------------------------------------------------------------------------------
-
 def home(request):
     # return render(request, 'core/login.html')
     # order by views
@@ -124,6 +130,7 @@ def home(request):
 def signup(request):
     return render(request, 'core/register.html')
 
+
 def verify(request):
    return render(request, 'core/token_verify.html')
         
@@ -139,33 +146,6 @@ def home_logged(request):
 def handleSignUp(request):  # sourcery no-metrics
     if request.method == "POST":
         # Get the post parameters
-        get_otp = request.POST.get('otp')
-        
-        if get_otp:
-            get_usr = request.POST.get('usr')
-            usr = User.objects.get(username=get_usr)
-            if int(get_otp) == UserOTP.objects.filter(user = usr).last().otp:
-                usr.is_active = True
-                usr.is_staff = True
-                usr.save()
-                messages.success(request, "Account Activated")
-                template1 = get_template('core/welcome_email.html').render({'name': usr.username})
-                subject = 'Thankyou For Joining Gyan-e Team.'
-                email = EmailMessage(
-                    subject,
-                    template1,
-                    settings.EMAIL_HOST_USER,
-                    [usr.email, ],
-
-                )
-                email.fail_silently = False
-                email.content_subtype = "html"
-                email.send()
-                return redirect("home")
-
-            else:
-                messages.error(request, "Invalid OTP")
-                return render(request, 'core/register.html',{'otp':True, 'usr':usr})
         usernames = request.POST['username']
         
         email = request.POST['email']
@@ -218,24 +198,43 @@ def handleSignUp(request):  # sourcery no-metrics
         myuser.is_active = False
         # create user profile
         myuser.save()
-
+       
         # send otp
 
-        myuser_otp = random.randint(100000, 999999)
-        UserOTP.objects.create(user=myuser, otp=myuser_otp)
-        template2 = get_template('core/token.html').render({ 'myuser_otp':myuser_otp})
-        email_otp = EmailMessage (
-            'Your OTP',
-            template2,
+        # myuser_otp = random.randint(100000, 999999)
+        # UserOTP.objects.create(user=myuser, otp=myuser_otp)
+        # template2 = get_template('core/token.html').render({ 'myuser_otp':myuser_otp})
+        # email_otp = EmailMessage (
+        #     'Your OTP',
+        #     template2,
+        #     settings.EMAIL_HOST_USER,
+        #     [myuser.email],
+        # )
+        # email_otp.fail_silently = False
+        # email_otp.content_subtype = "html"
+        # email_otp.send()
+
+        # send verification email
+        uidb64 = urlsafe_base64_encode(force_bytes(myuser.pk))
+        domain = get_current_site(request).domain
+        link = reverse('activate', kwargs={'uidb64': uidb64, 'token': token_generator.make_token(myuser)})
+        email_subject = 'Activate your account.'
+        email_body = 'Hello {},\n\nPlease click on the link below to verify your account:\n\nhttp://{}{}'.format(myuser.username, domain, link)
+        email_send = EmailMessage(
+            email_subject,
+            email_body,
             settings.EMAIL_HOST_USER,
             [myuser.email],
         )
-        email_otp.fail_silently = False
-        email_otp.content_subtype = "html"
-        email_otp.send()
+        email_send.fail_silently = False
+        email_send.content_subtype = "html"
+        email_send.send()
+        
         # make profile
         myprofile = Profile(user=myuser)
         myprofile.save()
+        messages.success(request, "An email has been sent to you. Please verify your account")
+       
 
         return render(request, 'core/register.html', {'otp': True, 'usr':myuser})
        
@@ -345,10 +344,10 @@ def viewnotes(request,note_id):
 # ------------------------------------------------------------------------------------
 # password change view
 # ------------------------------------------------------------------------------------
-class PasswordChangeView(PasswordChangeView):
+class PasswordsChangeView(PasswordChangeView):
     form_class = PasswordChangeForm
-    template_name = 'core/password_change.html'
-    success_url = reverse_lazy('password_success')
+    success_url = reverse_lazy('home')
+    
 
 # ------------------------------------------------------------------------------------
 # search function
@@ -371,8 +370,72 @@ def like(request,note_id):
         if user in question.likes.all():
             question.likes.remove(user)
             message = 'unliked'
+            liked = False
         else:
             question.likes.add(user)
             message = 'liked'
-        ctx = { 'likes_count': question.total_likes , 'message': message}
+            liked = True
+        ctx = { 'likes_count': question.total_likes , 'message': message, 'liked': liked }
         return HttpResponse(json.dumps(ctx), content_type='application/json')
+    is_like = False
+    if request.user in question.likes.all():
+        is_like = True
+    return HttpResponse(request, 'core/viewnotes.html',{'is_like':is_like})
+
+class VerificationView(View):
+    def get(self, request, uidb64, token):
+        # make user active 
+        user = (urlsafe_base64_decode(force_text(uidb64)))
+        user = User.objects.get(pk=user)
+        if user is not None and token_generator.check_token(user, token):
+            user.is_active = True
+            user.save()
+            messages.success(request, "Your account is now activated")
+            template1 = get_template('core/welcome_email.html').render({'name': user.username})
+            subject = 'Thankyou For Joining Gyan-e Team.'
+            email = EmailMessage(
+                    subject,
+                    template1,
+                    settings.EMAIL_HOST_USER,
+                    [user.email, ],
+
+                )
+            email.fail_silently = False
+            email.content_subtype = "html"
+            email.send()
+            return redirect('home')
+        else:
+            messages.error(request, "The link is invalid")
+            return redirect('home')
+
+def contact_view(request):
+    if request.method=="POST":
+        email = request.user.email
+        messagee = request.POST.get('message')
+        if len('messagee')<2:
+            messages.error(request, "Please describe it briefly")
+        else:
+            contact = Contact(email=email,content=messagee)
+            contact.save()
+            subject = 'New Bug Message from {}'.format(email)
+            message_e = 'Message: {} '.format(messagee)
+            email_from = settings.EMAIL_HOST_USER
+            recipient_list = ['jha36binayak@gmail.com','prashim.py@gmail.com','thegyane@gmail.com']
+            
+            email = EmailMessage( subject, message_e, email_from, recipient_list )
+            email.fail_silently = False
+            email.content_subtype = "html"
+            email.send()
+
+            messages.success(request, "Your message has been sent")
+            # send a json response
+
+    return JsonResponse({'message':'success'})
+
+# robots.txt
+
+def robots(request):
+    return render(request, 'robots.txt', content_type='text/plain')
+
+
+        

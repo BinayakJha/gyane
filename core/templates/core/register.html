@@ -24,21 +24,8 @@
                             <div class="text-center">
                                 <h4 class="text-dark mb-4">Create an Account!</h4>
                             </div>
-                            {% if otp %}
-                            <form class="user" method="POST">
-                                {% csrf_token %}
-                                <input type="hidden" name="usr" value="{{ usr.username }}">
-                                <div class="form-group">
-                                    <input type="text" class="form-control form-control-user" id="otp"
-                                        aria-describedby="emailHelp" placeholder="Enter OTP" name="otp">
-                                </div>
-                                <br>
-                                {% csrf_token %}
-                                <button type="submit" class="btn btn-primary btn-user btn-block">
-                                    Verify OTP
-                                </button>
-                            </form>
-                            {% else %}
+                            
+                            
 
                             <form class="user" action="/signup_success" method='post'>
                                 {% csrf_token %}
@@ -46,38 +33,43 @@
                                    
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <input class="form-control form-control-user" type="text" id="first_name"
-                                            placeholder="First Name" name="first_name">
+                                            placeholder="First Name" name="first_name" required>
                                     </div>
                                     <div class="col-sm-6">
                                         <input class="form-control form-control-user" type="text" id="last_name"
-                                            placeholder="Last Name" name="last_name">
+                                            placeholder="Last Name" name="last_name" required>
                                     </div>
                                 </div>
                                 <div class="mb-3">
                                     <input class="form-control form-control-user" type="text" id="username"
                                         aria-describedby="emailHelp" placeholder="Choose a unique username"
-                                        name="username">
+                                        name="username" required>
                                         <!-- check if the username is available -->
                                         <span id="username_availability_result"></span>
                                        
                                 </div>
                                 <div class="mb-3">
                                     <input class="form-control form-control-user" type="email" id="email"
-                                        aria-describedby="emailHelp" placeholder="Email Address" name="email">
+                                        aria-describedby="emailHelp" placeholder="Email Address" name="email" required>
                                 </div>
                                
                                 <div class="row mb-3">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <input class="form-control form-control-user" type="password" id="password"
-                                            placeholder="Password" name="password">
+                                            placeholder="Password" name="password" required>
+                                           
+                                          
+
                                     </div>
                                     <div class="col-sm-6">
                                         <input class="form-control form-control-user" type="password"
-                                            id="password_repeat" placeholder="Repeat Password" name="password_repeat">
+                                            id="password_repeat" placeholder="Repeat Password" name="password_repeat" required>
+                                            <br>
                                     </div>
                                     {% csrf_token %}
                                 {{ form.media }}
                                 {{ form.as_p }}
+                                
                                     <center><div class="registrationFormAlert" style="color:black;align-items: center;margin-top: 10px;" id="CheckPasswordMatch">
                                     </div></center>
                                     {% for message in messages %}
@@ -87,6 +79,12 @@
                                         <strong>Message: </strong> {{ message }}&nbsp; !!
                                     </div>
                                     {% endfor %}
+                                    <div id="addit" style="display: none;">
+                                    <p id="long"> Must be 8 charecter long </p>
+                                    <p id="upper"> Must contain at least one uppercase letter </p>
+                                     <p id="special"> Must contain at least one special charecter </p>
+                                     <p id="number"> Must contain at least one number </p>
+                                    </div>
 
                                 </div>
                                 
@@ -101,8 +99,8 @@
                                         class="fab fa-facebook-f"></i>&nbsp; Register with Facebook</a>
                                 <hr>
                             </form>
-                            {% endif %}
-                            <div class="text-center"><a class="small" href="{% url 'home' %}">Already have an account?
+
+                            <div class="text-center"><a class="small" href="{% url 'home' %}" style="text-decoration: none;font-weight: 700;">Already have an account?
                                     Login!</a></div>
                         </div>
                        
@@ -120,7 +118,7 @@
     <script src="{% static '/assets/js/script.min.js' %}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
-        $("#alert").fadeTo(2000, 500).slideUp(500, function(){
+        $("#alert").fadeTo(10000, 500).slideUp(500, function(){
      $("#alert").slideUp(400);
      });
      </script>
@@ -131,15 +129,75 @@
             var password = $("#password").val();
             var confirmPassword = $("#password_repeat").val();
             if (password != confirmPassword)
+
                 $("#CheckPasswordMatch").html("Passwords does not match!").css("color", "red");
                 // change color to red
             else
-                $("#CheckPasswordMatch").html("Passwords matched.").css("color", "green");
+                $("#CheckPasswordMatch").html("Passwords matched.").css("color", "green")
         }
         $(document).ready(function () {
             $("#password_repeat").keyup(checkPasswordMatch);
         });
     </script>
+    <!-- script which will check the password if 8 characters or not and if it is alphanumeric or not -->
+    <script>
+        function checkPassword() {
+            console.log("checkPassword");
+            var password = $("#password").val();
+            if (password.length < 8){
+                $("#long").css("color", "red");
+            }
+            else if (password.length >= 8){
+                $("#long").css("color", "green");
+            }
+                // change color to red
+            if (!password.match(/[A-Z]/)){
+                $("#upper").css("color", "red");
+            }
+            else if (password.match(/[A-Z]/)){
+                $("#upper").css("color", "green");
+            }
+                // change color to red
+    
+                // change color to red
+            if (!password.match(/[0-9]/)){
+                $("#number").css("color", "red");
+            }
+            else if (password.match(/[0-9]/)){
+                $("#number").css("color", "green");
+            }
+                // change color to red
+            if (!password.match(/[^a-zA-Z\d]/)){
+                $("#special").css("color", "red");
+            }
+            else if (password.match(/[^a-zA-Z\d]/)){
+                $("#special").css("color", "green");
+            }
+            if (password.length < 8 || !password.match(/[A-Z]/) || !password.match(/[0-9]/) || !password.match(/[^a-zA-Z\d]/)){
+                $("#submit").attr("disabled", true);
+            }
+            else if (password.length >= 8 && password.match(/[A-Z]/) && password.match(/[0-9]/) && password.match(/[^a-zA-Z\d]/)){
+                $("#submit").attr("disabled", false);
+            }
+                // change color to red
+            
+                // change color to green
+        }
+        $(document).ready(function () {
+            $("#password").keyup(checkPassword);
+            // when user keyup the password field show .addit
+            $("#password").keyup(function () {
+                $("#addit").slideDown(500);
+            });
+            // when keydown the password field hide .addit
+            $("#password_repeat").keyup(function () {
+                $("#addit").slideUp(500);
+            });
+        });
+
+    </script>
+    <!-- show password and hide password -->
+    
 </body>
 
 </html>

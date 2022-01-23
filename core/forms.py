@@ -83,9 +83,10 @@ class CommentForm(forms.ModelForm):
 #         fields = ['reply']
         
 class EditProfileForm(forms.ModelForm):
+    small_intro = forms.CharField(widget=forms.Textarea(attrs={'rows': 3, 'cols': 40}), required=False)
     class Meta:
         model = Profile
-        fields = ('small_intro','profile_pic')
+        fields = ('small_intro','profile_pic','web','github_username','Twitter_username','instagram_username','Facebook_username')
 
 class EditPersonalProfileForm(UserChangeForm):
     email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control'}))

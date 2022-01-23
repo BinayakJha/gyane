@@ -499,14 +499,26 @@ fieldset[disabled] .form-control {
 }
 
 .form-control {
-    width: 90% !important;
+    width: 100% !important;
 }
 
+@media (min-width: 998px) {
+    .likes i{
+        margin: 1rem 0.2rem;
+    }
+}
 /* media screens for welcome-card */
 @media (max-width: 990px) and (min-width: 768px) {
     .welcome-card {
-        margin-top: 12% !important;
+       display: none;
     }
+    .likes i{
+        margin: 1rem 0.2rem;
+    }
+    .back-btn{
+        display: none !important;
+    }
+
 
 }
 
@@ -517,6 +529,9 @@ fieldset[disabled] .form-control {
 
     .welcome-card {
         display: none;
+    }
+    .back-btn{
+        display: none !important;
     }
 }
 
@@ -530,6 +545,26 @@ fieldset[disabled] .form-control {
     .box button{
         font-size: 20px;
     }
+    .paragraphh{
+        display: none !important;
+    }
+    #answer-it{
+        display: flex; padding: 20px 17% !important;
+    }
+    .card__body{
+        padding: 2rem 1.7rem;
+    }
+    .back-btn{
+        display: none !important;
+    }
+}
+@media (max-width:559px){
+    .paragraphh{
+        display: none !important;
+    }
+    #answer-it{
+        display: flex; padding: 20px 28% !important;
+    }
 }
 
     
@@ -539,6 +574,15 @@ fieldset[disabled] .form-control {
     }
     .box button{
         font-size: 15px;
+    }
+    .paragraphh{
+        display: none !important;
+    }
+    #answer-it{
+        display: flex; padding: 20px 17%;
+    }
+    .card__body{
+        padding: 2rem 1.7rem;
     }
 }
 
