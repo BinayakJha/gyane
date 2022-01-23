@@ -1,5 +1,5 @@
-Django==3.2.10
-Pillow==5.0.0
+Django==3.2.11
+Pillow==9.0.0
 django_editorjs_fields==0.2.6
 django_markdownx==3.0.1
 django_quill==0.1.0
